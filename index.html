@@ -11,10 +11,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-    <link rel="stylesheet" href="static/styles.css">
-
-
-
+    <link rel="stylesheet" href="/bluebike_data_visualization/static/styles.css">
 </head>
 <body>
     <header>
@@ -25,108 +22,75 @@
         <section class="introduction">
             <h2>Project Introduction</h2>
             <p>This project analyzes Boston's BlueBikes bike-sharing system data to understand urban mobility patterns and user behavior. By examining trip data from January 2025, we aim to uncover insights about how different types of users (members vs. casual riders) utilize the system, identify popular routes and stations, and understand temporal patterns in bike usage.</p>
-  
+            
             <h3>About the Data</h3>
-            <p>The dataset originates from BlueBikes' publicly available system data, sourced from the official website: 
-                <a href="https://www.bluebikes.com/system-data" target="_blank">BlueBikes System Data</a>. 
-                The data contains over 100,000 individual bike trip records from January 2025. Each row in the dataset represents a single trip and includes a mix of temporal, spatial, and user-specific attributes. The data is cleaned and prepared in CSV format for this project.
-            </p>
-  
-            <h3>Terminology and Abbreviations</h3>
-            <ul>
-                <li><strong>Start Station / End Station:</strong> Names of the bike docking stations at the beginning and end of each trip</li>
-                <li><strong>Member:</strong> A user with a subscription to BlueBikes</li>
-                <li><strong>Casual:</strong> A user without a subscription (typically a one-time or short-term rider)</li>
-                <li><strong>Trip Duration:</strong> The length of the bike trip, measured in seconds</li>
-                <li><strong>Start Time / End Time:</strong> Timestamps of when the trip began and ended</li>
-            </ul>
-
-            <h3>Key Features and Groupings</h3>
-            <p>To better understand the structure of the dataset and its analytical potential, we've organized the key features into the following conceptual groups:</p>
-            <ul>
-                <li><strong>User Information:</strong> user_type (member or casual)</li>
-                <li><strong>Trip Timing:</strong> started_at, ended_at, trip_duration</li>
-                <li><strong>Station Info:</strong> start_station_name, end_station_name</li>
-                <li><strong>Geographic Coordinates:</strong> start_lat, start_lng, end_lat, end_lng</li>
-                <li><strong>Derived Temporal Features:</strong> day_of_week, hour_of_day (extracted from timestamps)</li>
-            </ul>
-
+            <p>The dataset comes from BlueBikes' publicly available system data, containing over 10,000 bike trips from January 2025. Each trip record includes information such as start/end times and locations, user type (member/casual), and trip duration. The data features both categorical (station names, user types) and continuous variables (trip duration, coordinates), making it ideal for diverse analytical approaches.</p>
+            
             <h3>References</h3>
             <ul>
-                <li><a href="https://www.bluebikes.com/system-data" target="_blank">BlueBikes System Data</a> – Official source of trip data</li>
-                <li><a href="https://www.boston.gov/departments/boston-bikes/bike-data" target="_blank">Boston Bikes Data</a> – City of Boston's bicycle infrastructure data</li>
+                <li><a href="https://www.bluebikes.com/system-data">BlueBikes System Data</a> - Official source of trip data</li>
+                <li><a href="https://www.boston.gov/departments/boston-bikes/bike-data">Boston Bikes Data</a> - City of Boston's bicycle infrastructure data</li>
             </ul>
         </section>
 
         <section class="temporal-patterns">
             <h2>Temporal Usage Patterns</h2>
-            <div class="temporal-controls">
-                <label for="dayType">View: </label>
-                <select id="dayType">
-                    <option value="all">All Days</option>
-                    <option value="weekday">Weekdays</option>
-                    <option value="weekend">Weekends</option>
-                    <option value="compare">Compare Weekday vs Weekend</option>
-                </select>
+            <p>Understanding when people use BlueBikes helps optimize system operations and capacity planning.</p>
+            
+            <div class="visualization-container">
+                <div id="hourly-trips"></div>
+                <p class="visualization-explanation">
+                    This line chart shows the overall hourly distribution of bike trips. The clear peaks during morning and evening rush hours indicate that many users rely on BlueBikes for commuting. The visualization uses a simple line chart design to clearly show temporal patterns, with careful color choices for readability.
+                </p>
             </div>
-            <div id="hourly-trips"></div>
-            <div id="trips-heatmap"></div>
 
-            <div id="usageHeatmap"></div>
+            <div class="visualization-container">
+                <div id="trips-heatmap"></div>
+                <p class="visualization-explanation">
+                    The heatmap reveals the intensity of bike usage across different days and hours. Darker colors indicate higher trip volumes, helping identify peak usage periods. The design uses a sequential color scheme to effectively show intensity variations.
+                </p>
+            </div>
         </section>
 
         <section class="user-analysis">
             <h2>User Type Analysis</h2>
-            <div id="daily-usage-altair"></div>
-            <div id="duration-violin"></div>
-            <div id="userTypeChart"></div>
-        </section>
-
-        <section class="spatial-distribution">
-            <h2>Spatial Distribution and Routes</h2>
-            <div class="map-controls">
-                <div class="university-area-filter">
-                    <label>
-                        <input type="checkbox" name="universityArea" value="MIT">
-                        MIT Area
-                    </label>
-                    <label>
-                        <input type="checkbox" name="universityArea" value="Harvard">
-                        Harvard Area
-                    </label>
-                </div>
-                <div class="trip-volume-filter">
-                    <label for="tripVolume">
-                        Trip Volume: <span id="tripVolumeValue">100</span>
-                    </label>
-                    <input type="range" id="tripVolume" min="1" max="100" value="100">
-                </div>
-                <div class="station-view-filter">
-                    <label for="stationView">View: </label>
-                    <select id="stationView">
-                        <option value="popularity">Station Popularity</option>
-                        <option value="usage">Usage Patterns</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="universityFilter">University: </label>
-                    <select id="universityFilter">
-                        <option value="all">All Universities</option>
-                        <option value="mit">MIT</option>
-                        <option value="harvard">Harvard</option>
-                        <option value="bu">Boston University</option>
-                        <option value="neu">Northeastern</option>
-                        <option value="none">Other Areas</option>
-                    </select>
-                </div>
+            <p>Comparing usage patterns between members and casual riders reveals different user behaviors and needs.</p>
+            
+            <div class="visualization-container">
+                <div id="daily-usage-altair"></div>
+                <p class="visualization-explanation">
+                    This interactive visualization breaks down hourly usage patterns by day and user type. The faceted design allows for easy comparison across days, while the interactive highlighting helps focus on specific user types. The consistent color scheme maintains visual coherence with other charts.
+                </p>
             </div>
-            <div id="stationMap" style="height: 500px; width: 100%;"></div>
-            <div id="station-usage-chart"></div>
-            <div id="stationChart"></div>
-            <div id="routeChart"></div>
         </section>
 
-        <section class="findings">
+        <section class="spatial-analysis">
+            <h2>Spatial Distribution and Routes</h2>
+            <p>Understanding station popularity and common travel patterns helps inform system expansion and rebalancing efforts.</p>
+            
+            <div class="visualization-container">
+                <div id="station-map" style="height: 500px;"></div>
+                <p class="visualization-explanation">
+                    Interactive map reveals concentration of popular stations around MIT, Kendall Square, and Central Square areas, indicating high demand in these tech and education hubs. The map uses circle size to represent station popularity and includes interactive tooltips for detailed information.
+                </p>
+            </div>
+
+            <div class="visualization-container">
+                <div id="station-popularity"></div>
+                <p class="visualization-explanation">
+                    Bar chart of the most popular starting stations helps identify key locations in the system. The horizontal layout accommodates station names clearly, while the color gradient adds visual interest and helps distinguish between stations.
+                </p>
+            </div>
+
+            <div class="visualization-container">
+                <div id="popular-routes"></div>
+                <p class="visualization-explanation">
+                    This visualization shows the most frequently traveled routes, with color indicating average trip duration. The combination of route frequency and duration provides insights into both popular connections and typical journey times.
+                </p>
+            </div>
+        </section>
+
+        <section class="conclusions">
             <h2>Key Findings and Future Work</h2>
             <h3>Main Conclusions</h3>
             <ol>
@@ -149,62 +113,11 @@
         <p>Data visualization project for DS4200 - Information Visualization</p>
     </footer>
 
-    <script src="static/data.js"></script>
-    <script src="static/script.js"></script>
+    <script src="/bluebike_data_visualization/static/data.js"></script>
+    <script src="/bluebike_data_visualization/static/script.js"></script>
     <script>
-        // Wait for DOM to be fully loaded before initializing
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Starting custom initialization");
-            
-            // Check if the map element exists with either ID format
-            const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
-            
-            if (!mapElement && document.getElementById('spatial-distribution')) {
-                // Create the map container element if it doesn't exist
-                console.log("Creating map container");
-                const mapContainer = document.createElement('div');
-                mapContainer.id = 'stationMap';
-                mapContainer.style.height = '500px';
-                mapContainer.style.width = '100%';
-                document.getElementById('spatial-distribution').appendChild(mapContainer);
-            }
-            
-            // Make sure tripData is available (rename visualizationData to tripData if needed)
-            if (typeof visualizationData !== 'undefined' && typeof tripData === 'undefined') {
-                console.log("Found visualizationData, mapping to tripData");
-                window.tripData = visualizationData;
-            }
-            
-            // Initialize the visualization
-            if (typeof tripData !== 'undefined') {
-                console.log("Initializing with available data");
-                setTimeout(function() {
-                    // Check if the function is defined
-                    if (typeof window.initializeVisualizations === 'function') {
-                        try {
-                            window.initializeVisualizations(tripData);
-                        } catch (error) {
-                            console.error("Error during visualization initialization:", error);
-                        }
-                    } else {
-                        // Fallback to window scope if not defined in script
-                        console.warn("initializeVisualizations not defined in expected scope. Looking in window scope.");
-                        if (typeof initializeVisualizations === 'function') {
-                            try {
-                                initializeVisualizations(tripData);
-                            } catch (error) {
-                                console.error("Error during visualization initialization:", error);
-                            }
-                        } else {
-                            console.error("Function initializeVisualizations is not defined. Ensure script.js is loaded correctly.");
-                        }
-                    }
-                }, 100);
-            } else {
-                console.error('Trip data not found. Make sure data.js is loaded correctly.');
-            }
-        });
+        // Initialize visualizations with the data from data.js
+        initializeVisualizations(visualizationData);
     </script>
-
 </body>
 </html> 

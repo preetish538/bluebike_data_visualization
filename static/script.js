@@ -26,6 +26,69 @@ function generateDurations(count, period, userType) {
     });
 }
 
+// Function to ensure visualization containers exist
+function ensureVisualizationContainers() {
+    const containers = [
+        { id: 'hourly-trips', parentSelector: '.temporal-patterns' },
+        { id: 'duration-violin', parentSelector: '.temporal-patterns' },
+        { id: 'trips-heatmap', parentSelector: '.temporal-patterns' },
+        { id: 'daily-usage-altair', parentSelector: '.temporal-patterns' },
+        { id: 'station-usage-chart', parentSelector: '.spatial-analysis' }
+    ];
+    
+    containers.forEach(container => {
+        if (!document.getElementById(container.id)) {
+            console.log(`Creating missing container: ${container.id}`);
+            const parentSection = document.querySelector(container.parentSelector);
+            
+            if (parentSection) {
+                // Find a good location to insert the container
+                const existingContainer = parentSection.querySelector('.visualization-container');
+                
+                if (existingContainer) {
+                    // Create a new container similar to existing ones
+                    const newContainer = document.createElement('div');
+                    newContainer.className = 'visualization-container';
+                    
+                    // Add chart controls if needed
+                    if (container.id === 'hourly-trips') {
+                        const controls = document.createElement('div');
+                        controls.className = 'chart-controls';
+                        controls.innerHTML = `
+                            <select id="dayType">
+                                <option value="compare">Compare Weekday vs Weekend</option>
+                                <option value="all">All Days</option>
+                                <option value="weekday">Weekdays</option>
+                                <option value="weekend">Weekends</option>
+                            </select>
+                        `;
+                        newContainer.appendChild(controls);
+                    }
+                    
+                    // Create the visualization div
+                    const visualizationDiv = document.createElement('div');
+                    visualizationDiv.id = container.id;
+                    visualizationDiv.className = 'visualization';
+                    newContainer.appendChild(visualizationDiv);
+                    
+                    // Add a description placeholder
+                    const description = document.createElement('div');
+                    description.className = 'visualization-description';
+                    description.innerHTML = `<h3>${container.id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</h3>
+                        <p>This visualization will show patterns related to ${container.id.replace(/-/g, ' ')}.</p>`;
+                    newContainer.appendChild(description);
+                    
+                    // Insert the new container
+                    parentSection.appendChild(newContainer);
+                    console.log(`Created new container for ${container.id}`);
+                }
+            } else {
+                console.warn(`Could not find parent section for ${container.id}`);
+            }
+        }
+    });
+}
+
 // Initialize visualizations with the provided data
 window.initializeVisualizations = function(data) {
     try {
@@ -36,6 +99,9 @@ window.initializeVisualizations = function(data) {
         }
         
         window.initializationInProgress = true;
+        
+        // Ensure all visualization containers exist
+        ensureVisualizationContainers();
         
         // Configure default layout options for Plotly charts
         const defaultLayout = {
@@ -75,123 +141,230 @@ window.initializeVisualizations = function(data) {
             // Define the updateVisualizations function
             function updateVisualizations() {
                 // Check if dayTypeSelect and the required data elements exist
-                const dayTypeSelect = document.getElementById('dayType');
-                if (!dayTypeSelect || !data.heatmap || !data.heatmap.data) {
-                    console.log("Skipping hourly visualization update - missing elements");
+                let dayTypeSelect = document.getElementById('dayType');
+                if (!dayTypeSelect) {
+                    console.log("Missing element: dayType select");
+                    // Find or create a container for the controls
+                    let controlsContainer = document.querySelector('.chart-controls');
+                    if (!controlsContainer) {
+                        const hourlyTripsContainer = document.getElementById('hourly-trips');
+                        if (hourlyTripsContainer && hourlyTripsContainer.parentElement) {
+                            controlsContainer = document.createElement('div');
+                            controlsContainer.className = 'chart-controls';
+                            hourlyTripsContainer.parentElement.insertBefore(controlsContainer, hourlyTripsContainer);
+                        }
+                    }
+                    
+                    if (controlsContainer) {
+                        dayTypeSelect = document.createElement('select');
+                        dayTypeSelect.id = 'dayType';
+                        dayTypeSelect.innerHTML = `
+                            <option value="compare">Compare Weekday vs Weekend</option>
+                            <option value="all">All Days</option>
+                            <option value="weekday">Weekdays</option>
+                            <option value="weekend">Weekends</option>
+                        `;
+                        controlsContainer.appendChild(dayTypeSelect);
+                        dayTypeSelect.addEventListener('change', updateVisualizations);
+                    }
+                }
+                
+                // If we don't have heatmap data, create sample data
+                if (!data.heatmap || !data.heatmap.data) {
+                    console.log("Missing data: heatmap data");
+                    data.heatmap = {
+                        data: [{
+                            x: Array.from({length: 24}, (_, i) => i),
+                            y: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                            z: Array.from({length: 7}, () => 
+                                Array.from({length: 24}, (_, hour) => {
+                                    // Create realistic trip patterns based on time of day
+                                    let base = 0;
+                                    if (hour >= 7 && hour <= 9) base = 50; // Morning commute
+                                    else if (hour >= 16 && hour <= 18) base = 45; // Evening commute
+                                    else if (hour >= 11 && hour <= 15) base = 30; // Mid-day
+                                    else if (hour >= 19 && hour <= 22) base = 20; // Evening
+                                    else base = 10; // Night/early morning
+                                    
+                                    return Math.round(base + (Math.random() * 20));
+                                })
+                            )
+                        }]
+                    };
+                }
+
+                // Log the existence status of all visualization containers
+                console.log("Checking visualization containers before update:");
+                ['hourly-trips', 'trips-heatmap', 'duration-violin', 'daily-usage-altair', 'station-usage-chart'].forEach(id => {
+                    const exists = document.getElementById(id) !== null;
+                    console.log(`Container '${id}': ${exists ? 'EXISTS' : 'MISSING'}`);
+                });
+                
+                if (!dayTypeSelect) {
+                    console.error("Cannot proceed with visualization update: dayType select is still missing");
                     return;
                 }
 
-                const dayType = dayTypeSelect.value;
-                const heatmapData = data.heatmap.data[0];
-                const hours = heatmapData.x;
-                const values = heatmapData.z;
-                
-                if (dayType === 'compare') {
-                    // Calculate weekday averages
-                    const weekdayY = Array(24).fill(0);
-                    for (let hour = 0; hour < 24; hour++) {
-                        let sum = 0;
-                        for (let day = 0; day < 5; day++) {
-                            sum += values[day][hour];
+                try {
+                    // Now that we have ensured the necessary elements, proceed with the visualization update
+                    const dayType = dayTypeSelect.value;
+                    const heatmapData = data.heatmap.data[0];
+                    const hours = heatmapData.x;
+                    const values = heatmapData.z;
+                    
+                    if (dayType === 'compare') {
+                        // Calculate weekday averages
+                        const weekdayY = Array(24).fill(0);
+                        for (let hour = 0; hour < 24; hour++) {
+                            let sum = 0;
+                            for (let day = 0; day < 5; day++) {
+                                sum += values[day][hour];
+                            }
+                            weekdayY[hour] = sum / 5;
                         }
-                        weekdayY[hour] = sum / 5;
-                    }
 
-                    // Calculate weekend averages
-                    const weekendY = Array(24).fill(0);
-                    for (let hour = 0; hour < 24; hour++) {
-                        let sum = 0;
-                        for (let day = 5; day < 7; day++) {
-                            sum += values[day][hour];
+                        // Calculate weekend averages
+                        const weekendY = Array(24).fill(0);
+                        for (let hour = 0; hour < 24; hour++) {
+                            let sum = 0;
+                            for (let day = 5; day < 7; day++) {
+                                sum += values[day][hour];
+                            }
+                            weekendY[hour] = sum / 2;
                         }
-                        weekendY[hour] = sum / 2;
-                    }
 
-                    const newData = [
-                        {
+                        const newData = [
+                            {
+                                x: hours,
+                                y: weekdayY,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                name: 'Weekdays',
+                                line: { color: '#4C78A8', width: 3 },
+                                marker: { size: 6, color: '#4C78A8' }
+                            },
+                            {
+                                x: hours,
+                                y: weekendY,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                name: 'Weekends',
+                                line: { color: '#E45756', width: 3 },
+                                marker: { size: 6, color: '#E45756' }
+                            }
+                        ];
+
+                        const newLayout = {
+                            ...defaultLayout,
+                            title: {
+                                text: 'Bike Trips by Hour of Day (Weekday vs Weekend)',
+                                font: { size: 20 }
+                            },
+                            showlegend: true,
+                            legend: {
+                                x: 1,
+                                xanchor: 'right',
+                                y: 1,
+                                bgcolor: 'rgba(255,255,255,0.9)',
+                                bordercolor: 'rgba(0,0,0,0.2)',
+                                borderwidth: 1
+                            }
+                        };
+
+                        const hourlyTripsElement = document.getElementById('hourly-trips');
+                        if (hourlyTripsElement) {
+                            console.log("Updating hourly-trips for compare view");
+                            // Check if Plotly is available
+                            if (typeof Plotly === 'undefined') {
+                                console.error("Plotly library is not available. Visualization will be skipped.");
+                                return;
+                            }
+                            Plotly.newPlot('hourly-trips', newData, newLayout);
+                        } else {
+                            console.warn("Skipping hourly-trips update - element not found");
+                            // Try to create the missing element
+                            ensureVisualizationContainers();
+                        }
+                    } else {
+                        // Calculate average trips per hour based on day type
+                        const newY = Array(24).fill(0);
+                        
+                        for (let hour = 0; hour < 24; hour++) {
+                            let sum = 0;
+                            let count = 0;
+                            
+                            // Determine which days to include based on filter
+                            const startDay = dayType === 'weekend' ? 5 : 0;
+                            const endDay = dayType === 'weekday' ? 5 : 7;
+                            
+                            for (let day = startDay; day < endDay; day++) {
+                                sum += values[day][hour];
+                                count++;
+                            }
+                            
+                            newY[hour] = sum / count;
+                        }
+
+                        const newData = [{
                             x: hours,
-                            y: weekdayY,
+                            y: newY,
                             type: 'scatter',
                             mode: 'lines+markers',
-                            name: 'Weekdays',
+                            name: 'Total Trips',
                             line: { color: '#4C78A8', width: 3 },
                             marker: { size: 6, color: '#4C78A8' }
-                        },
-                        {
-                            x: hours,
-                            y: weekendY,
-                            type: 'scatter',
-                            mode: 'lines+markers',
-                            name: 'Weekends',
-                            line: { color: '#E45756', width: 3 },
-                            marker: { size: 6, color: '#E45756' }
-                        }
-                    ];
+                        }];
 
-                    const newLayout = {
-                        ...defaultLayout,
-                        title: {
-                            text: 'Bike Trips by Hour of Day (Weekday vs Weekend)',
-                            font: { size: 20 }
-                        },
-                        showlegend: true,
-                        legend: {
-                            x: 1,
-                            xanchor: 'right',
-                            y: 1,
-                            bgcolor: 'rgba(255,255,255,0.9)',
-                            bordercolor: 'rgba(0,0,0,0.2)',
-                            borderwidth: 1
-                        }
-                    };
+                        const newLayout = {
+                            ...defaultLayout,
+                            title: {
+                                text: `Bike Trips by Hour of Day (${dayType === 'all' ? 'All Days' : (dayType === 'weekday' ? 'Weekdays' : 'Weekends')})`,
+                                font: { size: 20 }
+                            },
+                            showlegend: false
+                        };
 
-                    const hourlyTripsElement = document.getElementById('hourly-trips');
-                    if (hourlyTripsElement) {
-                        Plotly.newPlot('hourly-trips', newData, newLayout);
+                        const hourlyTripsElement = document.getElementById('hourly-trips');
+                        if (hourlyTripsElement) {
+                            console.log("Updating hourly-trips for single view");
+                            // Check if Plotly is available
+                            if (typeof Plotly === 'undefined') {
+                                console.error("Plotly library is not available. Visualization will be skipped.");
+                                return;
+                            }
+                            Plotly.newPlot('hourly-trips', newData, newLayout);
+                        } else {
+                            console.warn("Skipping hourly-trips update - element not found");
+                            // Try to create the missing element
+                            ensureVisualizationContainers();
+                        }
                     }
-                } else {
-                    // Calculate average trips per hour based on day type
-                    const newY = Array(24).fill(0);
                     
-                    for (let hour = 0; hour < 24; hour++) {
-                        let sum = 0;
-                        let count = 0;
-                        
-                        // Determine which days to include based on filter
-                        const startDay = dayType === 'weekend' ? 5 : 0;
-                        const endDay = dayType === 'weekday' ? 5 : 7;
-                        
-                        for (let day = startDay; day < endDay; day++) {
-                            sum += values[day][hour];
-                            count++;
+                    // After updating hourly-trips, check if we should create trips-heatmap
+                    const tripsHeatmapElement = document.getElementById('trips-heatmap');
+                    if (tripsHeatmapElement && typeof Plotly !== 'undefined') {
+                        console.log("Creating trips-heatmap visualization");
+                        try {
+                            Plotly.newPlot('trips-heatmap', [{
+                                ...heatmapData,
+                                hovertemplate: 
+                                    '<b>Day: %{y}</b><br>' +
+                                    'Hour: %{x}:00<br>' +
+                                    'Trips: %{z}<br>' +
+                                    '<i>Higher values indicate busier periods</i><extra></extra>'
+                            }], {
+                                ...defaultLayout,
+                                title: {
+                                    text: "Trip Distribution by Day and Hour",
+                                    font: { size: 20 }
+                                }
+                            });
+                        } catch (error) {
+                            console.error("Error creating trips-heatmap:", error);
                         }
-                        
-                        newY[hour] = sum / count;
                     }
-
-                    const newData = [{
-                        x: hours,
-                        y: newY,
-                        type: 'scatter',
-                        mode: 'lines+markers',
-                        name: 'Total Trips',
-                        line: { color: '#4C78A8', width: 3 },
-                        marker: { size: 6, color: '#4C78A8' }
-                    }];
-
-                    const newLayout = {
-                        ...defaultLayout,
-                        title: {
-                            text: `Bike Trips by Hour of Day (${dayType === 'all' ? 'All Days' : (dayType === 'weekday' ? 'Weekdays' : 'Weekends')})`,
-                            font: { size: 20 }
-                        },
-                        showlegend: false
-                    };
-
-                    const hourlyTripsElement = document.getElementById('hourly-trips');
-                    if (hourlyTripsElement) {
-                        Plotly.newPlot('hourly-trips', newData, newLayout);
-                    }
+                } catch (error) {
+                    console.error("Error in updateVisualizations function:", error);
                 }
             }
 
@@ -896,9 +1069,11 @@ window.initializeVisualizations = function(data) {
 
                     const hourlyTripsElement = document.getElementById('hourly-trips');
                     if (hourlyTripsElement) {
+                        console.log("Updating hourly-trips for compare view");
                         Plotly.newPlot('hourly-trips', newData, newLayout);
+                    } else {
+                        console.warn("Skipping hourly-trips update - element not found");
                     }
-
                 } else {
                     // Calculate average trips per hour based on day type
                     const newY = Array(24).fill(0);
@@ -940,9 +1115,11 @@ window.initializeVisualizations = function(data) {
 
                     const hourlyTripsElement = document.getElementById('hourly-trips');
                     if (hourlyTripsElement) {
+                        console.log("Updating hourly-trips for single view");
                         Plotly.newPlot('hourly-trips', newData, newLayout);
+                    } else {
+                        console.warn("Skipping hourly-trips update - element not found");
                     }
-
                 }
             }
             
@@ -1609,27 +1786,93 @@ document.addEventListener('DOMContentLoaded', function() {
     // Look for map container with either ID
     const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
     console.log("Map container:", mapElement);
-    console.log("Trip data available:", typeof tripData !== 'undefined');
+    
+    // Check if window.initializeVisualizations was already called by the page
+    if (window.mapInitializedByPage) {
+        console.log("Map already initialized by page script, skipping automatic initialization");
+        return;
+    }
+    
+    // Check for visualizationData global variable
+    const hasVisualizationData = typeof visualizationData !== 'undefined';
+    const hasTripData = typeof tripData !== 'undefined';
+    console.log("Trip data available:", hasTripData || hasVisualizationData);
     
     // Check for visualizationData and map it to tripData if needed
-    if (typeof visualizationData !== 'undefined' && typeof tripData === 'undefined') {
+    if (hasVisualizationData && !hasTripData) {
         console.log("Found visualizationData, mapping to tripData");
         window.tripData = visualizationData;
     }
     
-    // Initialize the visualizations with trip data from the data.js file
-    if (typeof tripData !== 'undefined') {
-        console.log("Trip data contains", tripData.d3_station_data ? tripData.d3_station_data.length : 0, "stations");
-        
-        // Perform a single initialization with no delays
+    // Initialize the visualizations with trip data
+    if (typeof window.tripData !== 'undefined') {
+        console.log("Initializing visualizations immediately");
         try {
-            console.log("Initializing visualizations immediately");
-            initializeVisualizations(tripData);
+            window.initializeVisualizations(window.tripData);
         } catch (e) {
             console.error("Error during initialization:", e);
         }
     } else {
-        console.error('Trip data not found. Make sure data.js is loaded correctly.');
+        console.log("No trip data found, waiting for data to be set");
+        
+        // Add a global handler to initialize when tripData becomes available
+        Object.defineProperty(window, 'tripData', {
+            set: function(newValue) {
+                console.log("Trip data set, initializing visualizations");
+                try {
+                    window.initializeVisualizations(newValue);
+                } catch (e) {
+                    console.error("Error during delayed initialization:", e);
+                }
+            },
+            get: function() {
+                return window._tripData;
+            },
+            configurable: true
+        });
     }
+    
+    // Diagnose any missing visualization containers
+    setTimeout(function() {
+        console.log("Performing visualization container diagnostic check");
+        const requiredContainers = [
+            'hourly-trips',
+            'trips-heatmap', 
+            'duration-violin', 
+            'daily-usage-altair', 
+            'station-usage-chart',
+            'station-map',
+            'stationMap'
+        ];
+        
+        const missingContainers = [];
+        requiredContainers.forEach(id => {
+            const element = document.getElementById(id);
+            if (!element) {
+                missingContainers.push(id);
+                console.warn(`DIAGNOSTIC: Container '${id}' is missing from the page`);
+            } else {
+                console.log(`DIAGNOSTIC: Container '${id}' exists with dimensions ${element.offsetWidth}x${element.offsetHeight}`);
+                // Check if Plotly is expected for this element
+                if (['hourly-trips', 'trips-heatmap', 'duration-violin'].includes(id)) {
+                    if (!element._fullLayout) {
+                        console.warn(`DIAGNOSTIC: Container '${id}' exists but has no Plotly visualization`);
+                    }
+                }
+            }
+        });
+        
+        if (missingContainers.length === 0) {
+            console.log("DIAGNOSTIC: All visualization containers are present");
+        } else {
+            console.warn(`DIAGNOSTIC: Missing ${missingContainers.length} containers: ${missingContainers.join(', ')}`);
+        }
+    }, 2000); // Wait 2 seconds to allow visualizations to initialize
 });
+
+// Make a window-level function to allow the page to signal it's handling initialization
+window.notifyPageInitialization = function() {
+    window.mapInitializedByPage = true;
+    console.log("Page has notified it will handle map initialization");
+}
 

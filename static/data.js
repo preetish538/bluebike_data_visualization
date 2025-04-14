@@ -23,8 +23,8 @@ const stations = [
   },
   {
     "name": "MIT Stata Center @ Vassar / Main St",
-    "lat": 42.3625,
-    "lng": -71.0882,
+      "lat": 42.3625,
+      "lng": -71.0882,
     "trips": 120,
     "university": "mit"
   },
@@ -34,11 +34,11 @@ const stations = [
     "lng": -71.0860,
     "trips": 115,
     "university": "mit"
-  },
-  {
-    "name": "Boylston St at Fairfield St",
-    "lat": 42.3488,
-    "lng": -71.0825,
+    },
+    {
+      "name": "Boylston St at Fairfield St",
+      "lat": 42.3488,
+      "lng": -71.0825,
     "trips": 97,
     "university": "none"
   },
@@ -48,11 +48,11 @@ const stations = [
     "lng": -71.1170,
     "trips": 92,
     "university": "harvard"
-  },
-  {
-    "name": "Forsyth St at Huntington Ave",
-    "lat": 42.3392,
-    "lng": -71.0905,
+    },
+    {
+      "name": "Forsyth St at Huntington Ave",
+      "lat": 42.3392,
+      "lng": -71.0905,
     "trips": 95,
     "university": "neu"
   },

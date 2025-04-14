@@ -1841,13 +1841,22 @@ document.addEventListener('DOMContentLoaded', function() {
             'duration-violin', 
             'daily-usage-altair', 
             'station-usage-chart',
-            'station-map',
             'stationMap'
         ];
         
         const missingContainers = [];
         requiredContainers.forEach(id => {
-            const element = document.getElementById(id);
+            // For the map container, check both possible IDs
+            let element = document.getElementById(id);
+            
+            // Special handling for map container which might have either ID
+            if (!element && id === 'stationMap') {
+                element = document.getElementById('station-map');
+                if (element) {
+                    console.log(`DIAGNOSTIC: Map container found with alternative ID 'station-map'`);
+                }
+            }
+            
             if (!element) {
                 missingContainers.push(id);
                 console.warn(`DIAGNOSTIC: Container '${id}' is missing from the page`);

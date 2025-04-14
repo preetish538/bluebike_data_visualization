@@ -156,6 +156,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log("Starting custom initialization");
             
+            // Check if initialization has already been done by script.js
+            if (window.visualizationInitialized) {
+                console.log("Visualizations already initialized by script.js, skipping duplicate initialization");
+                return;
+            }
+            
             // Check if the map element exists with either ID format
             const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
             
@@ -178,6 +184,7 @@
             // Initialize the visualization
             if (typeof tripData !== 'undefined') {
                 console.log("Initializing with available data");
+                window.visualizationInitialized = true; // Set flag to prevent re-initialization
                 setTimeout(function() {
                     // Check if the function is defined
                     if (typeof window.initializeVisualizations === 'function') {

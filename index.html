@@ -70,15 +70,23 @@
             <h2>Spatial Distribution and Routes</h2>
             <div class="map-controls">
                 <div class="university-area-filter">
-                    <label><input type="checkbox" name="universityArea" value="MIT"> MIT Area</label>
-                    <label><input type="checkbox" name="universityArea" value="Harvard"> Harvard Area</label>
+                    <label>
+                        <input type="checkbox" name="universityArea" value="MIT">
+                        MIT Area
+                    </label>
+                    <label>
+                        <input type="checkbox" name="universityArea" value="Harvard">
+                        Harvard Area
+                    </label>
                 </div>
                 <div class="trip-volume-filter">
-                    <label>Trip Volume: <span id="tripVolumeValue">100</span></label>
+                    <label for="tripVolume">
+                        Trip Volume: <span id="tripVolumeValue">100</span>
+                    </label>
                     <input type="range" id="tripVolume" min="1" max="100" value="100">
                 </div>
                 <div class="station-view-filter">
-                    <label>View: </label>
+                    <label for="stationView">View: </label>
                     <select id="stationView">
                         <option value="popularity">Station Popularity</option>
                         <option value="usage">Usage Patterns</option>

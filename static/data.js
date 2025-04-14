@@ -107,108 +107,108 @@ const visualizationData = {
       }
     ],
     "data": {
-      "name": "data-9f65394040457edc97bd4ea0f35bd413"
+      "name": "data-2cc1a286a2e98dc40808ba9896b7f02c"
     },
     "height": 400,
     "width": 800,
     "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json",
     "datasets": {
-      "data-9f65394040457edc97bd4ea0f35bd413": [
+      "data-2cc1a286a2e98dc40808ba9896b7f02c": [
         {
           "hour": 0,
-          "trips": 85
+          "trips": 102
         },
         {
           "hour": 1,
-          "trips": 60
-        },
-        {
-          "hour": 2,
-          "trips": 40
-        },
-        {
-          "hour": 3,
-          "trips": 10
-        },
-        {
-          "hour": 4,
-          "trips": 32
-        },
-        {
-          "hour": 5,
           "trips": 54
         },
         {
+          "hour": 2,
+          "trips": 29
+        },
+        {
+          "hour": 3,
+          "trips": 19
+        },
+        {
+          "hour": 4,
+          "trips": 20
+        },
+        {
+          "hour": 5,
+          "trips": 73
+        },
+        {
           "hour": 6,
-          "trips": 199
+          "trips": 216
         },
         {
           "hour": 7,
-          "trips": 528
+          "trips": 547
         },
         {
           "hour": 8,
-          "trips": 936
+          "trips": 871
         },
         {
           "hour": 9,
-          "trips": 649
+          "trips": 690
         },
         {
           "hour": 10,
-          "trips": 464
+          "trips": 469
         },
         {
           "hour": 11,
-          "trips": 449
+          "trips": 469
         },
         {
           "hour": 12,
-          "trips": 544
+          "trips": 548
         },
         {
           "hour": 13,
-          "trips": 538
+          "trips": 495
         },
         {
           "hour": 14,
-          "trips": 570
+          "trips": 545
         },
         {
           "hour": 15,
-          "trips": 681
+          "trips": 695
         },
         {
           "hour": 16,
-          "trips": 898
+          "trips": 853
         },
         {
           "hour": 17,
-          "trips": 1025
+          "trips": 1075
         },
         {
           "hour": 18,
-          "trips": 765
+          "trips": 754
         },
         {
           "hour": 19,
-          "trips": 518
+          "trips": 467
         },
         {
           "hour": 20,
-          "trips": 394
+          "trips": 378
         },
         {
           "hour": 21,
-          "trips": 252
+          "trips": 313
         },
         {
           "hour": 22,
-          "trips": 188
+          "trips": 196
         },
         {
           "hour": 23,
-          "trips": 115
+          "trips": 116
         }
       ]
     }
@@ -255,185 +255,185 @@ const visualizationData = {
         ],
         "z": [
           [
-            6.0,
-            4.0,
-            1.0,
-            0.0,
+            11.0,
             3.0,
-            8.0,
-            39.0,
-            81.0,
-            132.0,
+            2.0,
+            2.0,
+            4.0,
+            14.0,
+            23.0,
+            83.0,
+            129.0,
             77.0,
-            46.0,
-            36.0,
-            59.0,
-            47.0,
-            77.0,
-            93.0,
-            146.0,
-            163.0,
-            110.0,
-            77.0,
-            47.0,
-            30.0,
+            57.0,
+            55.0,
+            66.0,
+            63.0,
+            57.0,
+            85.0,
+            126.0,
+            158.0,
+            115.0,
+            67.0,
+            55.0,
+            37.0,
+            22.0,
+            8.0
+          ],
+          [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            4.0,
+            11.0,
+            43.0,
+            112.0,
+            168.0,
+            127.0,
+            52.0,
+            63.0,
+            56.0,
+            58.0,
+            72.0,
+            98.0,
+            120.0,
+            192.0,
+            131.0,
+            66.0,
+            57.0,
+            41.0,
+            18.0,
+            11.0
+          ],
+          [
             27.0,
+            9.0,
+            2.0,
+            3.0,
+            2.0,
+            11.0,
+            37.0,
+            104.0,
+            167.0,
+            103.0,
+            68.0,
+            69.0,
+            70.0,
+            68.0,
+            83.0,
+            118.0,
+            121.0,
+            216.0,
+            135.0,
+            74.0,
+            53.0,
+            54.0,
+            28.0,
             10.0
           ],
           [
             5.0,
-            5.0,
             3.0,
-            0.0,
-            3.0,
-            10.0,
-            35.0,
-            116.0,
-            180.0,
-            115.0,
-            49.0,
-            58.0,
-            42.0,
-            56.0,
-            71.0,
-            87.0,
-            116.0,
-            191.0,
-            135.0,
-            99.0,
-            63.0,
-            36.0,
-            18.0,
-            15.0
-          ],
-          [
-            26.0,
-            15.0,
-            4.0,
-            1.0,
-            7.0,
-            5.0,
-            39.0,
-            99.0,
-            199.0,
-            104.0,
-            73.0,
-            57.0,
-            80.0,
-            68.0,
-            69.0,
-            94.0,
-            147.0,
-            176.0,
-            132.0,
-            80.0,
-            67.0,
-            39.0,
-            34.0,
-            17.0
-          ],
-          [
-            4.0,
-            5.0,
             2.0,
-            0.0,
-            3.0,
-            14.0,
-            30.0,
-            105.0,
-            198.0,
-            119.0,
-            89.0,
-            71.0,
-            89.0,
-            84.0,
-            89.0,
+            1.0,
+            2.0,
+            13.0,
+            41.0,
             110.0,
-            163.0,
-            214.0,
-            167.0,
-            99.0,
-            75.0,
-            42.0,
-            30.0,
+            179.0,
+            137.0,
+            74.0,
+            61.0,
+            84.0,
+            70.0,
+            77.0,
+            131.0,
+            178.0,
+            208.0,
+            162.0,
+            82.0,
+            81.0,
+            52.0,
+            49.0,
             20.0
           ],
           [
-            8.0,
-            4.0,
-            8.0,
-            3.0,
-            7.0,
-            11.0,
-            28.0,
-            103.0,
-            172.0,
-            135.0,
-            70.0,
-            77.0,
-            92.0,
-            99.0,
-            82.0,
-            130.0,
-            179.0,
-            162.0,
-            118.0,
-            94.0,
+            21.0,
+            2.0,
+            0.0,
+            5.0,
+            2.0,
+            16.0,
+            43.0,
+            97.0,
+            174.0,
+            139.0,
+            84.0,
+            64.0,
+            104.0,
+            76.0,
+            78.0,
+            108.0,
+            167.0,
+            166.0,
+            115.0,
+            108.0,
+            65.0,
             71.0,
-            56.0,
-            34.0,
-            22.0
+            31.0,
+            29.0
           ],
           [
             19.0,
-            16.0,
-            14.0,
-            2.0,
+            17.0,
+            7.0,
+            3.0,
+            4.0,
             6.0,
-            2.0,
-            14.0,
-            12.0,
-            25.0,
-            48.0,
-            67.0,
-            71.0,
-            78.0,
-            85.0,
-            78.0,
-            73.0,
-            69.0,
-            53.0,
-            38.0,
-            33.0,
-            38.0,
-            20.0,
+            17.0,
+            18.0,
+            29.0,
+            51.0,
+            70.0,
+            72.0,
+            81.0,
+            75.0,
+            83.0,
+            61.0,
+            54.0,
+            56.0,
+            45.0,
             28.0,
-            18.0
+            36.0,
+            26.0,
+            24.0,
+            25.0
           ],
           [
             17.0,
-            11.0,
-            8.0,
-            4.0,
-            3.0,
-            4.0,
+            18.0,
             14.0,
+            3.0,
+            2.0,
+            2.0,
             12.0,
-            30.0,
-            51.0,
-            70.0,
-            79.0,
-            104.0,
-            99.0,
-            104.0,
+            23.0,
+            25.0,
+            56.0,
+            64.0,
+            85.0,
+            87.0,
+            85.0,
+            95.0,
             94.0,
-            78.0,
-            66.0,
-            65.0,
-            36.0,
-            33.0,
-            29.0,
-            17.0,
+            87.0,
+            79.0,
+            51.0,
+            42.0,
+            31.0,
+            32.0,
+            24.0,
             13.0
           ]
         ],
@@ -1416,29 +1416,29 @@ const visualizationData = {
         "showlegend": false,
         "textposition": "auto",
         "x": [
-          214,
-          170,
-          131,
-          126,
-          114,
-          113,
-          106,
-          93,
-          89,
-          88
+          188,
+          158,
+          139,
+          120,
+          115,
+          97,
+          96,
+          96,
+          95,
+          92
         ],
         "xaxis": "x",
         "y": [
           "MIT @ Mass Ave / Amherst St",
           "Central Square @ Mass Ave / Essex St",
           "Vassar St",
-          "Massachusetts Ave at Boylston St.",
-          "MIT Pacific",
           "MIT Stata Center @ Vassar / Main St",
-          "Charles Circle - Charles St at Cambridge St",
-          "Harvard Square @ Mass Ave/ Dunster",
+          "MIT Pacific",
+          "Boylston St at Fairfield St",
+          "Massachusetts Ave at Boylston St.",
           "South Station - 700 Atlantic Ave",
-          "Mass Ave at Albany St"
+          "Forsyth St at Huntington Ave",
+          "Ruggles T Stop - Columbus Ave at Melnea Cass Blvd"
         ],
         "yaxis": "y",
         "type": "bar"
@@ -2297,20 +2297,20 @@ const visualizationData = {
     "data": [
       {
         "alignmentgroup": "True",
-        "hovertemplate": "Number of Trips=%{x}<br>Route=%{y}<br>Average Duration (min)=%{marker.color}<extra></extra>",
+        "hovertemplate": "Number of Trips=%{marker.color}<br>Route=%{y}<extra></extra>",
         "legendgroup": "",
         "marker": {
           "color": [
-            6.433813492063492,
-            5.890088095238095,
-            6.7768500000000005,
-            4.64651,
-            7.747052380952382,
-            5.007995238095238,
-            8.157516666666666,
-            6.945027777777778,
-            8.063425757575757,
-            5.944937878787879
+            23,
+            18,
+            17,
+            17,
+            15,
+            15,
+            13,
+            12,
+            12,
+            12
           ],
           "coloraxis": "coloraxis",
           "pattern": {
@@ -2323,29 +2323,29 @@ const visualizationData = {
         "showlegend": false,
         "textposition": "auto",
         "x": [
-          21,
-          21,
+          23,
+          18,
+          17,
           17,
           15,
-          14,
-          14,
+          15,
           13,
           12,
-          11,
-          11
+          12,
+          12
         ],
         "xaxis": "x",
         "y": [
+          "MIT Stata Center @ Vassar / Main St \u2192 Vassar St",
+          "Vassar St \u2192 MIT Carleton St @ Amherst",
+          "Central Square @ Mass Ave / Essex St \u2192 MIT Pacific",
+          "Lower Cambridgeport at Magazine St / Riverside Rd \u2192 MIT Pacific",
           "Vassar St \u2192 MIT Stata Center @ Vassar / Main St",
           "MIT @ Mass Ave / Amherst St \u2192 Central Square @ Mass Ave / Essex St",
-          "MIT @ Mass Ave / Amherst St \u2192 Vassar St",
-          "Central Square @ Mass Ave / Essex St \u2192 MIT Pacific",
-          "Vassar St \u2192 MIT Carleton St @ Amherst",
-          "Vassar St \u2192 MIT @ Mass Ave / Amherst St",
-          "MIT Stata Center @ Vassar / Main St \u2192 Vassar St",
-          "Lower Cambridgeport at Magazine St / Riverside Rd \u2192 Vassar St",
-          "Central Square @ Mass Ave / Essex St \u2192 Vassar St",
-          "Central Square @ Mass Ave / Essex St \u2192 MIT @ Mass Ave / Amherst St"
+          "Washington St at Lenox St \u2192 Ruggles T Stop - Columbus Ave at Melnea Cass Blvd",
+          "Linear Park \u2192 Davis Sq",
+          "MIT Stata Center @ Vassar / Main St \u2192 MIT Pacific",
+          "Vassar St \u2192 MIT @ Mass Ave / Amherst St"
         ],
         "yaxis": "y",
         "type": "bar"
@@ -3194,51 +3194,20 @@ const visualizationData = {
       "coloraxis": {
         "colorbar": {
           "title": {
-            "text": "Average Duration (min)"
+            "text": "Number of Trips"
           }
         },
         "colorscale": [
           [
             0.0,
-            "#440154"
-          ],
-          [
-            0.1111111111111111,
-            "#482878"
-          ],
-          [
-            0.2222222222222222,
-            "#3e4989"
-          ],
-          [
-            0.3333333333333333,
-            "#31688e"
-          ],
-          [
-            0.4444444444444444,
-            "#26828e"
-          ],
-          [
-            0.5555555555555556,
-            "#1f9e89"
-          ],
-          [
-            0.6666666666666666,
-            "#35b779"
-          ],
-          [
-            0.7777777777777778,
-            "#6ece58"
-          ],
-          [
-            0.8888888888888888,
-            "#b5de2b"
+            "#cfe8fc"
           ],
           [
             1.0,
-            "#fde725"
+            "#1e88e5"
           ]
-        ]
+        ],
+        "showscale": false
       },
       "legend": {
         "tracegroupgap": 0
@@ -3251,70 +3220,70 @@ const visualizationData = {
   },
   "d3_station_data": [
     {
-      "name": "101 Smith Place",
-      "lat": 42.3926,
-      "lng": -71.1508,
-      "trips": 1
-    },
-    {
       "name": "1200 Beacon St",
-      "lat": 42.344,
+      "lat": 42.3441,
       "lng": -71.1151,
-      "trips": 26
+      "trips": 15
     },
     {
       "name": "160 Arsenal St",
       "lat": 42.3647,
       "lng": -71.1757,
-      "trips": 2
+      "trips": 1
     },
     {
       "name": "175 N Harvard St",
       "lat": 42.3645,
       "lng": -71.1284,
-      "trips": 27
+      "trips": 22
     },
     {
       "name": "191 Beacon St",
       "lat": 42.3803,
       "lng": -71.1088,
-      "trips": 33
+      "trips": 34
     },
     {
       "name": "30 Dane St",
       "lat": 42.381,
       "lng": -71.104,
-      "trips": 43
+      "trips": 42
     },
     {
       "name": "325 Binney St.",
       "lat": 42.3672,
       "lng": -71.089,
-      "trips": 39
+      "trips": 44
     },
     {
       "name": "359 Broadway - Broadway at Fayette Street",
       "lat": 42.3708,
       "lng": -71.1044,
-      "trips": 41
+      "trips": 49
     },
     {
       "name": "40 Thorndike St",
-      "lat": 42.369,
+      "lat": 42.3691,
       "lng": -71.08,
-      "trips": 17
+      "trips": 21
     },
     {
       "name": "55 Wheeler Street",
       "lat": 42.3908,
       "lng": -71.1439,
-      "trips": 18
+      "trips": 17
+    },
+    {
+      "name": "555 Metropolitan Ave",
+      "lat": 42.2681,
+      "lng": -71.1192,
+      "trips": 1
     },
     {
       "name": "606 American Legion Hwy at Canterbury St",
       "lat": 42.2858,
       "lng": -71.1097,
-      "trips": 1
+      "trips": 5
     },
     {
       "name": "615 Broadway",
@@ -3332,61 +3301,67 @@ const visualizationData = {
       "name": "699 Mt Auburn St",
       "lat": 42.375,
       "lng": -71.1487,
-      "trips": 18
+      "trips": 14
     },
     {
       "name": "7 Acre Park",
       "lat": 42.4114,
       "lng": -71.0682,
-      "trips": 3
+      "trips": 1
     },
     {
       "name": "700 Commonwealth Ave.",
       "lat": 42.3496,
       "lng": -71.1039,
-      "trips": 22
+      "trips": 29
     },
     {
       "name": "700 Huron Ave",
       "lat": 42.3808,
       "lng": -71.1541,
-      "trips": 3
+      "trips": 6
     },
     {
       "name": "75 Binney St",
       "lat": 42.3655,
       "lng": -71.0801,
-      "trips": 28
+      "trips": 36
     },
     {
       "name": "780 Morrissey Blvd",
       "lat": 42.2953,
       "lng": -71.0472,
-      "trips": 1
+      "trips": 4
     },
     {
       "name": "84 Cambridgepark Dr",
       "lat": 42.3936,
       "lng": -71.1439,
-      "trips": 1
+      "trips": 4
+    },
+    {
+      "name": "855 Broadway",
+      "lat": 42.3984,
+      "lng": -71.0239,
+      "trips": 2
     },
     {
       "name": "87-101 Cambridgepark Drive",
       "lat": 42.3952,
       "lng": -71.1442,
-      "trips": 8
+      "trips": 5
     },
     {
       "name": "955 Mass Ave",
       "lat": 42.369,
-      "lng": -71.11,
-      "trips": 66
+      "lng": -71.1101,
+      "trips": 60
     },
     {
       "name": "99 Coolidge Ave",
       "lat": 42.3637,
       "lng": -71.1518,
-      "trips": 1
+      "trips": 4
     },
     {
       "name": "Airport T Stop - Bremen St at Brooks St",
@@ -3396,177 +3371,171 @@ const visualizationData = {
     },
     {
       "name": "Albany St at E. Brookline St",
-      "lat": 42.3367,
-      "lng": -71.069,
-      "trips": 23
+      "lat": 42.3366,
+      "lng": -71.0689,
+      "trips": 24
     },
     {
       "name": "Alewife MBTA at Steel Place",
       "lat": 42.3956,
       "lng": -71.1426,
-      "trips": 25
+      "trips": 22
     },
     {
       "name": "Alewife Station at Russell Field",
       "lat": 42.3962,
       "lng": -71.1398,
-      "trips": 9
+      "trips": 25
     },
     {
       "name": "American Legion Hwy at Cummins Hwy",
       "lat": 42.2788,
       "lng": -71.1169,
-      "trips": 4
+      "trips": 2
     },
     {
       "name": "Ames St at Broadway",
       "lat": 42.3637,
       "lng": -71.0876,
-      "trips": 47
+      "trips": 40
     },
     {
       "name": "Ames St @ Main",
       "lat": 42.3625,
       "lng": -71.0882,
-      "trips": 81
+      "trips": 79
     },
     {
       "name": "Aquarium T Stop - 200 Atlantic Ave",
       "lat": 42.3604,
       "lng": -71.0504,
-      "trips": 13
+      "trips": 18
     },
     {
       "name": "Arsenal Yards",
       "lat": 42.3628,
-      "lng": -71.1578,
-      "trips": 14
+      "lng": -71.1576,
+      "trips": 15
     },
     {
       "name": "Arsenal on the Charles",
       "lat": 42.3635,
       "lng": -71.1642,
-      "trips": 4
+      "trips": 1
     },
     {
       "name": "Ashmont T Stop",
       "lat": 42.2857,
       "lng": -71.0641,
-      "trips": 3
+      "trips": 7
     },
     {
       "name": "Assembly Square T",
       "lat": 42.3922,
       "lng": -71.0775,
-      "trips": 5
+      "trips": 8
     },
     {
       "name": "Au Bon Pain Way at Fid Kennedy Ave",
-      "lat": 42.3462,
+      "lat": 42.3461,
       "lng": -71.0292,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Auburn St. at Mystic River",
       "lat": 42.4176,
       "lng": -71.1261,
-      "trips": 2
+      "trips": 1
     },
     {
       "name": "B.U. Central - 725 Comm. Ave.",
       "lat": 42.3504,
       "lng": -71.1083,
-      "trips": 25
+      "trips": 31
     },
     {
       "name": "Back Bay T Stop - Dartmouth St at Stuart St",
       "lat": 42.3481,
       "lng": -71.0766,
-      "trips": 50
+      "trips": 56
     },
     {
       "name": "Ball Sq",
       "lat": 42.3994,
       "lng": -71.1111,
-      "trips": 11
+      "trips": 14
     },
     {
       "name": "Bartlett St at John Elliot Sq",
-      "lat": 42.3295,
-      "lng": -71.0902,
+      "lat": 42.3294,
+      "lng": -71.0901,
       "trips": 8
-    },
-    {
-      "name": "Beach St at Freeport St",
-      "lat": 42.3037,
-      "lng": -71.0543,
-      "trips": 3
     },
     {
       "name": "Beacon St at Charles St",
       "lat": 42.3561,
       "lng": -71.0698,
-      "trips": 39
+      "trips": 47
     },
     {
       "name": "Beacon St at Tappan St",
-      "lat": 42.3383,
-      "lng": -71.1389,
-      "trips": 12
+      "lat": 42.3382,
+      "lng": -71.1391,
+      "trips": 9
     },
     {
       "name": "Beacon St at Washington / Kirkland",
-      "lat": 42.3788,
-      "lng": -71.1071,
-      "trips": 27
-    },
-    {
-      "name": "Belgrade Ave at Walworth St",
-      "lat": 42.2863,
-      "lng": -71.1367,
-      "trips": 2
+      "lat": 42.3787,
+      "lng": -71.1069,
+      "trips": 35
     },
     {
       "name": "Bennington St at Byron St",
       "lat": 42.3835,
       "lng": -71.0162,
-      "trips": 4
+      "trips": 8
     },
     {
       "name": "Bennington St at Constitution Beach",
       "lat": 42.3852,
       "lng": -71.0106,
-      "trips": 1
-    },
-    {
-      "name": "Bennington St at Marion St",
-      "lat": 42.3759,
-      "lng": -71.036,
       "trips": 2
     },
     {
       "name": "Berkshire Street at Cambridge Street",
       "lat": 42.3721,
       "lng": -71.09,
-      "trips": 41
+      "trips": 47
     },
     {
       "name": "Binney St / Sixth St",
       "lat": 42.3661,
       "lng": -71.0863,
-      "trips": 28
+      "trips": 29
+    },
+    {
+      "name": "Blue Hill Ave at Almont St",
+      "lat": 42.2746,
+      "lng": -71.0937,
+      "trips": 1
+    },
+    {
+      "name": "Blue Hill Ave at Havelock St",
+      "lat": 42.286,
+      "lng": -71.091,
+      "trips": 1
     },
     {
       "name": "Boston City Hall - 28 State St",
       "lat": 42.3589,
       "lng": -71.0576,
-      "trips": 66
+      "trips": 56
     },
     {
       "name": "Boston College T",
       "lat": 42.3399,
       "lng": -71.1671,
-      "trips": 7
+      "trips": 10
     },
     {
       "name": "Boston Convention and Exhibition Center - Summer St at West Side Dr",
@@ -3575,124 +3544,130 @@ const visualizationData = {
       "trips": 15
     },
     {
+      "name": "Boston East - 126 Border St",
+      "lat": 42.3733,
+      "lng": -71.041,
+      "trips": 4
+    },
+    {
       "name": "Boston Landing",
       "lat": 42.3566,
       "lng": -71.1417,
-      "trips": 13
+      "trips": 17
     },
     {
       "name": "Boston Public Market - Surface Rd at Sudbury St",
       "lat": 42.3626,
       "lng": -71.0575,
-      "trips": 3
+      "trips": 11
     },
     {
       "name": "Bowdoin St at Quincy St",
       "lat": 42.3079,
       "lng": -71.0651,
-      "trips": 9
+      "trips": 12
     },
     {
       "name": "Boylston St at Arlington St",
       "lat": 42.3525,
       "lng": -71.0678,
-      "trips": 23
+      "trips": 26
     },
     {
       "name": "Boylston St at Berkeley St",
-      "lat": 42.3511,
-      "lng": -71.0733,
-      "trips": 74
+      "lat": 42.351,
+      "lng": -71.0734,
+      "trips": 71
     },
     {
       "name": "Boylston St at Exeter St",
       "lat": 42.3496,
       "lng": -71.0795,
-      "trips": 37
+      "trips": 39
     },
     {
       "name": "Boylston St at Fairfield St",
       "lat": 42.3488,
-      "lng": -71.0824,
-      "trips": 85
+      "lng": -71.0825,
+      "trips": 97
     },
     {
       "name": "Boylston St at Jersey St",
       "lat": 42.3447,
       "lng": -71.0973,
-      "trips": 58
+      "trips": 65
     },
     {
       "name": "Boylston St at Massachusetts Ave",
       "lat": 42.3474,
       "lng": -71.0868,
-      "trips": 48
+      "trips": 37
     },
     {
       "name": "Boynton Yards at 101 South Street",
       "lat": 42.3755,
       "lng": -71.0912,
-      "trips": 11
+      "trips": 8
     },
     {
       "name": "Bremen St at Marion St",
       "lat": 42.3741,
       "lng": -71.0328,
-      "trips": 2
+      "trips": 5
     },
     {
       "name": "Brigham Circle - Francis St at Huntington Ave",
-      "lat": 42.3345,
-      "lng": -71.1046,
-      "trips": 31
+      "lat": 42.3346,
+      "lng": -71.1041,
+      "trips": 43
     },
     {
       "name": "Brighton Center - Washington St at Cambridge St",
       "lat": 42.3489,
       "lng": -71.1503,
-      "trips": 15
+      "trips": 19
     },
     {
       "name": "Brighton Mills - 370 Western Ave",
       "lat": 42.3615,
       "lng": -71.1378,
-      "trips": 19
+      "trips": 12
     },
     {
       "name": "Broad Canal Way at Third Street",
-      "lat": 42.363,
-      "lng": -71.0829,
-      "trips": 23
+      "lat": 42.3632,
+      "lng": -71.0831,
+      "trips": 18
     },
     {
       "name": "Broadway St at Mt Pleasant St",
       "lat": 42.3861,
       "lng": -71.0783,
-      "trips": 12
+      "trips": 16
     },
     {
       "name": "Broadway T Stop",
       "lat": 42.343,
       "lng": -71.058,
-      "trips": 27
+      "trips": 18
     },
     {
       "name": "Broadway at Beacham St",
       "lat": 42.3984,
       "lng": -71.0637,
-      "trips": 6
+      "trips": 3
     },
     {
       "name": "Broadway at Central St",
       "lat": 42.3952,
       "lng": -71.0985,
-      "trips": 19
+      "trips": 21
     },
     {
       "name": "Broadway at Kittie Knox Bike Path",
       "lat": 42.3641,
       "lng": -71.0874,
-      "trips": 33
+      "trips": 36
     },
     {
       "name": "Broadway at Lynde St",
@@ -3704,139 +3679,133 @@ const visualizationData = {
       "name": "Broadway at Maple St",
       "lat": 42.4103,
       "lng": -71.0526,
-      "trips": 7
+      "trips": 10
     },
     {
       "name": "Brookline Town Hall",
       "lat": 42.3338,
       "lng": -71.1205,
-      "trips": 15
+      "trips": 14
     },
     {
       "name": "Brookline Village - Station Street at MBTA",
       "lat": 42.3327,
       "lng": -71.1163,
-      "trips": 22
+      "trips": 24
     },
     {
       "name": "Bunker Hill Community College",
       "lat": 42.3741,
       "lng": -71.0691,
-      "trips": 18
+      "trips": 19
     },
     {
       "name": "Burlington Ave at Brookline Ave",
       "lat": 42.3457,
-      "lng": -71.101,
-      "trips": 12
+      "lng": -71.1007,
+      "trips": 10
     },
     {
       "name": "Butler T Stop",
       "lat": 42.2725,
       "lng": -71.0629,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Cambridge Crossing at North First Street",
       "lat": 42.3711,
       "lng": -71.0762,
-      "trips": 39
+      "trips": 28
     },
     {
       "name": "Cambridge Dept. of Public Works -147 Hampshire St.",
-      "lat": 42.3712,
-      "lng": -71.0976,
-      "trips": 41
+      "lat": 42.3713,
+      "lng": -71.0977,
+      "trips": 44
     },
     {
       "name": "Cambridge Main Library at Broadway / Trowbridge St",
-      "lat": 42.3735,
-      "lng": -71.1112,
-      "trips": 60
+      "lat": 42.3734,
+      "lng": -71.1111,
+      "trips": 46
     },
     {
       "name": "Cambridge St - at Columbia St / Webster Ave",
-      "lat": 42.3731,
+      "lat": 42.373,
       "lng": -71.0944,
-      "trips": 53
+      "trips": 38
     },
     {
       "name": "Cambridge St at Joy St",
       "lat": 42.3612,
       "lng": -71.0653,
-      "trips": 65
+      "trips": 62
     },
     {
       "name": "Cambridgeside Pl at Land Blvd",
       "lat": 42.3669,
       "lng": -71.0765,
-      "trips": 26
+      "trips": 29
     },
     {
       "name": "Carr Park",
       "lat": 42.4344,
       "lng": -71.0948,
-      "trips": 4
+      "trips": 3
+    },
+    {
+      "name": "Cary Square",
+      "lat": 42.3981,
+      "lng": -71.0307,
+      "trips": 1
     },
     {
       "name": "Central Sq Post Office / Cambridge City Hall @ Mass Ave / Pleasant St",
       "lat": 42.3664,
       "lng": -71.1055,
-      "trips": 61
+      "trips": 83
     },
     {
       "name": "Central Square East Boston",
-      "lat": 42.3754,
-      "lng": -71.0392,
-      "trips": 10
+      "lat": 42.3753,
+      "lng": -71.0393,
+      "trips": 9
     },
     {
       "name": "Central Square @ Mass Ave / Essex St",
       "lat": 42.3651,
       "lng": -71.1031,
-      "trips": 170
-    },
-    {
-      "name": "Centre St at Allandale St",
-      "lat": 42.3008,
-      "lng": -71.1274,
-      "trips": 1
-    },
-    {
-      "name": "Centre St at Parkway YMCA",
-      "lat": 42.2828,
-      "lng": -71.1573,
-      "trips": 1
-    },
-    {
-      "name": "Centre St at W. Roxbury Post Office",
-      "lat": 42.2863,
-      "lng": -71.1534,
-      "trips": 3
+      "trips": 158
     },
     {
       "name": "Charles Circle - Charles St at Cambridge St",
       "lat": 42.3608,
       "lng": -71.0712,
-      "trips": 106
+      "trips": 81
     },
     {
       "name": "Charles St S at Stuart",
-      "lat": 42.3508,
-      "lng": -71.0667,
-      "trips": 5
+      "lat": 42.3506,
+      "lng": -71.0672,
+      "trips": 6
     },
     {
       "name": "Charles St S at Stuart St",
       "lat": 42.3508,
       "lng": -71.0667,
-      "trips": 3
+      "trips": 2
     },
     {
       "name": "Charlestown Navy Yard",
       "lat": 42.3741,
       "lng": -71.0548,
-      "trips": 54
+      "trips": 65
+    },
+    {
+      "name": "Chelsea Square",
+      "lat": 42.3902,
+      "lng": -71.0386,
+      "trips": 1
     },
     {
       "name": "Chelsea St at Vine St",
@@ -3848,91 +3817,85 @@ const visualizationData = {
       "name": "Chelsea Station",
       "lat": 42.3964,
       "lng": -71.0399,
-      "trips": 8
+      "trips": 5
     },
     {
       "name": "Chestnut Hill Ave at Ledgemere Rd",
       "lat": 42.3437,
       "lng": -71.1533,
-      "trips": 5
+      "trips": 6
     },
     {
       "name": "Chestnut St at Poplar St",
       "lat": 42.3776,
       "lng": -71.086,
-      "trips": 4
+      "trips": 5
     },
     {
       "name": "Child Street at Brian P. Murphy Staircase",
       "lat": 42.372,
       "lng": -71.072,
-      "trips": 31
+      "trips": 23
     },
     {
       "name": "Chinatown Gate Plaza",
       "lat": 42.3514,
       "lng": -71.0594,
-      "trips": 35
+      "trips": 31
     },
     {
       "name": "Chinatown T Stop",
       "lat": 42.3524,
       "lng": -71.0627,
-      "trips": 58
+      "trips": 55
     },
     {
       "name": "Christian Science Plaza - Massachusetts Ave at Westland Ave",
-      "lat": 42.3437,
-      "lng": -71.0858,
-      "trips": 83
+      "lat": 42.3439,
+      "lng": -71.086,
+      "trips": 81
     },
     {
       "name": "Church St",
       "lat": 42.3743,
       "lng": -71.1197,
-      "trips": 23
+      "trips": 27
     },
     {
       "name": "Circuit Drive at American Legion Hwy",
       "lat": 42.297,
       "lng": -71.0917,
-      "trips": 1
+      "trips": 3
     },
     {
       "name": "Clarendon Hill at Broadway",
       "lat": 42.4063,
       "lng": -71.1324,
-      "trips": 10
-    },
-    {
-      "name": "Cleary Sq",
-      "lat": 42.2556,
-      "lng": -71.1244,
-      "trips": 2
+      "trips": 12
     },
     {
       "name": "Cleveland Circle",
       "lat": 42.3355,
       "lng": -71.1506,
-      "trips": 7
+      "trips": 5
     },
     {
       "name": "Clinton St at North St",
-      "lat": 42.3606,
-      "lng": -71.0555,
-      "trips": 11
+      "lat": 42.3607,
+      "lng": -71.0552,
+      "trips": 9
     },
     {
       "name": "Codman Square Library",
       "lat": 42.2874,
       "lng": -71.0711,
-      "trips": 1
+      "trips": 9
     },
     {
       "name": "Colleges of the Fenway - Fenway at Avenue Louis Pasteur",
       "lat": 42.3401,
       "lng": -71.1006,
-      "trips": 21
+      "trips": 22
     },
     {
       "name": "Columbia Rd at Ceylon St",
@@ -3950,37 +3913,37 @@ const visualizationData = {
       "name": "Columbus Ave at W. Canton St",
       "lat": 42.3447,
       "lng": -71.0765,
-      "trips": 27
+      "trips": 37
     },
     {
       "name": "Commercial St at Charter St",
       "lat": 42.3682,
       "lng": -71.0568,
-      "trips": 23
+      "trips": 25
     },
     {
       "name": "Commonwealth Ave At Babcock St",
       "lat": 42.3515,
       "lng": -71.1213,
-      "trips": 16
+      "trips": 21
     },
     {
       "name": "Commonwealth Ave at Agganis Way",
       "lat": 42.3517,
-      "lng": -71.119,
-      "trips": 76
+      "lng": -71.1191,
+      "trips": 59
     },
     {
       "name": "Commonwealth Ave at Chiswick Rd",
       "lat": 42.3402,
       "lng": -71.1517,
-      "trips": 12
+      "trips": 11
     },
     {
       "name": "Commonwealth Ave at Fidelis Way",
       "lat": 42.3459,
       "lng": -71.1419,
-      "trips": 5
+      "trips": 1
     },
     {
       "name": "Commonwealth Ave at Griggs St",
@@ -3992,103 +3955,103 @@ const visualizationData = {
       "name": "Commonwealth Ave at Kelton St",
       "lat": 42.3484,
       "lng": -71.14,
-      "trips": 27
+      "trips": 21
     },
     {
       "name": "Commonwealth Ave at Naples Rd",
       "lat": 42.3519,
       "lng": -71.1238,
-      "trips": 10
+      "trips": 7
     },
     {
       "name": "Community Path at Cedar Street",
       "lat": 42.3941,
-      "lng": -71.1113,
-      "trips": 22
+      "lng": -71.1115,
+      "trips": 32
     },
     {
       "name": "Community Path at Lowell St",
       "lat": 42.3925,
       "lng": -71.1056,
-      "trips": 13
+      "trips": 20
     },
     {
       "name": "Concord Ave at Spinelli Place",
       "lat": 42.3907,
       "lng": -71.1539,
-      "trips": 2
+      "trips": 1
     },
     {
       "name": "Congress St at Boston City Hall",
       "lat": 42.3604,
       "lng": -71.0575,
-      "trips": 19
+      "trips": 29
     },
     {
       "name": "Congress St at Northern Ave",
       "lat": 42.3481,
       "lng": -71.0376,
-      "trips": 16
+      "trips": 22
     },
     {
       "name": "Conway Park - Somerville Avenue",
       "lat": 42.3836,
       "lng": -71.1085,
-      "trips": 17
+      "trips": 12
     },
     {
       "name": "Coolidge Corner - Beacon St at Centre St",
       "lat": 42.3416,
       "lng": -71.1233,
-      "trips": 42
+      "trips": 35
     },
     {
       "name": "Coolidge Sq.",
       "lat": 42.3721,
       "lng": -71.1568,
-      "trips": 2
+      "trips": 3
     },
     {
       "name": "Copley Square - Dartmouth St at Boylston St",
       "lat": 42.3499,
       "lng": -71.0774,
-      "trips": 52
+      "trips": 63
     },
     {
       "name": "Craigie & Summer at Conway Park (Temp. Winter Location)",
       "lat": 42.3834,
       "lng": -71.1075,
-      "trips": 27
+      "trips": 30
     },
     {
       "name": "Cross St at Hanover St",
       "lat": 42.3628,
       "lng": -71.0561,
-      "trips": 61
+      "trips": 40
     },
     {
       "name": "Curtis Hall - South St at Centre St",
       "lat": 42.3091,
       "lng": -71.1154,
-      "trips": 7
+      "trips": 11
     },
     {
       "name": "Cypress St at Clark Playground",
-      "lat": 42.3278,
-      "lng": -71.1254,
-      "trips": 7
+      "lat": 42.3277,
+      "lng": -71.1251,
+      "trips": 12
     },
     {
       "name": "Damrell St at Old Colony",
-      "lat": 42.3324,
-      "lng": -71.0545,
-      "trips": 12
+      "lat": 42.3325,
+      "lng": -71.0542,
+      "trips": 10
     },
     {
       "name": "Dana Park",
       "lat": 42.3618,
       "lng": -71.1081,
-      "trips": 42
+      "trips": 31
     },
     {
       "name": "Danehy Park",
@@ -4100,187 +4063,193 @@ const visualizationData = {
       "name": "Danehy Park at New Street",
       "lat": 42.3895,
       "lng": -71.139,
-      "trips": 5
+      "trips": 9
     },
     {
       "name": "Dartmouth St at Newbury St",
       "lat": 42.351,
       "lng": -71.0778,
-      "trips": 34
+      "trips": 38
     },
     {
       "name": "Davis Sq",
       "lat": 42.397,
       "lng": -71.123,
-      "trips": 52
+      "trips": 50
     },
     {
       "name": "Day Sq",
       "lat": 42.3793,
       "lng": -71.0277,
-      "trips": 2
+      "trips": 4
     },
     {
       "name": "Deerfield St at Commonwealth Ave",
       "lat": 42.3492,
       "lng": -71.0973,
-      "trips": 55
-    },
-    {
-      "name": "Derby Street",
-      "lat": 42.5201,
-      "lng": -70.8914,
-      "trips": 1
+      "trips": 45
     },
     {
       "name": "Discovery Park - 30 Acorn Park Drive",
       "lat": 42.3979,
       "lng": -71.148,
-      "trips": 16
+      "trips": 12
     },
     {
       "name": "Dorchester Ave at Gillette Park",
       "lat": 42.344,
       "lng": -71.0574,
-      "trips": 9
+      "trips": 8
     },
     {
       "name": "Dorchester Ave at King St",
       "lat": 42.2917,
       "lng": -71.0626,
-      "trips": 2
+      "trips": 1
     },
     {
       "name": "Dudley Square - Bolling Building",
       "lat": 42.3298,
-      "lng": -71.0839,
+      "lng": -71.0838,
       "trips": 13
     },
     {
       "name": "Dudley Town Common - Mt Pleasant Ave at Blue Hill Ave",
       "lat": 42.3253,
       "lng": -71.0754,
-      "trips": 8
+      "trips": 20
     },
     {
       "name": "E Cottage St at Columbia Rd",
       "lat": 42.3206,
       "lng": -71.062,
-      "trips": 15
+      "trips": 6
     },
     {
       "name": "EF - North Point Park",
       "lat": 42.3699,
       "lng": -71.07,
-      "trips": 30
+      "trips": 28
     },
     {
       "name": "East Boston Neighborhood Health Center - 20 Maverick Square",
       "lat": 42.3695,
       "lng": -71.0394,
-      "trips": 12
+      "trips": 17
     },
     {
       "name": "East Somerville Library (Broadway and Illinois)",
       "lat": 42.3876,
       "lng": -71.0832,
-      "trips": 9
+      "trips": 10
     },
     {
       "name": "Edgerly Education Center",
       "lat": 42.3872,
       "lng": -71.0871,
-      "trips": 23
+      "trips": 16
     },
     {
       "name": "Edwards Playground - Main St at Eden St",
       "lat": 42.379,
       "lng": -71.0686,
-      "trips": 21
+      "trips": 18
     },
     {
       "name": "Egleston Square - Atherton St at Washington St",
       "lat": 42.3157,
-      "lng": -71.0987,
+      "lng": -71.0986,
       "trips": 7
     },
     {
       "name": "Elevate at One Leighton",
       "lat": 42.3699,
       "lng": -71.0735,
-      "trips": 31
+      "trips": 29
+    },
+    {
+      "name": "Eliot Circle Revere Beach",
+      "lat": 42.4029,
+      "lng": -70.99,
+      "trips": 1
     },
     {
       "name": "Elm St at White St",
       "lat": 42.3895,
       "lng": -71.1169,
-      "trips": 23
+      "trips": 32
     },
     {
       "name": "Encore",
-      "lat": 42.3934,
-      "lng": -71.0728,
-      "trips": 2
+      "lat": 42.3933,
+      "lng": -71.0724,
+      "trips": 5
     },
     {
       "name": "Essex St at Dalton Parkway",
       "lat": 42.5162,
       "lng": -70.9055,
-      "trips": 2
+      "trips": 3
     },
     {
       "name": "Everett Square (Broadway at Norwood St)",
       "lat": 42.4074,
       "lng": -71.0554,
-      "trips": 2
+      "trips": 11
     },
     {
       "name": "Fan Pier",
-      "lat": 42.3534,
-      "lng": -71.0446,
-      "trips": 15
+      "lat": 42.3533,
+      "lng": -71.0443,
+      "trips": 21
+    },
+    {
+      "name": "Farragut Rd at E. 6th St",
+      "lat": 42.3334,
+      "lng": -71.025,
+      "trips": 6
     },
     {
       "name": "Fields Corner T Stop",
-      "lat": 42.2996,
-      "lng": -71.0607,
-      "trips": 4
+      "lat": 42.2998,
+      "lng": -71.0606,
+      "trips": 8
     },
     {
       "name": "Flat 9 at Whittier",
-      "lat": 42.3342,
-      "lng": -71.0877,
-      "trips": 9
+      "lat": 42.3343,
+      "lng": -71.0879,
+      "trips": 2
     },
     {
       "name": "Foley St at Grand Union Blvd",
       "lat": 42.393,
       "lng": -71.0807,
-      "trips": 12
+      "trips": 3
     },
     {
       "name": "Forest Hills",
-      "lat": 42.3008,
-      "lng": -71.1144,
-      "trips": 7
+      "lat": 42.3009,
+      "lng": -71.1142,
+      "trips": 18
     },
     {
       "name": "Forsyth St at Huntington Ave",
       "lat": 42.3392,
       "lng": -71.0905,
-      "trips": 87
+      "trips": 95
     },
     {
       "name": "Foss Park",
       "lat": 42.3911,
       "lng": -71.0904,
-      "trips": 21
+      "trips": 15
     },
     {
       "name": "Four Corners - 157 Washington St",
       "lat": 42.3041,
       "lng": -71.0793,
-      "trips": 4
+      "trips": 3
     },
     {
       "name": "Four Corners/Geneva T Stop",
@@ -4290,123 +4259,117 @@ const visualizationData = {
     },
     {
       "name": "Franklin Park - Seaver St at Humboldt Ave",
-      "lat": 42.31,
-      "lng": -71.0925,
-      "trips": 3
-    },
-    {
-      "name": "Franklin Park Zoo - Franklin Park Rd at Blue Hill Ave",
-      "lat": 42.3035,
-      "lng": -71.0853,
-      "trips": 1
+      "lat": 42.3098,
+      "lng": -71.0922,
+      "trips": 6
     },
     {
       "name": "Fresh Pond Reservation",
       "lat": 42.3827,
       "lng": -71.1435,
-      "trips": 6
+      "trips": 2
     },
     {
       "name": "Galen St at Watertown St",
       "lat": 42.3643,
       "lng": -71.1857,
-      "trips": 2
+      "trips": 3
     },
     {
       "name": "Galileo Galilei Way at Fulkerson St/Binney St",
       "lat": 42.3664,
       "lng": -71.0885,
-      "trips": 20
+      "trips": 23
     },
     {
       "name": "Galileo Galilei Way @ Mainreet",
       "lat": 42.363,
       "lng": -71.0897,
-      "trips": 42
+      "trips": 61
     },
     {
       "name": "Geiger Gibson Community Health Center",
       "lat": 42.3189,
       "lng": -71.0454,
-      "trips": 8
+      "trips": 5
     },
     {
       "name": "Gilman Square T at Medford St",
       "lat": 42.3867,
       "lng": -71.0946,
-      "trips": 16
+      "trips": 26
     },
     {
       "name": "Gore Street at Lambert Street",
       "lat": 42.3731,
       "lng": -71.0863,
-      "trips": 58
+      "trips": 55
     },
     {
       "name": "Gove St at Orleans St",
       "lat": 42.3706,
       "lng": -71.0356,
-      "trips": 12
+      "trips": 6
     },
     {
       "name": "Government Center  at Court St",
-      "lat": 42.3598,
+      "lat": 42.3601,
       "lng": -71.0598,
-      "trips": 47
-    },
-    {
-      "name": "Governors Ave at Lawrence Rd",
-      "lat": 42.4252,
-      "lng": -71.1104,
-      "trips": 1
+      "trips": 39
     },
     {
       "name": "Graham and Parks School \u2013 Linnaean St at Walker St",
       "lat": 42.3829,
       "lng": -71.1245,
-      "trips": 22
+      "trips": 18
     },
     {
       "name": "Gramsdorf Playground",
       "lat": 42.4082,
       "lng": -71.0429,
-      "trips": 3
+      "trips": 2
     },
     {
       "name": "Grand Union Blvd at Revolution Dr",
-      "lat": 42.3917,
-      "lng": -71.0804,
-      "trips": 9
+      "lat": 42.3916,
+      "lng": -71.0806,
+      "trips": 5
     },
     {
       "name": "Green Street T Stop - Green St at Amory St",
       "lat": 42.3106,
       "lng": -71.1073,
-      "trips": 15
+      "trips": 7
     },
     {
       "name": "Grove Hall Library - 41 Geneva Ave",
       "lat": 42.3079,
-      "lng": -71.081,
-      "trips": 5
+      "lng": -71.0809,
+      "trips": 3
     },
     {
       "name": "Grove St at Community Path",
       "lat": 42.3964,
       "lng": -71.1201,
-      "trips": 26
+      "trips": 37
     },
     {
       "name": "HMS/HSPH - Avenue Louis Pasteur at Longwood Ave",
       "lat": 42.3374,
       "lng": -71.1029,
-      "trips": 48
+      "trips": 55
+    },
+    {
+      "name": "Haines Square",
+      "lat": 42.4233,
+      "lng": -71.0912,
+      "trips": 1
     },
     {
       "name": "Hale Park",
       "lat": 42.4153,
       "lng": -71.0528,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Hancock St at Pleasant St",
@@ -4418,19 +4381,25 @@ const visualizationData = {
       "name": "Harbor St at Channel St",
       "lat": 42.3451,
       "lng": -71.0365,
-      "trips": 5
+      "trips": 4
+    },
+    {
+      "name": "Harris Park",
+      "lat": 42.4108,
+      "lng": -71.0815,
+      "trips": 1
     },
     {
       "name": "Harrison Ave at Bennet St",
       "lat": 42.3494,
       "lng": -71.0621,
-      "trips": 36
+      "trips": 37
     },
     {
       "name": "Harrison Ave at E. Dedham St",
-      "lat": 42.3392,
-      "lng": -71.0698,
-      "trips": 41
+      "lat": 42.3393,
+      "lng": -71.07,
+      "trips": 36
     },
     {
       "name": "Harrison Ave at Mullins Way",
@@ -4441,140 +4410,140 @@ const visualizationData = {
     {
       "name": "Harvard Ave at Brainerd Rd",
       "lat": 42.3495,
-      "lng": -71.1303,
-      "trips": 28
+      "lng": -71.1302,
+      "trips": 27
     },
     {
       "name": "Harvard Kennedy School at Bennett St / Eliot St",
       "lat": 42.3722,
       "lng": -71.1219,
-      "trips": 30
+      "trips": 41
     },
     {
       "name": "Harvard Law School @ Mass Ave / Jarvis St",
       "lat": 42.379,
       "lng": -71.1199,
-      "trips": 34
+      "trips": 42
     },
     {
       "name": "Harvard Square at Brattle St / Eliot St",
       "lat": 42.3733,
       "lng": -71.121,
-      "trips": 42
+      "trips": 41
     },
     {
       "name": "Harvard Square @ Mass Ave/ Dunster",
       "lat": 42.3733,
       "lng": -71.1186,
-      "trips": 93
+      "trips": 86
     },
     {
       "name": "Harvard St and Stedman St",
       "lat": 42.3444,
       "lng": -71.1249,
-      "trips": 21
+      "trips": 23
     },
     {
       "name": "Harvard St at Greene-Rose Heritage Park",
       "lat": 42.366,
       "lng": -71.0952,
-      "trips": 40
+      "trips": 61
     },
     {
       "name": "Harvard Stadium: N. Harvard St at Soldiers Field Rd",
       "lat": 42.368,
       "lng": -71.1242,
-      "trips": 20
+      "trips": 26
     },
     {
       "name": "Harvard University / SEAS Cruft-Pierce Halls at 29 Oxford St",
       "lat": 42.3779,
       "lng": -71.1169,
-      "trips": 38
+      "trips": 39
     },
     {
       "name": "Harvard University Gund Hall at Quincy St / Kirkland St",
       "lat": 42.3764,
       "lng": -71.114,
-      "trips": 28
+      "trips": 34
     },
     {
       "name": "Harvard University Housing - 115 Putnam Ave at Peabody Terrace",
       "lat": 42.3666,
       "lng": -71.1142,
-      "trips": 21
+      "trips": 24
     },
     {
       "name": "Harvard University Radcliffe Quadrangle at Shepard St / Garden St",
       "lat": 42.3803,
       "lng": -71.1251,
-      "trips": 21
+      "trips": 36
     },
     {
       "name": "Harvard University River Houses at DeWolfe St / Cowperthwaite St",
       "lat": 42.3692,
       "lng": -71.1169,
-      "trips": 37
+      "trips": 35
+    },
+    {
+      "name": "Hawthorne Boulevard",
+      "lat": 42.5224,
+      "lng": -70.8903,
+      "trips": 1
     },
     {
       "name": "Herter Park",
       "lat": 42.3657,
       "lng": -71.1354,
-      "trips": 2
+      "trips": 3
     },
     {
       "name": "Hickey Park",
       "lat": 42.425,
       "lng": -71.099,
-      "trips": 3
+      "trips": 1
     },
     {
       "name": "High St at Cypress St",
       "lat": 42.3246,
       "lng": -71.1214,
-      "trips": 9
+      "trips": 5
     },
     {
       "name": "High St at Federal St",
-      "lat": 42.3534,
-      "lng": -71.0565,
-      "trips": 34
+      "lat": 42.3535,
+      "lng": -71.0562,
+      "trips": 28
     },
     {
       "name": "Honan Library",
       "lat": 42.3603,
       "lng": -71.1285,
-      "trips": 19
+      "trips": 12
     },
     {
       "name": "Hood Park",
       "lat": 42.38,
       "lng": -71.073,
-      "trips": 9
+      "trips": 8
     },
     {
       "name": "Hormel Stadium",
-      "lat": 42.4071,
-      "lng": -71.0963,
-      "trips": 5
+      "lat": 42.4072,
+      "lng": -71.0965,
+      "trips": 10
     },
     {
       "name": "Huntington Ave at Mass Art",
       "lat": 42.3366,
       "lng": -71.0989,
-      "trips": 21
+      "trips": 19
     },
     {
       "name": "Huron Ave At Vassal Lane",
       "lat": 42.3817,
       "lng": -71.1343,
-      "trips": 11
-    },
-    {
-      "name": "Hyde Park Ave at Walk Hill St",
-      "lat": 42.2961,
-      "lng": -71.116,
-      "trips": 1
+      "trips": 12
     },
     {
       "name": "Hyde Park Library",
@@ -4586,73 +4555,79 @@ const visualizationData = {
       "name": "Hyde Square - Centre St at Perkins St",
       "lat": 42.3218,
       "lng": -71.1098,
-      "trips": 34
+      "trips": 27
     },
     {
       "name": "ID Building East",
       "lat": 42.3448,
       "lng": -71.0287,
-      "trips": 14
+      "trips": 18
     },
     {
       "name": "ID Building West",
       "lat": 42.3448,
       "lng": -71.0316,
-      "trips": 21
+      "trips": 22
     },
     {
       "name": "Ink Block - Harrison Ave at Herald St",
       "lat": 42.3459,
       "lng": -71.0632,
-      "trips": 27
+      "trips": 26
     },
     {
       "name": "Inman Square at Springfield St.",
       "lat": 42.3743,
       "lng": -71.1003,
-      "trips": 67
+      "trips": 81
+    },
+    {
+      "name": "Innerbelt at East Somerville Station",
+      "lat": 42.3796,
+      "lng": -71.0864,
+      "trips": 1
     },
     {
       "name": "Innovation Lab - 125 Western Ave at Batten Way",
       "lat": 42.3637,
       "lng": -71.1246,
-      "trips": 21
+      "trips": 17
     },
     {
       "name": "JFK Crossing at Harvard St. / Thorndike St.",
       "lat": 42.3466,
-      "lng": -71.1284,
-      "trips": 13
+      "lng": -71.1283,
+      "trips": 9
     },
     {
       "name": "JFK/UMass T Stop",
       "lat": 42.3203,
       "lng": -71.0512,
-      "trips": 9
+      "trips": 12
     },
     {
       "name": "Jackson Square T Stop",
       "lat": 42.3229,
       "lng": -71.1001,
-      "trips": 27
+      "trips": 25
     },
     {
       "name": "Jamaica St at South St",
       "lat": 42.306,
       "lng": -71.1157,
-      "trips": 2
+      "trips": 7
     },
     {
       "name": "John Ahern Field at Kennedy-Longfellow School",
       "lat": 42.369,
       "lng": -71.0863,
-      "trips": 12
+      "trips": 18
     },
     {
       "name": "Kearins Playground",
       "lat": 42.4062,
       "lng": -71.0604,
-      "trips": 2
+      "trips": 1
     },
     {
       "name": "Kendall Street",
@@ -4664,85 +4639,79 @@ const visualizationData = {
       "name": "Kendall T",
       "lat": 42.3624,
       "lng": -71.085,
-      "trips": 77
+      "trips": 65
     },
     {
       "name": "Kenmore Square",
       "lat": 42.3487,
       "lng": -71.097,
-      "trips": 35
+      "trips": 31
     },
     {
       "name": "Kennedy-Longfellow School 158 Spring St",
       "lat": 42.3696,
       "lng": -71.0858,
-      "trips": 63
+      "trips": 59
     },
     {
       "name": "Lafayette Square @ Mass Ave / Main St / Columbia St",
-      "lat": 42.3634,
-      "lng": -71.1005,
-      "trips": 29
-    },
-    {
-      "name": "Lafayette at Leach St",
-      "lat": 42.5114,
-      "lng": -70.8918,
-      "trips": 1
+      "lat": 42.3635,
+      "lng": -71.1006,
+      "trips": 24
     },
     {
       "name": "Lake St. at Minuteman Bikeway",
       "lat": 42.4042,
       "lng": -71.1469,
-      "trips": 7
+      "trips": 8
     },
     {
       "name": "Landmark Center - Brookline Ave at Park Dr",
       "lat": 42.3437,
       "lng": -71.1024,
-      "trips": 67
+      "trips": 48
     },
     {
       "name": "Lansdowne T Stop",
       "lat": 42.3473,
       "lng": -71.1002,
-      "trips": 48
+      "trips": 38
     },
     {
       "name": "Lechmere Canal Park",
-      "lat": 42.3699,
+      "lat": 42.3698,
       "lng": -71.0761,
-      "trips": 11
+      "trips": 12
     },
     {
       "name": "Lenox St at Kendall St",
-      "lat": 42.3375,
-      "lng": -71.0824,
-      "trips": 15
+      "lat": 42.3376,
+      "lng": -71.0826,
+      "trips": 18
     },
     {
       "name": "Lesley University",
       "lat": 42.3867,
       "lng": -71.119,
-      "trips": 19
+      "trips": 25
     },
     {
       "name": "Lewis Mall Wharf",
       "lat": 42.3657,
       "lng": -71.0403,
-      "trips": 5
+      "trips": 1
     },
     {
       "name": "Lewis Wharf at Atlantic Ave",
       "lat": 42.3639,
       "lng": -71.0509,
-      "trips": 43
+      "trips": 66
     },
     {
       "name": "Lincoln St at Empire St",
       "lat": 42.3577,
       "lng": -71.1285,
-      "trips": 25
+      "trips": 14
     },
     {
       "name": "Linear Park",
@@ -4754,85 +4723,85 @@ const visualizationData = {
       "name": "Linwood St at Minuteman Bikeway",
       "lat": 42.4094,
       "lng": -71.1491,
-      "trips": 9
+      "trips": 4
     },
     {
       "name": "Logan Park",
       "lat": 42.418,
       "lng": -71.0966,
-      "trips": 5
+      "trips": 3
     },
     {
       "name": "Longwood Ave at Binney St",
       "lat": 42.3386,
       "lng": -71.1065,
-      "trips": 46
+      "trips": 54
     },
     {
       "name": "Lower Cambridgeport at Magazine St / Riverside Rd",
-      "lat": 42.3573,
-      "lng": -71.114,
-      "trips": 80
+      "lat": 42.3572,
+      "lng": -71.1139,
+      "trips": 71
     },
     {
       "name": "MIT Carleton St @ Amherst",
       "lat": 42.3605,
       "lng": -71.0867,
-      "trips": 59
+      "trips": 77
     },
     {
       "name": "MIT Hayward St @ Amherst",
       "lat": 42.3609,
       "lng": -71.0855,
-      "trips": 48
+      "trips": 54
     },
     {
       "name": "MIT Pacific",
       "lat": 42.3596,
       "lng": -71.1013,
-      "trips": 114
+      "trips": 115
     },
     {
       "name": "MIT Stata Center @ Vassar / Main St",
       "lat": 42.3621,
       "lng": -71.0912,
-      "trips": 113
+      "trips": 120
     },
     {
       "name": "Vassar St",
       "lat": 42.3556,
       "lng": -71.1039,
-      "trips": 131
+      "trips": 139
     },
     {
       "name": "MIT @ Mass Ave / Amherst St",
       "lat": 42.3581,
       "lng": -71.0932,
-      "trips": 214
+      "trips": 188
     },
     {
       "name": "MLK Blvd at Washington St",
       "lat": 42.3214,
       "lng": -71.0913,
-      "trips": 13
+      "trips": 15
     },
     {
       "name": "Magoun Square at Trum Field",
       "lat": 42.3978,
-      "lng": -71.106,
-      "trips": 10
+      "lng": -71.1059,
+      "trips": 9
     },
     {
       "name": "Main St at Austin St",
       "lat": 42.3756,
       "lng": -71.0647,
-      "trips": 30
+      "trips": 22
     },
     {
       "name": "Main St at Baldwin St",
-      "lat": 42.3808,
+      "lat": 42.3809,
       "lng": -71.0706,
-      "trips": 10
+      "trips": 11
     },
     {
       "name": "Main St at Brooks Park",
@@ -4844,7 +4813,7 @@ const visualizationData = {
       "name": "Main St at Thompson Sq",
       "lat": 42.3749,
       "lng": -71.0638,
-      "trips": 17
+      "trips": 22
     },
     {
       "name": "Main Street/Albany Street/Technology Square",
@@ -4856,19 +4825,19 @@ const visualizationData = {
       "name": "Malden Center T Station",
       "lat": 42.4265,
       "lng": -71.0732,
-      "trips": 10
+      "trips": 15
     },
     {
       "name": "Malden High School",
       "lat": 42.4265,
       "lng": -71.0639,
-      "trips": 7
+      "trips": 1
     },
     {
       "name": "Marion St at Harvard St",
       "lat": 42.3401,
       "lng": -71.1207,
-      "trips": 24
+      "trips": 34
     },
     {
       "name": "Marion St at White St",
@@ -4886,61 +4855,55 @@ const visualizationData = {
       "name": "Mass Ave T Station",
       "lat": 42.3414,
       "lng": -71.0834,
-      "trips": 34
+      "trips": 42
     },
     {
       "name": "Mass Ave at Albany St",
       "lat": 42.3614,
       "lng": -71.0967,
-      "trips": 88
+      "trips": 80
     },
     {
       "name": "Mass Ave at Grafton St",
       "lat": 42.4073,
       "lng": -71.1438,
-      "trips": 11
+      "trips": 4
     },
     {
       "name": "Mass Ave at Hadley/Walden",
       "lat": 42.3912,
       "lng": -71.1226,
-      "trips": 15
+      "trips": 16
     },
     {
       "name": "Mass Ave/Lafayette Square",
       "lat": 42.3636,
       "lng": -71.1004,
-      "trips": 79
+      "trips": 82
     },
     {
       "name": "Massachusetts Ave at Boylston St.",
       "lat": 42.3475,
       "lng": -71.088,
-      "trips": 126
+      "trips": 96
     },
     {
       "name": "Massachusetts Ave at Columbus Ave",
       "lat": 42.3408,
       "lng": -71.0816,
-      "trips": 33
-    },
-    {
-      "name": "Mattapan T Stop",
-      "lat": 42.268,
-      "lng": -71.0937,
-      "trips": 2
+      "trips": 46
     },
     {
       "name": "Maverick Square - Lewis Mall",
       "lat": 42.3688,
-      "lng": -71.0399,
-      "trips": 11
+      "lng": -71.0398,
+      "trips": 8
     },
     {
       "name": "Maverick St at Massport Path",
       "lat": 42.3677,
       "lng": -71.0334,
-      "trips": 3
+      "trips": 1
     },
     {
       "name": "Mayor Salvo Path at Mill St",
@@ -4952,31 +4915,25 @@ const visualizationData = {
       "name": "Meaney Playground - Pleasant St at E Cottage St",
       "lat": 42.3187,
       "lng": -71.0589,
-      "trips": 14
+      "trips": 16
     },
     {
       "name": "Medford Sq - Riverside Ave at River St",
       "lat": 42.4177,
       "lng": -71.1081,
-      "trips": 3
+      "trips": 5
     },
     {
       "name": "Medford St at Charlestown BCYF",
       "lat": 42.3804,
       "lng": -71.0606,
-      "trips": 10
-    },
-    {
-      "name": "Medford St at Warren St",
-      "lat": 42.4165,
-      "lng": -71.1481,
-      "trips": 2
+      "trips": 16
     },
     {
       "name": "Melnea Cass Blvd at Hampden St",
       "lat": 42.331,
       "lng": -71.0755,
-      "trips": 8
+      "trips": 10
     },
     {
       "name": "Mill St. at Minuteman Bikeway",
@@ -4988,25 +4945,19 @@ const visualizationData = {
       "name": "Moore Youth Center",
       "lat": 42.3635,
       "lng": -71.1117,
-      "trips": 25
+      "trips": 26
     },
     {
       "name": "Morgan Ave at North First St",
       "lat": 42.372,
       "lng": -71.0759,
-      "trips": 30
-    },
-    {
-      "name": "Morton St at Gallivan Blvd",
-      "lat": 42.2787,
-      "lng": -71.0803,
-      "trips": 2
+      "trips": 20
     },
     {
       "name": "Mt Auburn",
       "lat": 42.3748,
       "lng": -71.1332,
-      "trips": 11
+      "trips": 15
     },
     {
       "name": "Mugar Way at Beacon St",
@@ -5018,43 +4969,43 @@ const visualizationData = {
       "name": "Murphy Skating Rink - 1880 Day Blvd",
       "lat": 42.3364,
       "lng": -71.0237,
-      "trips": 3
+      "trips": 4
     },
     {
       "name": "Museum of Science",
       "lat": 42.3677,
       "lng": -71.0712,
-      "trips": 11
+      "trips": 14
     },
     {
       "name": "NCAAA - Walnut Ave at Crawford St",
       "lat": 42.3169,
       "lng": -71.0919,
-      "trips": 8
+      "trips": 4
     },
     {
       "name": "Nashua Street at Red Auerbach Way",
       "lat": 42.3657,
       "lng": -71.0643,
-      "trips": 70
+      "trips": 62
     },
     {
       "name": "New Balance - 20 Guest St",
       "lat": 42.3573,
       "lng": -71.1467,
-      "trips": 12
+      "trips": 16
     },
     {
       "name": "Newmarket Square T Stop - Massachusetts Ave at Newmarket Square",
       "lat": 42.3266,
       "lng": -71.0665,
-      "trips": 19
+      "trips": 15
     },
     {
       "name": "Nichols Ave. at Watertown Greenway",
-      "lat": 42.3677,
-      "lng": -71.1562,
-      "trips": 5
+      "lat": 42.3676,
+      "lng": -71.1566,
+      "trips": 2
     },
     {
       "name": "Northbourne Rd at Hyde Park Ave",
@@ -5066,7 +5017,7 @@ const visualizationData = {
       "name": "Northern Strand - West St & Wellington Ave",
       "lat": 42.4034,
       "lng": -71.0633,
-      "trips": 4
+      "trips": 1
     },
     {
       "name": "Northern Strand @ Main",
@@ -5078,49 +5029,49 @@ const visualizationData = {
       "name": "O'Brien Highway at First Street",
       "lat": 42.371,
       "lng": -71.0766,
-      "trips": 23
+      "trips": 10
     },
     {
       "name": "Oak Square - 615 Washington St",
       "lat": 42.3506,
       "lng": -71.1665,
-      "trips": 10
+      "trips": 15
     },
     {
       "name": "Old Morse Park at Putnam Ave",
       "lat": 42.3577,
       "lng": -71.1084,
-      "trips": 55
+      "trips": 53
     },
     {
       "name": "One Beacon St",
       "lat": 42.3585,
       "lng": -71.0614,
-      "trips": 24
+      "trips": 17
     },
     {
       "name": "One Brigham Circle",
       "lat": 42.3339,
-      "lng": -71.1044,
-      "trips": 29
+      "lng": -71.1045,
+      "trips": 26
     },
     {
       "name": "One Broadway / Kendall Sq @ Main / 3rd St",
       "lat": 42.3622,
       "lng": -71.0831,
-      "trips": 47
+      "trips": 46
     },
     {
       "name": "One Kendall Square at Hampshire St / Portland St",
-      "lat": 42.366,
-      "lng": -71.0913,
-      "trips": 58
+      "lat": 42.3663,
+      "lng": -71.0917,
+      "trips": 66
     },
     {
       "name": "One Memorial Drive",
       "lat": 42.3616,
       "lng": -71.0804,
-      "trips": 13
+      "trips": 18
     },
     {
       "name": "Orient Heights T Stop - Bennington St at Saratoga St",
@@ -5129,52 +5080,46 @@ const visualizationData = {
       "trips": 3
     },
     {
-      "name": "Orr Sq (Shirley Ave)",
-      "lat": 42.4072,
-      "lng": -70.9927,
-      "trips": 1
-    },
-    {
       "name": "Packard Ave at Powderhouse Blvd",
       "lat": 42.4045,
       "lng": -71.1234,
-      "trips": 7
+      "trips": 12
     },
     {
       "name": "Packard's Corner - Commonwealth Ave at Brighton Ave",
       "lat": 42.3523,
       "lng": -71.1238,
-      "trips": 48
+      "trips": 37
     },
     {
       "name": "Park Dr at Buswell St",
       "lat": 42.3472,
       "lng": -71.1053,
-      "trips": 29
+      "trips": 26
     },
     {
       "name": "Park Plaza at Charles St S.",
       "lat": 42.3518,
       "lng": -71.0678,
-      "trips": 23
+      "trips": 18
     },
     {
       "name": "Park St at Norwell St",
       "lat": 42.2944,
       "lng": -71.0782,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Parker St at Huntington Ave",
-      "lat": 42.3385,
-      "lng": -71.0926,
-      "trips": 30
+      "lat": 42.3384,
+      "lng": -71.0927,
+      "trips": 26
     },
     {
       "name": "Pearl St at Milk St",
       "lat": 42.3568,
       "lng": -71.0555,
-      "trips": 6
+      "trips": 16
     },
     {
       "name": "Perry Park",
@@ -5186,55 +5131,55 @@ const visualizationData = {
       "name": "Pier 4 Blvd at Autumn Ln",
       "lat": 42.3502,
       "lng": -71.0447,
-      "trips": 45
+      "trips": 26
     },
     {
       "name": "Pope John Paul II Park - Neponset Trail at Hallet St",
       "lat": 42.2798,
       "lng": -71.0461,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Porter Square Station",
       "lat": 42.388,
       "lng": -71.1191,
-      "trips": 57
+      "trips": 52
     },
     {
       "name": "Porzio Park",
       "lat": 42.3641,
       "lng": -71.0288,
-      "trips": 4
+      "trips": 3
     },
     {
       "name": "Powder House Circle - Nathan Tufts Park",
       "lat": 42.4009,
       "lng": -71.1168,
-      "trips": 9
+      "trips": 11
     },
     {
       "name": "Prudential Center - 101 Huntington Ave",
-      "lat": 42.3466,
+      "lat": 42.3465,
       "lng": -71.0807,
-      "trips": 49
+      "trips": 42
     },
     {
       "name": "Purchase St at Pearl St",
       "lat": 42.3547,
       "lng": -71.0532,
-      "trips": 30
+      "trips": 47
     },
     {
       "name": "Railroad Lot and Minuteman Bikeway",
       "lat": 42.4161,
       "lng": -71.1534,
-      "trips": 3
+      "trips": 2
     },
     {
       "name": "Raymond Park at Walden St",
       "lat": 42.3874,
       "lng": -71.1276,
-      "trips": 11
+      "trips": 15
     },
     {
       "name": "Revere City Hall",
@@ -5244,86 +5189,80 @@ const visualizationData = {
     },
     {
       "name": "Rindge Avenue - O'Neill Library",
-      "lat": 42.3928,
-      "lng": -71.129,
-      "trips": 11
+      "lat": 42.3929,
+      "lng": -71.1291,
+      "trips": 15
     },
     {
       "name": "Riverway at Brookline Ave",
       "lat": 42.3366,
       "lng": -71.11,
-      "trips": 31
+      "trips": 41
     },
     {
       "name": "Rogers St & Land Blvd",
-      "lat": 42.3665,
+      "lat": 42.3664,
       "lng": -71.0765,
-      "trips": 7
+      "trips": 15
     },
     {
       "name": "Roslindale Village - South St",
       "lat": 42.2871,
       "lng": -71.1278,
-      "trips": 3
+      "trips": 5
     },
     {
       "name": "Roslindale Village - Washington St",
-      "lat": 42.2862,
-      "lng": -71.1283,
+      "lat": 42.2863,
+      "lng": -71.1282,
       "trips": 2
     },
     {
       "name": "Rowes Wharf at Atlantic Ave",
-      "lat": 42.3572,
+      "lat": 42.3571,
       "lng": -71.0507,
-      "trips": 34
+      "trips": 28
     },
     {
       "name": "Roxbury Crossing T Stop - Columbus Ave at Tremont St",
       "lat": 42.3312,
       "lng": -71.0952,
-      "trips": 41
+      "trips": 45
     },
     {
       "name": "Roxbury YMCA - Warren St at MLK Blvd",
       "lat": 42.3179,
       "lng": -71.0824,
-      "trips": 4
+      "trips": 5
     },
     {
       "name": "Ruggles T Stop - Columbus Ave at Melnea Cass Blvd",
       "lat": 42.3362,
       "lng": -71.088,
-      "trips": 64
+      "trips": 92
     },
     {
       "name": "S Huntington Ave at Heath St",
       "lat": 42.3276,
       "lng": -71.1109,
-      "trips": 12
+      "trips": 8
     },
     {
       "name": "Salem MBTA - Washington at Federal St",
       "lat": 42.5235,
       "lng": -70.8961,
-      "trips": 3
-    },
-    {
-      "name": "Salem State University - North Campus",
-      "lat": 42.5033,
-      "lng": -70.8914,
       "trips": 1
     },
     {
       "name": "Savin Hill T Stop - S Sydney St at Bay St",
       "lat": 42.3106,
       "lng": -71.0538,
-      "trips": 5
+      "trips": 2
     },
     {
       "name": "Seaport Blvd at Sleeper St",
-      "lat": 42.3531,
-      "lng": -71.0481,
+      "lat": 42.3532,
+      "lng": -71.0482,
       "trips": 54
     },
     {
@@ -5334,39 +5273,39 @@ const visualizationData = {
     },
     {
       "name": "Seaport Square - Seaport Blvd at Northern Ave",
-      "lat": 42.3514,
+      "lat": 42.3515,
       "lng": -71.0444,
-      "trips": 38
+      "trips": 22
     },
     {
       "name": "Sennott Park Broadway at Norfolk Street",
       "lat": 42.3686,
-      "lng": -71.0994,
-      "trips": 46
+      "lng": -71.0993,
+      "trips": 51
     },
     {
       "name": "Shawmut Ave at Herald St",
       "lat": 42.3466,
       "lng": -71.066,
-      "trips": 15
+      "trips": 9
     },
     {
       "name": "Shawmut Ave at Lenox St",
-      "lat": 42.3359,
+      "lat": 42.3358,
       "lng": -71.0804,
-      "trips": 12
+      "trips": 6
     },
     {
       "name": "Shawmut Ave at Oak St W",
       "lat": 42.3485,
       "lng": -71.0656,
-      "trips": 24
+      "trips": 20
     },
     {
       "name": "Shawmut T Stop",
       "lat": 42.2929,
       "lng": -71.0658,
-      "trips": 6
+      "trips": 7
     },
     {
       "name": "Shetland Park - Congress at Peabody St",
@@ -5376,75 +5315,81 @@ const visualizationData = {
     },
     {
       "name": "Sidney Research Campus/Erie Street at Waverly",
-      "lat": 42.3577,
+      "lat": 42.3578,
       "lng": -71.1039,
-      "trips": 39
+      "trips": 29
     },
     {
       "name": "Silber Way",
       "lat": 42.3495,
       "lng": -71.1006,
-      "trips": 26
+      "trips": 29
     },
     {
       "name": "Smith Pl at Wilson Rd",
       "lat": 42.3924,
       "lng": -71.1506,
-      "trips": 5
+      "trips": 1
     },
     {
       "name": "Soldiers Field Park - 111 Western Ave",
       "lat": 42.3643,
       "lng": -71.1183,
-      "trips": 15
+      "trips": 23
     },
     {
       "name": "Somerville City Hall",
       "lat": 42.3868,
       "lng": -71.0981,
-      "trips": 20
+      "trips": 12
     },
     {
       "name": "Somerville City Hall Annex",
       "lat": 42.3919,
       "lng": -71.0975,
-      "trips": 3
+      "trips": 9
     },
     {
       "name": "Somerville High School & Central Library",
       "lat": 42.3864,
       "lng": -71.096,
-      "trips": 11
+      "trips": 16
     },
     {
       "name": "Somerville Hospital",
       "lat": 42.3904,
       "lng": -71.1086,
-      "trips": 8
+      "trips": 11
     },
     {
       "name": "South Boston Library - 646 E Broadway",
       "lat": 42.3357,
-      "lng": -71.0388,
-      "trips": 26
+      "lng": -71.0387,
+      "trips": 27
     },
     {
       "name": "South End Library - Tremont St at W Newton St",
       "lat": 42.3413,
       "lng": -71.0768,
-      "trips": 39
+      "trips": 27
     },
     {
       "name": "South Station - 700 Atlantic Ave",
       "lat": 42.3522,
       "lng": -71.0555,
-      "trips": 89
+      "trips": 96
     },
     {
       "name": "Spaulding Rehabilitation Hospital - Charlestown Navy Yard",
-      "lat": 42.3783,
-      "lng": -71.0489,
-      "trips": 29
+      "lat": 42.3784,
+      "lng": -71.0485,
+      "trips": 41
+    },
+    {
+      "name": "Spring St at Powell St",
+      "lat": 42.2775,
+      "lng": -71.1634,
+      "trips": 3
     },
     {
       "name": "St Mary's",
@@ -5456,7 +5401,7 @@ const visualizationData = {
       "name": "St. Alphonsus St at Tremont St",
       "lat": 42.3333,
       "lng": -71.1012,
-      "trips": 32
+      "trips": 42
     },
     {
       "name": "Staniford St at Merrimac St",
@@ -5468,37 +5413,43 @@ const visualizationData = {
       "name": "State Street at Channel Center",
       "lat": 42.3441,
       "lng": -71.0526,
-      "trips": 19
+      "trips": 22
+    },
+    {
+      "name": "Steve Miller Dr at Winthrop St (Medford High)",
+      "lat": 42.4281,
+      "lng": -71.1264,
+      "trips": 1
     },
     {
       "name": "Stony Brook T Stop",
       "lat": 42.317,
       "lng": -71.1044,
-      "trips": 14
+      "trips": 15
     },
     {
       "name": "Stuart St at Berkeley St",
       "lat": 42.3495,
       "lng": -71.0724,
-      "trips": 41
+      "trips": 30
     },
     {
       "name": "Stuart St at Charles St",
       "lat": 42.3511,
       "lng": -71.0663,
-      "trips": 26
+      "trips": 17
     },
     {
       "name": "Stuart St at Church St",
       "lat": 42.3507,
       "lng": -71.0683,
-      "trips": 8
+      "trips": 9
     },
     {
       "name": "Sullivan Square",
       "lat": 42.3845,
       "lng": -71.0751,
-      "trips": 10
+      "trips": 17
     },
     {
       "name": "Sumner St at Shirley Ave",
@@ -5510,25 +5461,25 @@ const visualizationData = {
       "name": "Surface Rd at India St",
       "lat": 42.3582,
       "lng": -71.0522,
-      "trips": 49
+      "trips": 25
     },
     {
       "name": "Surface Rd at Summer St",
       "lat": 42.3529,
       "lng": -71.0566,
-      "trips": 47
+      "trips": 39
     },
     {
       "name": "Swan Place at Minuteman Bikeway",
       "lat": 42.4147,
       "lng": -71.1524,
-      "trips": 8
+      "trips": 5
     },
     {
       "name": "Swan St. Park",
       "lat": 42.4125,
       "lng": -71.0584,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Sydney St at Carson St",
@@ -5538,303 +5489,297 @@ const visualizationData = {
     },
     {
       "name": "Talbot Ave At Blue Hill Ave",
-      "lat": 42.2946,
-      "lng": -71.0871,
-      "trips": 7
-    },
-    {
-      "name": "Talbot Ave T Station",
-      "lat": 42.2923,
-      "lng": -71.078,
-      "trips": 1
+      "lat": 42.2945,
+      "lng": -71.087,
+      "trips": 3
     },
     {
       "name": "Tappan St at Brookline Hills MBTA",
       "lat": 42.3314,
       "lng": -71.1269,
-      "trips": 8
+      "trips": 16
     },
     {
       "name": "Teele Square",
       "lat": 42.4009,
       "lng": -71.1259,
-      "trips": 22
+      "trips": 14
     },
     {
       "name": "The Dimock Center",
       "lat": 42.3193,
       "lng": -71.0964,
-      "trips": 3
+      "trips": 6
     },
     {
       "name": "The Eddy - New St at Sumner St",
       "lat": 42.3707,
       "lng": -71.0442,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "The Lawn on D",
       "lat": 42.3448,
       "lng": -71.044,
-      "trips": 18
+      "trips": 16
     },
     {
       "name": "The Overlook at St. Gabriel's",
-      "lat": 42.3468,
-      "lng": -71.1455,
-      "trips": 21
+      "lat": 42.3469,
+      "lng": -71.1456,
+      "trips": 20
     },
     {
       "name": "Third at Binney",
       "lat": 42.3654,
       "lng": -71.0828,
-      "trips": 37
+      "trips": 32
     },
     {
       "name": "Thorndike Field at Minuteman Bikeway",
       "lat": 42.4002,
       "lng": -71.1446,
-      "trips": 8
+      "trips": 7
     },
     {
       "name": "Tremont St at Court St",
       "lat": 42.3591,
       "lng": -71.0597,
-      "trips": 19
+      "trips": 23
     },
     {
       "name": "Tremont St at E Berkeley St",
-      "lat": 42.3454,
+      "lat": 42.3453,
       "lng": -71.0696,
-      "trips": 39
+      "trips": 33
     },
     {
       "name": "Tremont St at Hamilton Pl",
       "lat": 42.3567,
       "lng": -71.0617,
-      "trips": 25
+      "trips": 24
     },
     {
       "name": "Tremont St at Northampton St",
       "lat": 42.3384,
       "lng": -71.0817,
-      "trips": 31
+      "trips": 28
     },
     {
       "name": "Tremont St at W. Dedham St",
       "lat": 42.3425,
       "lng": -71.0742,
-      "trips": 32
+      "trips": 30
     },
     {
       "name": "Tremont St at West St",
       "lat": 42.355,
       "lng": -71.0633,
-      "trips": 20
+      "trips": 22
     },
     {
       "name": "Troy Boston",
       "lat": 42.3437,
       "lng": -71.0623,
-      "trips": 14
+      "trips": 19
     },
     {
       "name": "Tufts Sq - Main St at Medford St",
       "lat": 42.4017,
       "lng": -71.1061,
-      "trips": 6
+      "trips": 8
     },
     {
       "name": "Union Square - Brighton Ave at Cambridge St",
       "lat": 42.3533,
       "lng": -71.1373,
-      "trips": 47
+      "trips": 45
     },
     {
       "name": "Union Square - Somerville",
       "lat": 42.3796,
       "lng": -71.0954,
-      "trips": 44
+      "trips": 40
     },
     {
       "name": "Union Square East",
       "lat": 42.3801,
       "lng": -71.0901,
-      "trips": 16
+      "trips": 13
     },
     {
       "name": "Union Square Station",
       "lat": 42.3773,
       "lng": -71.0944,
-      "trips": 14
+      "trips": 10
     },
     {
       "name": "University Park",
-      "lat": 42.3627,
-      "lng": -71.1,
-      "trips": 25
+      "lat": 42.3626,
+      "lng": -71.1001,
+      "trips": 36
     },
     {
       "name": "University of Massachusetts Boston - Campus Center",
       "lat": 42.3122,
       "lng": -71.0365,
-      "trips": 1
+      "trips": 3
     },
     {
       "name": "Uphams Corner T Stop - Magnolia St at Dudley St",
       "lat": 42.3187,
       "lng": -71.0698,
-      "trips": 5
+      "trips": 6
     },
     {
       "name": "Valenti Way at Haverhill St",
       "lat": 42.3645,
       "lng": -71.0591,
-      "trips": 84
+      "trips": 64
     },
     {
       "name": "Vassal Lane at Tobin/VLUS",
-      "lat": 42.3854,
-      "lng": -71.1378,
-      "trips": 3
+      "lat": 42.3853,
+      "lng": -71.1377,
+      "trips": 7
     },
     {
       "name": "Verizon Innovation Hub 10 Ware Street",
       "lat": 42.3725,
       "lng": -71.1131,
-      "trips": 19
+      "trips": 22
     },
     {
       "name": "W Broadway at D St",
       "lat": 42.3391,
       "lng": -71.0514,
-      "trips": 47
+      "trips": 23
     },
     {
       "name": "W Broadway at Dorchester St",
       "lat": 42.336,
       "lng": -71.0462,
-      "trips": 31
+      "trips": 27
     },
     {
       "name": "Walnut Ave at School St",
       "lat": 42.3124,
       "lng": -71.0962,
-      "trips": 5
+      "trips": 3
     },
     {
       "name": "Warren St at Chelsea St",
       "lat": 42.3718,
       "lng": -71.0603,
-      "trips": 50
+      "trips": 39
     },
     {
       "name": "Washington Sq",
       "lat": 42.3399,
       "lng": -71.1342,
-      "trips": 18
+      "trips": 21
     },
     {
       "name": "Washington St at Brock St",
       "lat": 42.349,
       "lng": -71.1603,
-      "trips": 9
+      "trips": 10
     },
     {
       "name": "Washington St at Lenox St",
       "lat": 42.3351,
       "lng": -71.079,
-      "trips": 34
+      "trips": 44
     },
     {
       "name": "Washington St at Melnea Cass Blvd",
       "lat": 42.3328,
       "lng": -71.0812,
-      "trips": 8
+      "trips": 4
     },
     {
       "name": "Washington St at Myrtle St",
       "lat": 42.3818,
       "lng": -71.084,
-      "trips": 14
+      "trips": 23
     },
     {
       "name": "Washington St at Rutland St",
       "lat": 42.3385,
       "lng": -71.074,
-      "trips": 67
+      "trips": 68
     },
     {
       "name": "Washington St at Talbot Ave",
       "lat": 42.2903,
       "lng": -71.0718,
-      "trips": 4
+      "trips": 7
     },
     {
       "name": "Washington St at Temple Pl",
-      "lat": 42.355,
+      "lat": 42.3551,
       "lng": -71.061,
-      "trips": 44
+      "trips": 51
     },
     {
       "name": "Washington St at Waltham St",
       "lat": 42.3416,
       "lng": -71.0689,
-      "trips": 56
+      "trips": 47
     },
     {
       "name": "Watermark Seaport - Boston Wharf Rd at Seaport Blvd",
       "lat": 42.3516,
       "lng": -71.0457,
-      "trips": 42
+      "trips": 47
     },
     {
       "name": "Watertown City Hall",
       "lat": 42.3676,
       "lng": -71.1875,
-      "trips": 4
+      "trips": 2
     },
     {
       "name": "Watertown Sq",
       "lat": 42.3653,
       "lng": -71.1857,
-      "trips": 3
+      "trips": 2
     },
     {
       "name": "Watertown St at 5th Ave",
       "lat": 42.3629,
       "lng": -71.1913,
-      "trips": 1
+      "trips": 2
     },
     {
       "name": "Wellington MBTA",
       "lat": 42.4024,
       "lng": -71.0757,
-      "trips": 5
+      "trips": 3
     },
     {
       "name": "Wentworth Institute of Technology - Huntington Ave at Vancouver St",
-      "lat": 42.3376,
+      "lat": 42.3375,
       "lng": -71.0963,
-      "trips": 13
+      "trips": 19
     },
     {
       "name": "West End Park",
       "lat": 42.3659,
       "lng": -71.0645,
-      "trips": 14
+      "trips": 10
     },
     {
       "name": "West Medford Square (Bower St at Harvard Ave)",
       "lat": 42.4206,
       "lng": -71.1335,
-      "trips": 3
+      "trips": 8
     },
     {
       "name": "Western Ave at Everett St",
       "lat": 42.3632,
-      "lng": -71.1347,
-      "trips": 12
+      "lng": -71.1348,
+      "trips": 3
     },
     {
       "name": "Western Ave at Leo Birmingham Pkwy",
@@ -5843,77 +5788,2145 @@ const visualizationData = {
       "trips": 2
     },
     {
-      "name": "Whittier St Health Center",
-      "lat": 42.3329,
-      "lng": -71.0922,
-      "trips": 5
-    },
-    {
       "name": "Williams St at Washington St",
       "lat": 42.3065,
       "lng": -71.1077,
-      "trips": 13
+      "trips": 14
     },
     {
       "name": "Wilson Square",
       "lat": 42.3857,
       "lng": -71.1141,
-      "trips": 16
+      "trips": 25
     },
     {
       "name": "Winthrop Circle",
       "lat": 42.4214,
       "lng": -71.1176,
-      "trips": 3
+      "trips": 2
     }
   ],
-  "routes": {
-    "data": [
-      {
-        "start_lat": 42.3551,
-        "start_lng": -71.0656,
-        "end_lat": 42.3601,
-        "end_lng": -71.0912,
-        "count": 150,
-        "avg_duration": 12.5,
-        "type": "university"
+  "daily_usage_altair": {
+    "config": {
+      "view": {
+        "continuousWidth": 1000,
+        "continuousHeight": 300,
+        "fill": "#ffffff",
+        "strokeWidth": 0
       },
-      {
-        "start_lat": 42.3601,
-        "start_lng": -71.0912,
-        "end_lat": 42.3762,
-        "end_lng": -71.1180,
-        "count": 120,
-        "avg_duration": 15.2,
-        "type": "university"
+      "facet": {
+        "spacing": 10
       },
-      {
-        "start_lat": 42.3535,
-        "start_lng": -71.1180,
-        "end_lat": 42.3410,
-        "end_lng": -71.0940,
-        "count": 100,
-        "avg_duration": 18.3,
-        "type": "university"
+      "header": {
+        "labelOrient": "bottom",
+        "labelPadding": 10
       },
-      {
-        "start_lat": 42.3551,
-        "start_lng": -71.0656,
-        "end_lat": 42.3601,
-        "end_lng": -71.0912,
-        "count": 200,
-        "avg_duration": 10.5,
-        "type": "commute"
-      },
-      {
-        "start_lat": 42.3601,
-        "start_lng": -71.0912,
-        "end_lat": 42.3762,
-        "end_lng": -71.1180,
-        "count": 180,
-        "avg_duration": 14.8,
-        "type": "commute"
+      "legend": {
+        "cornerRadius": 5,
+        "labelFontSize": 11,
+        "offset": 0,
+        "orient": "top",
+        "padding": 10,
+        "titleFontSize": 12
       }
-    ]
+    },
+    "data": {
+      "name": "data-202b1a0f55c02b71a03b8639894438fd"
+    },
+    "facet": {
+      "column": {
+        "field": "day_of_week",
+        "header": {
+          "labelColor": "#333333",
+          "labelFontSize": 12,
+          "labelOrient": "top",
+          "labelPadding": 10,
+          "title": null
+        },
+        "sort": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "type": "nominal"
+      }
+    },
+    "spec": {
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "size": 2
+          },
+          "encoding": {
+            "color": {
+              "field": "member_casual",
+              "scale": {
+                "domain": [
+                  "member",
+                  "casual"
+                ],
+                "range": [
+                  "#4C78A8",
+                  "#F58518"
+                ]
+              },
+              "title": "User Type",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "param_1",
+                "value": 1
+              },
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "hour",
+                "type": "quantitative"
+              },
+              {
+                "field": "trips",
+                "type": "quantitative"
+              },
+              {
+                "field": "member_casual",
+                "type": "nominal"
+              },
+              {
+                "field": "day_of_week",
+                "type": "nominal"
+              }
+            ],
+            "x": {
+              "axis": {
+                "title": "Hour of Day"
+              },
+              "field": "hour",
+              "scale": {
+                "domain": [
+                  0,
+                  23
+                ]
+              },
+              "type": "quantitative"
+            },
+            "y": {
+              "axis": {
+                "title": "Number of Trips"
+              },
+              "field": "trips",
+              "type": "quantitative"
+            }
+          },
+          "name": "view_1"
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "opacity": 0.5,
+            "size": 30
+          },
+          "encoding": {
+            "color": {
+              "field": "member_casual",
+              "scale": {
+                "domain": [
+                  "member",
+                  "casual"
+                ],
+                "range": [
+                  "#4C78A8",
+                  "#F58518"
+                ]
+              },
+              "title": "User Type",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "param_1",
+                "value": 1
+              },
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "hour",
+                "type": "quantitative"
+              },
+              {
+                "field": "trips",
+                "type": "quantitative"
+              },
+              {
+                "field": "member_casual",
+                "type": "nominal"
+              },
+              {
+                "field": "day_of_week",
+                "type": "nominal"
+              }
+            ],
+            "x": {
+              "axis": {
+                "title": "Hour of Day"
+              },
+              "field": "hour",
+              "scale": {
+                "domain": [
+                  0,
+                  23
+                ]
+              },
+              "type": "quantitative"
+            },
+            "y": {
+              "axis": {
+                "title": "Number of Trips"
+              },
+              "field": "trips",
+              "type": "quantitative"
+            }
+          }
+        }
+      ],
+      "height": 300,
+      "width": 140
+    },
+    "padding": {
+      "left": 50,
+      "right": 50,
+      "top": 50,
+      "bottom": 50
+    },
+    "params": [
+      {
+        "name": "param_1",
+        "select": {
+          "type": "point",
+          "fields": [
+            "member_casual"
+          ]
+        },
+        "views": [
+          "view_1"
+        ]
+      }
+    ],
+    "title": {
+      "text": "Hourly Trip Distribution by Day and User Type",
+      "anchor": "middle",
+      "color": "#333333",
+      "dy": 10,
+      "fontSize": 20,
+      "fontWeight": "normal"
+    },
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json",
+    "datasets": {
+      "data-202b1a0f55c02b71a03b8639894438fd": [
+        {
+          "day_of_week": "Monday",
+          "hour": 0,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 1,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 2,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 4,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 5,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 6,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 20
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 80
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 117
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 74
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 49
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 47
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 11
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 55
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 53
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 11
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 46
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 75
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 116
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 18
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 140
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 105
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 58
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 50
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 6
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 31
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 20
+        },
+        {
+          "day_of_week": "Monday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 2,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 4,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 5,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 6,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 41
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 105
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 20
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 148
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 120
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 45
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 54
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 51
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 51
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 57
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 86
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 106
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 179
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 116
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 58
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 6
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 51
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 33
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 17
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 23,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Tuesday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 0,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 19
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 1,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 2,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 2,
+          "member_casual": "member",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 4,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 5,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 6,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 36
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 102
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 158
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 96
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 66
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 57
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 11
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 59
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 58
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 20
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 63
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 103
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 23
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 98
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 25
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 191
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 122
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 61
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 46
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 47
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 21
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 23,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Wednesday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 0,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 1,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 2,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 4,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 5,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 6,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 38
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 100
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 165
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 123
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 11
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 63
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 53
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 76
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 16
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 54
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 69
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 117
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 21
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 157
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 23
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 185
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 19
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 143
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 75
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 72
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 48
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 37
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 23,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Thursday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 17
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 0,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 16
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 5,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 6,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 38
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 88
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 160
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 126
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 70
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 59
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 92
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 64
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 68
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 28
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 80
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 22
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 145
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 23
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 143
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 21
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 94
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 18
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 90
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 58
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 58
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 22
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 23,
+          "member_casual": "casual",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Friday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 25
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 0,
+          "member_casual": "casual",
+          "trips": 6
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 1,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 8
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 2,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 2,
+          "member_casual": "member",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 5,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 6,
+          "member_casual": "casual",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 22
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 44
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 58
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 57
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 68
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 60
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 14
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 69
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 10
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 51
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 49
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 43
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 40
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 24
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 6
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 30
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 23
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 21
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 23,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Saturday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 22
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 0,
+          "member_casual": "casual",
+          "trips": 6
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 0,
+          "member_casual": "member",
+          "trips": 11
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 1,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 1,
+          "member_casual": "member",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 2,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 2,
+          "member_casual": "member",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 3,
+          "member_casual": "casual",
+          "trips": 1
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 3,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 4,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 5,
+          "member_casual": "member",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 6,
+          "member_casual": "member",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 7,
+          "member_casual": "casual",
+          "trips": 5
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 7,
+          "member_casual": "member",
+          "trips": 18
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 8,
+          "member_casual": "casual",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 8,
+          "member_casual": "member",
+          "trips": 21
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 9,
+          "member_casual": "casual",
+          "trips": 9
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 9,
+          "member_casual": "member",
+          "trips": 47
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 10,
+          "member_casual": "casual",
+          "trips": 11
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 10,
+          "member_casual": "member",
+          "trips": 53
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 11,
+          "member_casual": "casual",
+          "trips": 25
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 11,
+          "member_casual": "member",
+          "trips": 60
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 12,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 12,
+          "member_casual": "member",
+          "trips": 74
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 13,
+          "member_casual": "casual",
+          "trips": 20
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 13,
+          "member_casual": "member",
+          "trips": 65
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 14,
+          "member_casual": "casual",
+          "trips": 19
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 14,
+          "member_casual": "member",
+          "trips": 76
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 15,
+          "member_casual": "casual",
+          "trips": 12
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 15,
+          "member_casual": "member",
+          "trips": 82
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 16,
+          "member_casual": "casual",
+          "trips": 16
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 16,
+          "member_casual": "member",
+          "trips": 71
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 17,
+          "member_casual": "casual",
+          "trips": 15
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 17,
+          "member_casual": "member",
+          "trips": 64
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 18,
+          "member_casual": "casual",
+          "trips": 7
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 18,
+          "member_casual": "member",
+          "trips": 44
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 19,
+          "member_casual": "casual",
+          "trips": 13
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 19,
+          "member_casual": "member",
+          "trips": 29
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 20,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 20,
+          "member_casual": "member",
+          "trips": 29
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 21,
+          "member_casual": "casual",
+          "trips": 2
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 21,
+          "member_casual": "member",
+          "trips": 30
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 22,
+          "member_casual": "casual",
+          "trips": 3
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 22,
+          "member_casual": "member",
+          "trips": 21
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 23,
+          "member_casual": "casual",
+          "trips": 4
+        },
+        {
+          "day_of_week": "Sunday",
+          "hour": 23,
+          "member_casual": "member",
+          "trips": 9
+        }
+      ]
+    }
   }
 };

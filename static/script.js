@@ -1146,3 +1146,4 @@ function kernelDensityEstimator(kernel, X) {
 function kernelEpanechnikov(k) {
     return v => Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
 }
+

@@ -62,11 +62,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            index.html
-            static/
-            .nojekyll
-            202501-bluebikes-tripdata.csv
+          path: "."
 
   deploy:
     environment:

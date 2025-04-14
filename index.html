@@ -12,6 +12,17 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link rel="stylesheet" href="/bluebike_data_visualization/static/styles.css">
+    <script>
+        // Debug function to check if scripts are loaded
+        window.onload = function() {
+            console.log('Window loaded');
+            console.log('Plotly:', typeof Plotly);
+            console.log('Vega:', typeof vega);
+            console.log('D3:', typeof d3);
+            console.log('L:', typeof L);
+            console.log('visualizationData:', typeof visualizationData);
+        };
+    </script>
 </head>
 <body>
     <header>

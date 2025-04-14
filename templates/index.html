@@ -163,8 +163,6 @@
             };
         }
         
-        // Tell script.js that the page will handle initialization
-        window.pageHandlesInitialization = true;
         if (typeof window.notifyPageInitialization === 'function') {
             window.notifyPageInitialization();
             console.log("Notified script.js that page is handling initialization");
@@ -178,23 +176,6 @@
             const maxWaitTime = 5000; // 5 seconds
             const startTime = Date.now();
             const checkInterval = 200; // 200ms
-            
-            // Set the visualization order explicitly
-            const visualizationOrder = [
-                'hourly-trips',
-                'trips-heatmap',
-                'duration-violin',
-                'daily-usage-altair',
-                'station-usage-chart'
-            ];
-            
-            // Ensure consistent map ID
-            const mapElement = document.getElementById('stationMap');
-            if (!mapElement && document.getElementById('station-map')) {
-                // If we have station-map but not stationMap, add an ID to make both work
-                document.getElementById('station-map').id = 'stationMap';
-                console.log("Standardized map ID to stationMap");
-            }
             
             function attemptInitialization() {
                 if (typeof window.initializeVisualizations === 'function') {

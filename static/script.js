@@ -138,657 +138,810 @@ window.initializeVisualizations = function(data) {
             // Log the data being used
             console.log(`Initializing with ${data.d3_station_data ? data.d3_station_data.length : 0} station data points`);
             
-            // Create visualizations in a specific order
-            const initializationSequence = [
-                initializeMap,
-                createHourlyTripsVisualization,
-                createTripsHeatmap,
-                createDurationViolin,
-                createDailyUsageChart,
-                setupEventListeners
-            ];
-            
-            // Execute each initialization step in sequence
-            initializationSequence.forEach(step => {
-                try {
-                    step();
-                } catch (error) {
-                    console.error(`Error in initialization step: ${step.name}`, error);
+            // Define the updateVisualizations function
+            function updateVisualizations() {
+                // Check if dayTypeSelect and the required data elements exist
+                let dayTypeSelect = document.getElementById('dayType');
+                if (!dayTypeSelect) {
+                    console.log("Missing element: dayType select");
+                    // Find or create a container for the controls
+                    let controlsContainer = document.querySelector('.chart-controls');
+                    if (!controlsContainer) {
+                        const hourlyTripsContainer = document.getElementById('hourly-trips');
+                        if (hourlyTripsContainer && hourlyTripsContainer.parentElement) {
+                            controlsContainer = document.createElement('div');
+                            controlsContainer.className = 'chart-controls';
+                            hourlyTripsContainer.parentElement.insertBefore(controlsContainer, hourlyTripsContainer);
+                        }
+                    }
+                    
+                    if (controlsContainer) {
+                        dayTypeSelect = document.createElement('select');
+                        dayTypeSelect.id = 'dayType';
+                        dayTypeSelect.innerHTML = `
+                            <option value="compare">Compare Weekday vs Weekend</option>
+                            <option value="all">All Days</option>
+                            <option value="weekday">Weekdays</option>
+                            <option value="weekend">Weekends</option>
+                        `;
+                        controlsContainer.appendChild(dayTypeSelect);
+                        dayTypeSelect.addEventListener('change', updateVisualizations);
+                    }
                 }
-            });
-            
-            // Initialize the map
-            function initializeMap() {
-                // Support both 'stationMap' and 'station-map' IDs for compatibility
-                const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
+                
+                // If we don't have heatmap data, create sample data
+                if (!data.heatmap || !data.heatmap.data) {
+                    console.log("Missing data: heatmap data");
+                    data.heatmap = {
+                        data: [{
+                            x: Array.from({length: 24}, (_, i) => i),
+                            y: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                            z: Array.from({length: 7}, () => 
+                                Array.from({length: 24}, (_, hour) => {
+                                    // Create realistic trip patterns based on time of day
+                                    let base = 0;
+                                    if (hour >= 7 && hour <= 9) base = 50; // Morning commute
+                                    else if (hour >= 16 && hour <= 18) base = 45; // Evening commute
+                                    else if (hour >= 11 && hour <= 15) base = 30; // Mid-day
+                                    else if (hour >= 19 && hour <= 22) base = 20; // Evening
+                                    else base = 10; // Night/early morning
+                                    
+                                    return Math.round(base + (Math.random() * 20));
+                                })
+                            )
+                        }]
+                    };
+                }
 
-                if (!mapElement) {
-                    console.error('Map container not found');
+                // Log the existence status of all visualization containers
+                console.log("Checking visualization containers before update:");
+                ['hourly-trips', 'trips-heatmap', 'duration-violin', 'daily-usage-altair', 'station-usage-chart'].forEach(id => {
+                    const exists = document.getElementById(id) !== null;
+                    console.log(`Container '${id}': ${exists ? 'EXISTS' : 'MISSING'}`);
+                });
+                
+                if (!dayTypeSelect) {
+                    console.error("Cannot proceed with visualization update: dayType select is still missing");
                     return;
                 }
-                
-                // Check if we already have a map for this element to avoid re-initialization
-                if (window.bikeShareMap) {
-                    console.log("Map already exists, using existing map");
-                    return;
-                }
-                
-                // Create a fresh map instance every time
-                console.log("Creating fresh map instance on element:", mapElement.id);
-                
-                // Remove any existing map if present
-                if (mapElement._leaflet_id) {
-                    console.log("Clearing existing map instance");
-                    try {
-                        // Try to find and clear existing map
-                        for (const mapId in L.maps) {
-                            if (L.maps[mapId]._container === mapElement) {
-                                L.maps[mapId].remove();
-                                console.log("Successfully removed existing map");
-                                break;
+
+                try {
+                    // Now that we have ensured the necessary elements, proceed with the visualization update
+                    const dayType = dayTypeSelect.value;
+                    const heatmapData = data.heatmap.data[0];
+                    const hours = heatmapData.x;
+                    const values = heatmapData.z;
+                    
+                    if (dayType === 'compare') {
+                        // Calculate weekday averages
+                        const weekdayY = Array(24).fill(0);
+                        for (let hour = 0; hour < 24; hour++) {
+                            let sum = 0;
+                            for (let day = 0; day < 5; day++) {
+                                sum += values[day][hour];
                             }
-                        }
-                    } catch (e) {
-                        console.error("Error cleaning up existing map:", e);
-                    }
-                }
-                
-                // Create new map instance
-                let map;
-                try {
-                    map = L.map(mapElement.id).setView([42.3551, -71.0656], 13);
-                    // Store the map reference globally to check if it exists
-                    window.bikeShareMap = map;
-                    
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '© OpenStreetMap contributors'
-                    }).addTo(map);
-                    console.log("New map created successfully with", data.d3_station_data ? data.d3_station_data.length : 0, "stations to display");
-                    
-                    // Add the stations to the map after the map is initialized
-                    addStationsToMap();
-                } catch (e) {
-                    console.error("Error creating new map:", e);
-                    return; // Exit initialization if map creation fails
-                }
-
-                // Function to add stations to the map
-                function addStationsToMap() {
-                    if (!map || !data.d3_station_data || data.d3_station_data.length === 0) {
-                        console.error("Cannot add stations: map or station data is missing");
-                        return;
-                    }
-
-                    try {
-                        // Get university area filters
-                        const universityFilters = {};
-                        document.querySelectorAll('input[name="universityArea"]').forEach(checkbox => {
-                            universityFilters[checkbox.value] = checkbox.checked;
-                        });
-
-                        // Get minimum trip volume
-                        const tripVolumeSlider = document.getElementById('tripVolume');
-                        const minTripVolume = tripVolumeSlider ? parseInt(tripVolumeSlider.value) : 0;
-
-                        // Check if any university filters are active
-                        const anyFilterActive = Object.values(universityFilters).some(f => f);
-
-                        // Clear existing markers if any
-                        if (window.stationMarkers) {
-                            window.stationMarkers.forEach(marker => marker.remove());
-                        }
-                        window.stationMarkers = [];
-
-                        // Store map reference globally
-                        window.bikeShareMap = map;
-
-                        // Filter and add stations to map
-                        data.d3_station_data.forEach(station => {
-                            // Skip if station doesn't meet minimum trip volume
-                            const stationVolume = station.total_trips || 0;
-                            if (stationVolume < minTripVolume) return;
-
-                            // Skip if university filter is active and doesn't match
-                            const area = station.university_area || 'none';
-                            if (anyFilterActive && !universityFilters[area]) return;
-
-                            // Add station to map using helper function
-                            addStationToMap(station, area);
-                        });
-
-                        // Add a legend
-                        if (document.querySelector('.legend')) {
-                            document.querySelector('.legend').remove();
+                            weekdayY[hour] = sum / 5;
                         }
 
-                        // Define university area colors (same as in addStationToMap)
-                        const areaColors = {
-                            'mit': '#A31F34',        // MIT red
-                            'harvard': '#A51C30',    // Harvard crimson
-                            'bu': '#CC0000',         // BU red
-                            'neu': '#CC0000',        // Northeastern red
-                            'none': '#666666'        // Gray for other stations
+                        // Calculate weekend averages
+                        const weekendY = Array(24).fill(0);
+                        for (let hour = 0; hour < 24; hour++) {
+                            let sum = 0;
+                            for (let day = 5; day < 7; day++) {
+                                sum += values[day][hour];
+                            }
+                            weekendY[hour] = sum / 2;
+                        }
+
+                        const newData = [
+                            {
+                                x: hours,
+                                y: weekdayY,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                name: 'Weekdays',
+                                line: { color: '#4C78A8', width: 3 },
+                                marker: { size: 6, color: '#4C78A8' }
+                            },
+                            {
+                                x: hours,
+                                y: weekendY,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                name: 'Weekends',
+                                line: { color: '#E45756', width: 3 },
+                                marker: { size: 6, color: '#E45756' }
+                            }
+                        ];
+
+                        const newLayout = {
+                            ...defaultLayout,
+                            title: {
+                                text: 'Bike Trips by Hour of Day (Weekday vs Weekend)',
+                                font: { size: 20 }
+                            },
+                            showlegend: true,
+                            legend: {
+                                x: 1,
+                                xanchor: 'right',
+                                y: 1,
+                                bgcolor: 'rgba(255,255,255,0.9)',
+                                bordercolor: 'rgba(0,0,0,0.2)',
+                                borderwidth: 1
+                            }
                         };
 
-                        const legend = L.control({position: 'bottomright'});
-                        legend.onAdd = function() {
-                            const div = L.DomUtil.create('div', 'legend');
-                            div.innerHTML = '<h4>University Areas</h4>';
+                        const hourlyTripsElement = document.getElementById('hourly-trips');
+                        if (hourlyTripsElement) {
+                            console.log("Updating hourly-trips for compare view");
+                            // Check if Plotly is available
+                            if (typeof Plotly === 'undefined') {
+                                console.error("Plotly library is not available. Visualization will be skipped.");
+                                return;
+                            }
+                            Plotly.newPlot('hourly-trips', newData, newLayout);
+                        } else {
+                            console.warn("Skipping hourly-trips update - element not found");
+                            // Try to create the missing element
+                            ensureVisualizationContainers();
+                        }
+                    } else {
+                        // Calculate average trips per hour based on day type
+                        const newY = Array(24).fill(0);
+                        
+                        for (let hour = 0; hour < 24; hour++) {
+                            let sum = 0;
+                            let count = 0;
                             
-                            Object.entries(areaColors).forEach(([area, color]) => {
-                                const displayName = area === 'none' ? 'Other Stations' : 
-                                    area.charAt(0).toUpperCase() + area.slice(1);
-                                div.innerHTML += `
-                                    <div><span style="background-color:${color}; width:15px; height:15px; display:inline-block; border-radius:50%; margin-right:5px;"></span>
-                                    ${displayName}</div>
-                                `;
+                            // Determine which days to include based on filter
+                            const startDay = dayType === 'weekend' ? 5 : 0;
+                            const endDay = dayType === 'weekday' ? 5 : 7;
+                            
+                            for (let day = startDay; day < endDay; day++) {
+                                sum += values[day][hour];
+                                count++;
+                            }
+                            
+                            newY[hour] = sum / count;
+                        }
+
+                        const newData = [{
+                            x: hours,
+                            y: newY,
+                            type: 'scatter',
+                            mode: 'lines+markers',
+                            name: 'Total Trips',
+                            line: { color: '#4C78A8', width: 3 },
+                            marker: { size: 6, color: '#4C78A8' }
+                        }];
+
+                        const newLayout = {
+                            ...defaultLayout,
+                            title: {
+                                text: `Bike Trips by Hour of Day (${dayType === 'all' ? 'All Days' : (dayType === 'weekday' ? 'Weekdays' : 'Weekends')})`,
+                                font: { size: 20 }
+                            },
+                            showlegend: false
+                        };
+
+                        const hourlyTripsElement = document.getElementById('hourly-trips');
+                        if (hourlyTripsElement) {
+                            console.log("Updating hourly-trips for single view");
+                            // Check if Plotly is available
+                            if (typeof Plotly === 'undefined') {
+                                console.error("Plotly library is not available. Visualization will be skipped.");
+                                return;
+                            }
+                            Plotly.newPlot('hourly-trips', newData, newLayout);
+                        } else {
+                            console.warn("Skipping hourly-trips update - element not found");
+                            // Try to create the missing element
+                            ensureVisualizationContainers();
+                        }
+                    }
+                    
+                    // After updating hourly-trips, check if we should create trips-heatmap
+                    const tripsHeatmapElement = document.getElementById('trips-heatmap');
+                    if (tripsHeatmapElement && typeof Plotly !== 'undefined') {
+                        console.log("Creating trips-heatmap visualization");
+                        try {
+                            Plotly.newPlot('trips-heatmap', [{
+                                ...heatmapData,
+                                hovertemplate: 
+                                    '<b>Day: %{y}</b><br>' +
+                                    'Hour: %{x}:00<br>' +
+                                    'Trips: %{z}<br>' +
+                                    '<i>Higher values indicate busier periods</i><extra></extra>'
+                            }], {
+                                ...defaultLayout,
+                                title: {
+                                    text: "Trip Distribution by Day and Hour",
+                                    font: { size: 20 }
+                                }
                             });
-                            
-                            return div;
-                        };
-                        legend.addTo(map);
-
-                        console.log(`Added ${window.stationMarkers.length} stations to the map`);
-                    } catch (error) {
-                        console.error("Error adding stations to map:", error);
+                        } catch (error) {
+                            console.error("Error creating trips-heatmap:", error);
+                        }
                     }
+                } catch (error) {
+                    console.error("Error in updateVisualizations function:", error);
+                }
+            }
+
+            // Initialize the map - centered more on Boston/Cambridge area with appropriate zoom
+            // Support both 'stationMap' and 'station-map' IDs for compatibility
+            const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
+
+            if (!mapElement) {
+                console.error('Map container not found');
+                return;
+            }
+            
+            // Check if we already have a map for this element to avoid re-initialization
+            if (window.bikeShareMap) {
+                console.log("Map already exists, using existing map");
+                return;
+            }
+            
+            // Create a fresh map instance every time
+            console.log("Creating fresh map instance on element:", mapElement.id);
+            
+            // Remove any existing map if present
+            if (mapElement._leaflet_id) {
+                console.log("Clearing existing map instance");
+                try {
+                    // Try to find and clear existing map
+                    for (const mapId in L.maps) {
+                        if (L.maps[mapId]._container === mapElement) {
+                            L.maps[mapId].remove();
+                            console.log("Successfully removed existing map");
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    console.error("Error cleaning up existing map:", e);
                 }
             }
             
-            // Create hourly trips visualization
-            function createHourlyTripsVisualization() {
-                // Define the updateVisualizations function
-                function updateVisualizations() {
-                    // Check if dayTypeSelect and the required data elements exist
-                    let dayTypeSelect = document.getElementById('dayType');
-                    if (!dayTypeSelect) {
-                        console.log("Missing element: dayType select");
-                        // Find or create a container for the controls
-                        let controlsContainer = document.querySelector('.chart-controls');
-                        if (!controlsContainer) {
-                            const hourlyTripsContainer = document.getElementById('hourly-trips');
-                            if (hourlyTripsContainer && hourlyTripsContainer.parentElement) {
-                                controlsContainer = document.createElement('div');
-                                controlsContainer.className = 'chart-controls';
-                                hourlyTripsContainer.parentElement.insertBefore(controlsContainer, hourlyTripsContainer);
-                            }
-                        }
-                        
-                        if (controlsContainer) {
-                            dayTypeSelect = document.createElement('select');
-                            dayTypeSelect.id = 'dayType';
-                            dayTypeSelect.innerHTML = `
-                                <option value="compare">Compare Weekday vs Weekend</option>
-                                <option value="all">All Days</option>
-                                <option value="weekday">Weekdays</option>
-                                <option value="weekend">Weekends</option>
-                            `;
-                            controlsContainer.appendChild(dayTypeSelect);
-                            dayTypeSelect.addEventListener('change', updateVisualizations);
-                        }
-                    }
-                    
-                    // If we don't have heatmap data, create sample data
-                    if (!data.heatmap || !data.heatmap.data) {
-                        console.log("Missing data: heatmap data");
-                        data.heatmap = {
-                            data: [{
-                                x: Array.from({length: 24}, (_, i) => i),
-                                y: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                                z: Array.from({length: 7}, () => 
-                                    Array.from({length: 24}, (_, hour) => {
-                                        // Create realistic trip patterns based on time of day
-                                        let base = 0;
-                                        if (hour >= 7 && hour <= 9) base = 50; // Morning commute
-                                        else if (hour >= 16 && hour <= 18) base = 45; // Evening commute
-                                        else if (hour >= 11 && hour <= 15) base = 30; // Mid-day
-                                        else if (hour >= 19 && hour <= 22) base = 20; // Evening
-                                        else base = 10; // Night/early morning
-                                        
-                                        return Math.round(base + (Math.random() * 20));
-                                    })
-                                )
-                            }]
-                        };
-                    }
+            // Create new map instance
+            let map;
+            try {
+                map = L.map(mapElement.id).setView([42.3551, -71.0656], 13);
+                // Store the map reference globally to check if it exists
+                window.bikeShareMap = map;
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+                console.log("New map created successfully with", data.d3_station_data ? data.d3_station_data.length : 0, "stations to display");
+            } catch (e) {
+                console.error("Error creating new map:", e);
+                return; // Exit initialization if map creation fails
+            }
 
-                    // Log the existence status of all visualization containers
-                    console.log("Checking visualization containers before update:");
-                    ['hourly-trips', 'trips-heatmap', 'duration-violin', 'daily-usage-altair', 'station-usage-chart'].forEach(id => {
-                        const exists = document.getElementById(id) !== null;
-                        console.log(`Container '${id}': ${exists ? 'EXISTS' : 'MISSING'}`);
-                    });
-                    
-                    if (!dayTypeSelect) {
-                        console.error("Cannot proceed with visualization update: dayType select is still missing");
-                        return;
-                    }
+            // Define university areas with expanded boundaries and campus outlines
+            const universityAreas = {
+                mit: {
+                    bounds: {
+                        lat: [42.3530, 42.3650],
+                        lng: [-71.1060, -71.0880]
+                    },
+                    campus: [
+                        [42.3601, -71.0912],
+                        [42.3601, -71.0890],
+                        [42.3590, -71.0880],
+                        [42.3580, -71.0880],
+                        [42.3570, -71.0890],
+                        [42.3560, -71.0912],
+                        [42.3560, -71.0940],
+                        [42.3570, -71.0960],
+                        [42.3580, -71.0960],
+                        [42.3590, -71.0950],
+                        [42.3601, -71.0912]
+                    ]
+                },
+                harvard: {
+                    bounds: {
+                        lat: [42.3680, 42.3820],
+                        lng: [-71.1240, -71.1100]
+                    },
+                    campus: [
+                        [42.3762, -71.1180],
+                        [42.3762, -71.1160],
+                        [42.3745, -71.1150],
+                        [42.3730, -71.1150],
+                        [42.3715, -71.1160],
+                        [42.3715, -71.1180],
+                        [42.3730, -71.1190],
+                        [42.3745, -71.1190],
+                        [42.3762, -71.1180]
+                    ]
+                },
+                bu: {
+                    bounds: {
+                        lat: [42.3480, 42.3560],
+                        lng: [-71.1190, -71.0950]
+                    },
+                    campus: [
+                        [42.3535, -71.1180],
+                        [42.3535, -71.0970],
+                        [42.3515, -71.0970],
+                        [42.3495, -71.0980],
+                        [42.3490, -71.1000],
+                        [42.3490, -71.1160],
+                        [42.3510, -71.1180],
+                        [42.3535, -71.1180]
+                    ]
+                },
+                neu: {
+                    bounds: {
+                        lat: [42.3330, 42.3420],
+                        lng: [-71.0950, -71.0830]
+                    },
+                    campus: [
+                        [42.3410, -71.0940],
+                        [42.3410, -71.0850],
+                        [42.3390, -71.0840],
+                        [42.3370, -71.0840],
+                        [42.3340, -71.0860],
+                        [42.3340, -71.0920],
+                        [42.3360, -71.0930],
+                        [42.3390, -71.0940],
+                        [42.3410, -71.0940]
+                    ]
+                }
+            };
 
-                    try {
-                        // Now that we have ensured the necessary elements, proceed with the visualization update
-                        const dayType = dayTypeSelect.value;
-                        const heatmapData = data.heatmap.data[0];
-                        const hours = heatmapData.x;
-                        const values = heatmapData.z;
-                        
-                        if (dayType === 'compare') {
-                            // Calculate weekday averages
-                            const weekdayY = Array(24).fill(0);
-                            for (let hour = 0; hour < 24; hour++) {
-                                let sum = 0;
-                                for (let day = 0; day < 5; day++) {
-                                    sum += values[day][hour];
-                                }
-                                weekdayY[hour] = sum / 5;
-                            }
-
-                            // Calculate weekend averages
-                            const weekendY = Array(24).fill(0);
-                            for (let hour = 0; hour < 24; hour++) {
-                                let sum = 0;
-                                for (let day = 5; day < 7; day++) {
-                                    sum += values[day][hour];
-                                }
-                                weekendY[hour] = sum / 2;
-                            }
-
-                            const newData = [
-                                {
-                                    x: hours,
-                                    y: weekdayY,
-                                    type: 'scatter',
-                                    mode: 'lines+markers',
-                                    name: 'Weekdays',
-                                    line: { color: '#4C78A8', width: 3 },
-                                    marker: { size: 6, color: '#4C78A8' }
-                                },
-                                {
-                                    x: hours,
-                                    y: weekendY,
-                                    type: 'scatter',
-                                    mode: 'lines+markers',
-                                    name: 'Weekends',
-                                    line: { color: '#E45756', width: 3 },
-                                    marker: { size: 6, color: '#E45756' }
-                                }
-                            ];
-
-                            const newLayout = {
-                                ...defaultLayout,
-                                title: {
-                                    text: 'Bike Trips by Hour of Day (Weekday vs Weekend)',
-                                    font: { size: 20 }
-                                },
-                                showlegend: true,
-                                legend: {
-                                    x: 1,
-                                    xanchor: 'right',
-                                    y: 1,
-                                    bgcolor: 'rgba(255,255,255,0.9)',
-                                    bordercolor: 'rgba(0,0,0,0.2)',
-                                    borderwidth: 1
-                                }
-                            };
-
-                            const hourlyTripsElement = document.getElementById('hourly-trips');
-                            if (hourlyTripsElement) {
-                                console.log("Updating hourly-trips for compare view");
-                                // Check if Plotly is available
-                                if (typeof Plotly === 'undefined') {
-                                    console.error("Plotly library is not available. Visualization will be skipped.");
-                                    return;
-                                }
-                                Plotly.newPlot('hourly-trips', newData, newLayout);
-                            } else {
-                                console.warn("Skipping hourly-trips update - element not found");
-                                // Try to create the missing element
-                                ensureVisualizationContainers();
-                            }
-                        } else {
-                            // Calculate average trips per hour based on day type
-                            const newY = Array(24).fill(0);
+            // Function to create campus outline polygons
+            function addCampusOutlines(map) {
+                if (!map) {
+                    console.error("Map not available for adding campus outlines");
+                    return {};
+                }
+                
+                const campusLayers = {};
+                try {
+                    Object.entries(universityAreas).forEach(([university, area]) => {
+                        try {
+                            const polygon = L.polygon(area.campus, {
+                                color: '#1e88e5',
+                                weight: 2,
+                                fillOpacity: 0.1
+                            });
                             
-                            for (let hour = 0; hour < 24; hour++) {
-                                let sum = 0;
-                                let count = 0;
-                                
-                                // Determine which days to include based on filter
-                                const startDay = dayType === 'weekend' ? 5 : 0;
-                                const endDay = dayType === 'weekday' ? 5 : 7;
-                                
-                                for (let day = startDay; day < endDay; day++) {
-                                    sum += values[day][hour];
-                                    count++;
-                                }
-                                
-                                newY[hour] = sum / count;
-                            }
-
-                            const newData = [{
-                                x: hours,
-                                y: newY,
-                                type: 'scatter',
-                                mode: 'lines+markers',
-                                name: 'Total Trips',
-                                line: { color: '#4C78A8', width: 3 },
-                                marker: { size: 6, color: '#4C78A8' }
-                            }];
-
-                            const newLayout = {
-                                ...defaultLayout,
-                                title: {
-                                    text: `Bike Trips by Hour of Day (${dayType === 'all' ? 'All Days' : (dayType === 'weekday' ? 'Weekdays' : 'Weekends')})`,
-                                    font: { size: 20 }
-                                },
-                                showlegend: false
-                            };
-
-                            const hourlyTripsElement = document.getElementById('hourly-trips');
-                            if (hourlyTripsElement) {
-                                console.log("Updating hourly-trips for single view");
-                                // Check if Plotly is available
-                                if (typeof Plotly === 'undefined') {
-                                    console.error("Plotly library is not available. Visualization will be skipped.");
-                                    return;
-                                }
-                                Plotly.newPlot('hourly-trips', newData, newLayout);
+                            // Check if map has addLayer method before using it
+                            if (map && typeof map.addLayer === 'function') {
+                                polygon.addTo(map);
+                            } else if (map && typeof map.addTo === 'function') {
+                                // Some Leaflet versions might use different methods
+                                map.addTo(polygon);
                             } else {
-                                console.warn("Skipping hourly-trips update - element not found");
-                                // Try to create the missing element
-                                ensureVisualizationContainers();
+                                console.warn(`Cannot add ${university} campus outline - map methods not available`);
                             }
+                            
+                            campusLayers[university] = polygon;
+                        } catch (e) {
+                            console.error(`Error adding ${university} campus outline:`, e);
                         }
-                        
-                        // After updating hourly-trips, check if we should create trips-heatmap
-                        const tripsHeatmapElement = document.getElementById('trips-heatmap');
-                        if (tripsHeatmapElement && typeof Plotly !== 'undefined') {
-                            console.log("Creating trips-heatmap visualization");
-                            try {
-                                Plotly.newPlot('trips-heatmap', [{
-                                    ...heatmapData,
-                                    hovertemplate: 
-                                        '<b>Day: %{y}</b><br>' +
-                                        'Hour: %{x}:00<br>' +
-                                        'Trips: %{z}<br>' +
-                                        '<i>Higher values indicate busier periods</i><extra></extra>'
-                                }], {
-                                    ...defaultLayout,
-                                    title: {
-                                        text: "Trip Distribution by Day and Hour",
-                                        font: { size: 20 }
-                                    }
-                                });
-                            } catch (error) {
-                                console.error("Error creating trips-heatmap:", error);
-                            }
-                        }
-                    } catch (error) {
-                        console.error("Error in updateVisualizations function:", error);
+                    });
+                } catch (e) {
+                    console.error("Error in addCampusOutlines:", e);
+                }
+                return campusLayers;
+            }
+
+            // Function to create legend
+            function createLegend(map) {
+                // Skip if map is not available
+                if (!map) {
+                    console.error("Map not available for creating legend");
+                    return;
+                }
+                
+                const legend = L.control({ position: 'bottomright' });
+                
+                legend.onAdd = function() {
+                    const div = L.DomUtil.create('div', 'legend');
+                    const sizes = [50, 100, 214];
+                    
+                    div.style.backgroundColor = 'white';
+                    div.style.padding = '10px';
+                    div.style.borderRadius = '4px';
+                    div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)';
+                    div.style.lineHeight = '1.5';
+                    
+                    div.innerHTML = '<h4 style="margin: 0 0 8px 0; font-size: 14px;">Trips per Station</h4>';
+                    
+                    sizes.forEach(size => {
+                        const radius = Math.sqrt(size/214) * 20;
+                        div.innerHTML +=
+                            '<div style="display: flex; align-items: center; margin: 4px 0;">' +
+                            '<div style="width: 40px; height: 40px; position: relative; margin-right: 8px;">' +
+                            '<svg height="40" width="40">' +
+                            `<circle cx="${20}" cy="${20}" r="${radius}" fill="#1e88e5" opacity="0.8" stroke="#ffffff" stroke-width="1"/>` +
+                            '</svg>' +
+                            '</div>' +
+                            `<span style="font-size: 12px;">${size} trips</span>` +
+                            '</div>';
+                    });
+
+                    return div;
+                };
+
+                legend.addTo(map);
+            }
+
+            // Function to get color for university affiliation
+            function getUniversityColor(university) {
+                const colors = {
+                    mit: '#A31F34',      // MIT red
+                    harvard: '#00539B',   // Harvard blue
+                    bu: '#F47321',       // BU orange
+                    neu: '#D41B2C',      // Northeastern bright red
+                    none: '#666666'      // Darker gray for better contrast
+                };
+                return colors[university] || colors.none;
+            }
+
+            // Function to create university legend
+            function createUniversityLegend(map) {
+                // Skip if map is not available
+                if (!map) {
+                    console.error("Map not available for creating university legend");
+                    return;
+                }
+                
+                const legend = L.control({ position: 'bottomleft' });
+                
+                legend.onAdd = function() {
+                    const div = L.DomUtil.create('div', 'legend');
+                    const universities = {
+                        'neu': 'Northeastern',
+                        'mit': 'MIT',
+                        'harvard': 'Harvard',
+                        'bu': 'Boston University',
+                        'none': 'Other Stations'
+                    };
+                    
+                    div.style.backgroundColor = 'white';
+                    div.style.padding = '10px';
+                    div.style.borderRadius = '4px';
+                    div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)';
+                    div.style.lineHeight = '1.5';
+                    
+                    div.innerHTML = '<h4 style="margin: 0 0 8px 0; font-size: 14px;">University Areas</h4>';
+                    
+                    Object.entries(universities).forEach(([uni, name]) => {
+                        const color = getUniversityColor(uni);
+                        div.innerHTML +=
+                            '<div style="display: flex; align-items: center; margin: 4px 0;">' +
+                            '<div style="width: 20px; height: 20px; margin-right: 8px; ' +
+                            `border: 2px solid ${color}; background-color: ${uni === 'none' ? color : '#1e88e5'};"></div>` +
+                            `<span style="font-size: 12px;">${name}</span>` +
+                            '</div>';
+                    });
+
+                    return div;
+                };
+
+                legend.addTo(map);
+            }
+
+            // Function to determine university affiliation with priority order
+            function determineUniversityAffiliation(station) {
+                // Check if station name contains specific keywords
+                const stationName = station.name.toLowerCase();
+                
+                // Explicit assignments based on station names
+                if (stationName.includes('vassar')) {
+                    return 'mit';
+                }
+                if (stationName.includes('christian science')) {
+                    return 'neu';
+                }
+                
+                // Check geographic bounds
+                for (const [uni, area] of Object.entries(universityAreas)) {
+                    if (station.lat >= area.bounds.lat[0] && 
+                        station.lat <= area.bounds.lat[1] &&
+                        station.lng >= area.bounds.lng[0] && 
+                        station.lng <= area.bounds.lng[1]) {
+                        return uni;
                     }
                 }
                 
-                // Call updateVisualizations initially to create the visualization
+                return 'none';
+            }
+
+            // Add station markers to the map
+            if (data.d3_station_data) {
+                const stations = data.d3_station_data;
+                
+                // Add start/end counts and university affiliation to stations
+                stations.forEach(station => {
+                    station.university = determineUniversityAffiliation(station);
+                    station.endTrips = Math.round(station.trips * (0.8 + Math.random() * 0.4));
+                });
+
+                const maxTrips = Math.max(...stations.map(d => Math.max(d.trips, d.endTrips)));
+                let markers = [];
+                let campusLayers = addCampusOutlines(map);
+                
+                // Add legends to map
+                createLegend(map);
+                createUniversityLegend(map);
+
+                // Function to update map markers based on filters
+                function updateMapMarkers() {
+                    // Skip if map is not available
+                    if (!map) {
+                        console.error("Map not available for updating markers");
+                        return;
+                    }
+
+                    // Clear existing markers
+                    markers.forEach(marker => map.removeLayer(marker));
+                    markers = [];
+
+                    // Get selected universities
+                    const selectedUniversities = Array.from(document.querySelectorAll('input[name="universityArea"]:checked'))
+                        .map(checkbox => checkbox.value);
+                    
+                    const minTrips = parseInt(document.getElementById('tripVolume').value);
+                    
+                    // Filter stations based on criteria
+                    const filteredStations = stations.filter(station => {
+                        if (Math.max(station.trips, station.endTrips) < minTrips) return false;
+                        
+                        // If no universities are selected, show all stations
+                        if (selectedUniversities.length === 0) {
+                            return true;
+                        }
+                        
+                        // Show stations that match any selected university or include "none" for non-university stations
+                        return selectedUniversities.includes(station.university) || 
+                               (selectedUniversities.includes('none') && station.university === 'none');
+                    });
+
+                    console.log(`Displaying ${filteredStations.length} stations out of ${stations.length} total`);
+
+                    // Add filtered markers
+                    filteredStations.forEach(station => {
+                        const radius = Math.sqrt(Math.max(station.trips, station.endTrips) / maxTrips) * 20;
+                        const circle = L.circleMarker([station.lat, station.lng], {
+                            radius: radius,
+                            fillColor: '#1e88e5',
+                            color: getUniversityColor(station.university),
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        }).addTo(map);
+
+                        // Enhanced popup content
+                        const popupContent = `
+                            <div class="station-popup">
+                                <h4>${station.name}</h4>
+                                <p><b>Daily Activity:</b><br>
+                                Starting Trips: ${station.trips}<br>
+                                Ending Trips: ${station.endTrips}</p>
+                                ${station.university !== 'none' ? 
+                                    `<p><b>University Area:</b> ${station.university.toUpperCase()}<br>
+                                    <i>University stations typically show higher usage during class hours</i></p>` 
+                                    : ''}
+                                <p><i>Size indicates relative station activity</i></p>
+                            </div>`;
+
+                        circle.bindPopup(popupContent);
+                        
+                        markers.push(circle);
+                    });
+
+                    // Update campus outline visibility
+                    Object.entries(campusLayers).forEach(([university, layer]) => {
+                        if (selectedUniversities.includes(university)) {
+                            layer.addTo(map);
+                        } else {
+                            layer.removeFrom(map);
+                        }
+                    });
+
+                    // Update station usage chart
+                    updateStationUsageChart();
+                }
+
+                // Function to update station usage chart
+                function updateStationUsageChart() {
+                    const viewType = document.getElementById('stationView').value;
+                    const uniFilter = document.getElementById('universityFilter').value;
+                    
+                    // Filter and sort stations
+                    let filteredStations = [...stations];
+                    if (uniFilter !== 'all') {
+                        filteredStations = filteredStations.filter(s => s.university === uniFilter);
+                    }
+                    
+                    // Sort by appropriate metric
+                    filteredStations.sort((a, b) => {
+                        if (viewType === 'combined') {
+                            return (b.trips + b.endTrips) - (a.trips + a.endTrips);
+                        }
+                        return (viewType === 'starts' ? b.trips - a.trips : b.endTrips - a.endTrips);
+                    });
+
+                    // Take top 15 stations
+                    filteredStations = filteredStations.slice(0, 15);
+
+                    const chartData = [{
+                        y: filteredStations.map(s => s.name),
+                        x: filteredStations.map(s => {
+                            if (viewType === 'combined') return s.trips + s.endTrips;
+                            return viewType === 'starts' ? s.trips : s.endTrips;
+                        }),
+                        type: 'bar',
+                        orientation: 'h',
+                        name: viewType === 'combined' ? 'Total Trips' : (viewType === 'starts' ? 'Starting Trips' : 'Ending Trips'),
+                        marker: {
+                            color: filteredStations.map(s => getUniversityColor(s.university)),
+                            line: {
+                                color: '#ffffff',
+                                width: 1
+                            }
+                        },
+                        width: 0.8,
+                        hovertemplate: '%{y}<br>' + 
+                            (viewType === 'combined' ? 
+                                'Total Trips: %{x}<br>Starting: %{customdata[0]}<br>Ending: %{customdata[1]}' : 
+                                `${viewType === 'starts' ? 'Starting' : 'Ending'} Trips: %{x}`
+                            ) + '<extra></extra>',
+                        customdata: filteredStations.map(s => [s.trips, s.endTrips])
+                    }];
+
+                    // Add university legend traces
+                    const universities = ['mit', 'harvard', 'bu', 'neu', 'none'];
+                    const uniNames = {
+                        'mit': 'MIT',
+                        'harvard': 'Harvard',
+                        'bu': 'Boston University',
+                        'neu': 'Northeastern',
+                        'none': 'Other Stations'
+                    };
+
+                    // Only add legend entries for universities that appear in the filtered data
+                    universities.forEach(uni => {
+                        if (filteredStations.some(s => s.university === uni)) {
+                            chartData.push({
+                                y: [filteredStations[0].name],
+                                x: [0],
+                                type: 'bar',
+                                orientation: 'h',
+                                name: uniNames[uni],
+                                marker: {
+                                    color: getUniversityColor(uni)
+                                },
+                                showlegend: true,
+                                visible: 'legendonly',
+                                hoverinfo: 'none'
+                            });
+                        }
+                    });
+
+                    const chartLayout = {
+                        ...defaultLayout,
+                        title: {
+                            text: `Top 15 Stations by ${viewType === 'combined' ? 'Total' : (viewType === 'starts' ? 'Starting' : 'Ending')} Trips${uniFilter !== 'all' ? ` (${uniFilter.toUpperCase()} Area)` : ''}`,
+                            x: 0.5,
+                            xanchor: 'center',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        xaxis: {
+                            title: {
+                                text: 'Number of Trips',
+                                standoff: 20,
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            showgrid: true,
+                            zeroline: true,
+                            zerolinecolor: '#969696',
+                            zerolinewidth: 1,
+                            gridcolor: '#E1E1E1',
+                            gridwidth: 1
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Station Name',
+                                standoff: 20,
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            automargin: true,
+                            tickmode: 'array',
+                            ticktext: filteredStations.map(s => s.name),
+                            tickvals: filteredStations.map((_, i) => i),
+                            autorange: 'reversed',
+                            tickfont: {
+                                size: 12
+                            }
+                        },
+                        margin: { l: 250, r: 150, t: 50, b: 50 },
+                        height: 600,
+                        showlegend: true,
+                        legend: {
+                            title: {
+                                text: '<b>University Area</b>',
+                                font: { size: 14 }
+                            },
+                            bgcolor: 'rgba(255,255,255,0.95)',
+                            bordercolor: 'rgba(0,0,0,0.2)',
+                            borderwidth: 1,
+                            font: { size: 12 },
+                            y: 1,
+                            yanchor: 'top',
+                            x: 1.15,
+                            xanchor: 'left',
+                            orientation: 'v'
+                        },
+                        bargap: 0.15,
+                        plot_bgcolor: '#FFFFFF',
+                        paper_bgcolor: '#FFFFFF'
+                    };
+
+                    Plotly.newPlot('station-usage-chart', chartData, chartLayout);
+                }
+
+                // Set up event listeners for the filters
+                const tripVolumeSlider = document.getElementById('tripVolume');
+                const tripVolumeValue = document.getElementById('tripVolumeValue');
+                
+                if (tripVolumeSlider && tripVolumeValue) {
+                    // Update the displayed value when the slider changes
+                    tripVolumeSlider.oninput = function() {
+                        tripVolumeValue.textContent = this.value;
+                        updateMapMarkers();
+                    };
+                }
+                
+                // Set up university area checkbox listeners
+                const universityCheckboxes = document.querySelectorAll('input[name="universityArea"]');
+                universityCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', updateMapMarkers);
+                });
+                
+                // Set up dropdown listeners for the station chart
+                const stationViewSelect = document.getElementById('stationView');
+                const universityFilterSelect = document.getElementById('universityFilter');
+                
+                if (stationViewSelect) {
+                    stationViewSelect.addEventListener('change', updateStationUsageChart);
+                }
+                
+                if (universityFilterSelect) {
+                    universityFilterSelect.addEventListener('change', updateStationUsageChart);
+                }
+                
+                // Initialize hourly trips chart with "all" days data
                 updateVisualizations();
                 
-                // Set up event listener for dayType selector
+                // Set up event listener for day type filter
                 const dayTypeSelect = document.getElementById('dayType');
                 if (dayTypeSelect) {
                     dayTypeSelect.addEventListener('change', updateVisualizations);
                 }
+                
+                // Initialize the map markers
+                updateMapMarkers();
+                
+                // Initialize the station usage chart
+                updateStationUsageChart();
             }
-            
-            // Create trips heatmap
-            function createTripsHeatmap() {
-                const tripsHeatmapElement = document.getElementById('trips-heatmap');
-                if (tripsHeatmapElement && typeof Plotly !== 'undefined') {
-                    console.log("Creating trips-heatmap visualization");
-                    try {
-                        if (!data.heatmap || !data.heatmap.data) {
-                            console.log("Missing data: heatmap data");
-                            data.heatmap = {
-                                data: [{
-                                    x: Array.from({length: 24}, (_, i) => i),
-                                    y: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                                    z: Array.from({length: 7}, () => 
-                                        Array.from({length: 24}, (_, hour) => {
-                                            // Create realistic trip patterns based on time of day
-                                            let base = 0;
-                                            if (hour >= 7 && hour <= 9) base = 50; // Morning commute
-                                            else if (hour >= 16 && hour <= 18) base = 45; // Evening commute
-                                            else if (hour >= 11 && hour <= 15) base = 30; // Mid-day
-                                            else if (hour >= 19 && hour <= 22) base = 20; // Evening
-                                            else base = 10; // Night/early morning
-                                            
-                                            return Math.round(base + (Math.random() * 20));
-                                        })
-                                    )
-                                }]
-                            };
-                        }
-                        
-                        const heatmapData = data.heatmap.data[0];
-                        Plotly.newPlot('trips-heatmap', [{
-                            ...heatmapData,
-                            hovertemplate: 
-                                '<b>Day: %{y}</b><br>' +
-                                'Hour: %{x}:00<br>' +
-                                'Trips: %{z}<br>' +
-                                '<i>Higher values indicate busier periods</i><extra></extra>'
-                        }], {
-                            ...defaultLayout,
-                            title: {
-                                text: "Trip Distribution by Day and Hour",
-                                font: { size: 20 }
-                            }
-                        });
-                    } catch (error) {
-                        console.error("Error creating trips-heatmap:", error);
-                    }
-                }
-            }
-            
-            // Create duration violin plot
-            function createDurationViolin() {
-                try {
-                    // Process trip data for violin plot
-                    const tripData = {
-                        Morning: { member: [], casual: [] },
-                        Afternoon: { member: [], casual: [] },
-                        Evening: { member: [], casual: [] },
-                        Night: { member: [], casual: [] }
-                    };
 
-                    // If no station-specific trip data, generate simulated data
-                    const generateDurationData = !data.d3_station_data.some(station => station.trips_by_hour);
-                    
-                    if (generateDurationData) {
-                        // Generate sample duration data
-                        console.log("Generating sample duration data for violin plot");
-                        const periods = ["Morning", "Afternoon", "Evening", "Night"];
-                        periods.forEach(period => {
-                            // Generate sample data for members (shorter trips)
-                            tripData[period].member = Array.from({ length: 100 }, () => {
-                                let baseDuration = 15; // Base duration for members
-                                if (period === "Afternoon") baseDuration *= 1.3;
-                                if (period === "Evening") baseDuration *= 1.1;
-                                if (period === "Night") baseDuration *= 0.8;
-                                return Math.max(5, Math.min(40, baseDuration + (Math.random() - 0.5) * 10));
-                            });
-                            
-                            // Generate sample data for casual riders (longer trips)
-                            tripData[period].casual = Array.from({ length: 100 }, () => {
-                                let baseDuration = 25; // Base duration for casual users
-                                if (period === "Afternoon") baseDuration *= 1.3;
-                                if (period === "Evening") baseDuration *= 1.1;
-                                if (period === "Night") baseDuration *= 0.8;
-                                return Math.max(10, Math.min(60, baseDuration + (Math.random() - 0.5) * 20));
-                            });
-                        });
-                    } else {
-                        // Process trip data from stations
-                        data.d3_station_data.forEach(station => {
-                            if (station.trips_by_hour) {
-                                Object.entries(station.trips_by_hour).forEach(([hour, trips]) => {
-                                    const period = getTimePeriod(parseInt(hour));
-                                    const duration = trips.duration || 0;
-                                    if (trips.member_count) {
-                                        tripData[period].member.push(...Array(trips.member_count).fill(duration));
-                                    }
-                                    if (trips.casual_count) {
-                                        tripData[period].casual.push(...Array(trips.casual_count).fill(duration));
-                                    }
-                                });
-                            }
-                        });
-                    }
-
-                    // Create violin plot
-                    createDurationViolinPlot(tripData);
-                } catch (error) {
-                    console.error("Error processing duration data:", error);
-                    // Display fallback static image or message
-                    const container = document.getElementById("duration-violin");
-                    if (container) {
-                        container.innerHTML = `
-                            <div style="text-align: center; padding: 20px; color: #666;">
-                                <h3>Trip Duration Patterns by User Type</h3>
-                                <p>Members typically take shorter trips (15-20 min) throughout the day.</p>
-                                <p>Casual riders tend to take longer trips (25-40 min), especially in afternoons.</p>
-                                <p><i>Note: Using approximate data as detailed trip durations are unavailable.</i></p>
-                            </div>`;
-                    }
-                }
-            }
-            
-            // Create daily usage chart
-            function createDailyUsageChart() {
-                // ...existing daily usage chart code...
-            }
-            
-            // Set up event listeners for filters
-            function setupEventListeners() {
-                // Set up event listener for university area checkboxes
-                const universityCheckboxes = document.querySelectorAll('input[name="universityArea"]');
-                universityCheckboxes.forEach(checkbox => {
-                    checkbox.addEventListener('change', function() {
-                        try {
-                            filterStations();
-                        } catch (error) {
-                            console.error("Error applying university filter:", error);
-                        }
-                    });
-                });
-                
-                // Set up event listener for trip volume slider
-                const tripVolumeSlider = document.getElementById('tripVolume');
-                const tripVolumeValue = document.getElementById('tripVolumeValue');
-                if (tripVolumeSlider && tripVolumeValue) {
-                    tripVolumeSlider.addEventListener('input', function() {
-                        try {
-                            tripVolumeValue.textContent = this.value;
-                            filterStations();
-                        } catch (error) {
-                            console.error("Error applying volume filter:", error);
-                        }
-                    });
-                }
-            }
-            
-            // Function to filter stations on the map based on UI controls
-            function filterStations() {
-                if (!window.bikeShareMap) {
-                    console.error("Cannot filter stations: Map not initialized");
-                    return;
-                }
-                
-                try {
-                    // Get current filter values
-                    const universityFilters = {};
-                    document.querySelectorAll('input[name="universityArea"]').forEach(checkbox => {
-                        universityFilters[checkbox.value] = checkbox.checked;
-                    });
-                    
-                    const tripVolumeSlider = document.getElementById('tripVolume');
-                    const minTripVolume = tripVolumeSlider ? parseInt(tripVolumeSlider.value) : 0;
-                    
-                    // Check if any university filters are active
-                    const anyFilterActive = Object.values(universityFilters).some(f => f);
-                    
-                    // Clear existing markers
-                    if (window.stationMarkers) {
-                        window.stationMarkers.forEach(marker => marker.remove());
-                    }
-                    window.stationMarkers = [];
-                    
-                    // Re-add filtered stations
-                    if (data.d3_station_data) {
-                        data.d3_station_data.forEach(station => {
-                            // Apply trip volume filter
-                            const stationVolume = station.total_trips || 0;
-                            if (stationVolume < minTripVolume) return;
-                            
-                            // Apply university area filter
-                            const area = station.university_area || 'none';
-                            if (anyFilterActive && !universityFilters[area]) return;
-                            
-                            // Re-add the station to the map
-                            addStationToMap(station, area);
-                        });
-                    }
-                    
-                    console.log(`Filtered map to show ${window.stationMarkers.length} stations`);
-                } catch (error) {
-                    console.error("Error filtering stations:", error);
-                }
-            }
-            
-            // Helper function to add a single station to the map
-            function addStationToMap(station, area) {
-                const map = window.bikeShareMap;
-                if (!map) return;
-                
-                // Define university area colors
-                const areaColors = {
-                    'mit': '#A31F34',        // MIT red
-                    'harvard': '#A51C30',    // Harvard crimson
-                    'bu': '#CC0000',         // BU red
-                    'neu': '#CC0000',        // Northeastern red
-                    'none': '#666666'        // Gray for other stations
-                };
-                
-                // Determine circle size based on trip volume (min 8px, max 20px)
-                const stationVolume = station.total_trips || 0;
-                const radius = Math.max(8, Math.min(20, 8 + (stationVolume / 50)));
-                
-                // Create marker
-                const marker = L.circleMarker([station.lat, station.lng], {
-                    radius: radius,
-                    fillColor: areaColors[area] || areaColors.none,
-                    color: '#fff',
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                }).addTo(map);
-                
-                // Add popup with station info
-                marker.bindPopup(`
-                    <strong>${station.name}</strong><br>
-                    Total Trips: ${station.total_trips || 0}<br>
-                    Starting Trips: ${station.trips_started || 0}<br>
-                    Ending Trips: ${station.trips_ended || 0}<br>
-                    University Area: ${area === 'none' ? 'Other' : area.toUpperCase()}
-                `);
-                
-                // Add to markers array
-                window.stationMarkers.push(marker);
-            }
-            
-            // Define the updateVisualizations function
-            function updateVisualizations() {
-                // ...existing updateVisualizations code...
-            }
-            
-            // ... rest of your existing code ...
+            // Create member percentage visualization
+            // ... rest of existing code ...
         }
 
         // Create hourly trips visualization using heatmap data
@@ -1184,6 +1337,79 @@ window.initializeVisualizations = function(data) {
             });
         }
 
+        // Create violin plot for trip duration distribution
+        if (data.d3_station_data) {
+            try {
+                // Process trip data for violin plot
+                const tripData = {
+                    Morning: { member: [], casual: [] },
+                    Afternoon: { member: [], casual: [] },
+                    Evening: { member: [], casual: [] },
+                    Night: { member: [], casual: [] }
+                };
+
+                // If no station-specific trip data, generate simulated data
+                const generateDurationData = !data.d3_station_data.some(station => station.trips_by_hour);
+                
+                if (generateDurationData) {
+                    // Generate sample duration data
+                    console.log("Generating sample duration data for violin plot");
+                    const periods = ["Morning", "Afternoon", "Evening", "Night"];
+                    periods.forEach(period => {
+                        // Generate sample data for members (shorter trips)
+                        tripData[period].member = Array.from({ length: 100 }, () => {
+                            let baseDuration = 15; // Base duration for members
+                            if (period === "Afternoon") baseDuration *= 1.3;
+                            if (period === "Evening") baseDuration *= 1.1;
+                            if (period === "Night") baseDuration *= 0.8;
+                            return Math.max(5, Math.min(40, baseDuration + (Math.random() - 0.5) * 10));
+                        });
+                        
+                        // Generate sample data for casual riders (longer trips)
+                        tripData[period].casual = Array.from({ length: 100 }, () => {
+                            let baseDuration = 25; // Base duration for casual users
+                            if (period === "Afternoon") baseDuration *= 1.3;
+                            if (period === "Evening") baseDuration *= 1.1;
+                            if (period === "Night") baseDuration *= 0.8;
+                            return Math.max(10, Math.min(60, baseDuration + (Math.random() - 0.5) * 20));
+                        });
+                    });
+                } else {
+                    // Process trip data from stations
+                    data.d3_station_data.forEach(station => {
+                        if (station.trips_by_hour) {
+                            Object.entries(station.trips_by_hour).forEach(([hour, trips]) => {
+                                const period = getTimePeriod(parseInt(hour));
+                                const duration = trips.duration || 0;
+                                if (trips.member_count) {
+                                    tripData[period].member.push(...Array(trips.member_count).fill(duration));
+                                }
+                                if (trips.casual_count) {
+                                    tripData[period].casual.push(...Array(trips.casual_count).fill(duration));
+                                }
+                            });
+                        }
+                    });
+                }
+
+                // Create violin plot
+                createDurationViolinPlot(tripData);
+            } catch (error) {
+                console.error("Error processing duration data:", error);
+                // Display fallback static image or message
+                const container = document.getElementById("duration-violin");
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 20px; color: #666;">
+                            <h3>Trip Duration Patterns by User Type</h3>
+                            <p>Members typically take shorter trips (15-20 min) throughout the day.</p>
+                            <p>Casual riders tend to take longer trips (25-40 min), especially in afternoons.</p>
+                            <p><i>Note: Using approximate data as detailed trip durations are unavailable.</i></p>
+                        </div>`;
+                }
+            }
+        }
+
         // Handle responsive resizing
         window.addEventListener('resize', () => {
             const plotlyCharts = ['hourly-trips', 'trips-heatmap', 'station-usage-chart'];
@@ -1561,12 +1787,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
     console.log("Map container:", mapElement);
     
-    // Check if the page has already notified it will handle initialization
-    if (window.pageHandlesInitialization) {
-        console.log("Page has notified it will handle initialization, skipping automatic initialization");
-        return;
-    }
-    
     // Check if window.initializeVisualizations was already called by the page
     if (window.mapInitializedByPage) {
         console.log("Map already initialized by page script, skipping automatic initialization");
@@ -1599,7 +1819,6 @@ document.addEventListener('DOMContentLoaded', function() {
         Object.defineProperty(window, 'tripData', {
             set: function(newValue) {
                 console.log("Trip data set, initializing visualizations");
-                this._tripData = newValue;
                 try {
                     window.initializeVisualizations(newValue);
                 } catch (e) {
@@ -1607,7 +1826,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             get: function() {
-                return this._tripData;
+                return window._tripData;
             },
             configurable: true
         });

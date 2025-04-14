@@ -11,39 +11,13 @@ body {
 header {
   background-color: #0066cc;
   color: white;
-  padding: 2rem 0;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 1rem 0;
 }
 
 header .container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-header h1 {
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-.team-members {
-  margin-top: 0.5rem;
-  font-size: 1.1rem;
-  font-style: italic;
-  opacity: 0.9;
-}
-
-.team-members p {
-  margin: 0;
 }
 
 main {
@@ -125,9 +99,6 @@ h2 {
 #station-usage-chart {
   height: 450px;
   width: 100%;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 1;
 }
 
 /* Formatting for controls section */
@@ -143,9 +114,6 @@ h2 {
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin-bottom: 1.5rem;
-  z-index: 3;
-  position: relative;
 }
 
 .checkbox-group {
@@ -168,12 +136,6 @@ input[type="range"] {
   background-color: #f8f9fa;
   border-left: 4px solid #4C78A8;
   border-radius: 0 4px 4px 0;
-  clear: both;
-  display: block;
-  position: relative;
-  overflow: visible;
-  z-index: 2;
-  margin-bottom: 1rem;
 }
 
 .visualization-description h3 {

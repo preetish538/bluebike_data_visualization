@@ -39,6 +39,11 @@ function initializeVisualizations(data) {
         };
 
         // Initialize the map - centered more on Boston/Cambridge area with appropriate zoom
+        const mapElement = document.getElementById('stationMap');
+        if (!mapElement) {
+            console.error('Map container not found');
+            return;
+        }
         const map = L.map('stationMap').setView([42.3551, -71.0656], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -473,21 +478,39 @@ function initializeVisualizations(data) {
                 Plotly.newPlot('station-usage-chart', chartData, chartLayout);
             }
 
-            // Add event listeners
-            document.querySelectorAll('input[name="universityArea"]').forEach(checkbox => {
-                checkbox.addEventListener('change', updateMapMarkers);
-            });
-            
-            document.getElementById('tripVolume').addEventListener('input', function() {
-                document.getElementById('tripVolumeValue').textContent = this.value;
-                updateMapMarkers();
-            });
+            // Add event listeners only if elements exist
+            const dayTypeSelect = document.getElementById('dayType');
+            if (dayTypeSelect) {
+                dayTypeSelect.addEventListener('change', updateVisualizations);
+            }
 
-            document.getElementById('stationView').addEventListener('change', updateStationUsageChart);
-            document.getElementById('universityFilter').addEventListener('change', updateStationUsageChart);
+            const universityAreaCheckboxes = document.querySelectorAll('input[name="universityArea"]');
+            if (universityAreaCheckboxes.length > 0) {
+                universityAreaCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', updateMapMarkers);
+                });
+            }
 
-            // Initial visualization
+            const tripVolumeSlider = document.getElementById('tripVolume');
+            if (tripVolumeSlider) {
+                tripVolumeSlider.addEventListener('input', function() {
+                    const valueDisplay = document.getElementById('tripVolumeValue');
+                    if (valueDisplay) {
+                        valueDisplay.textContent = this.value;
+                    }
+                    updateMapMarkers();
+                });
+            }
+
+            const stationViewSelect = document.getElementById('stationView');
+            if (stationViewSelect) {
+                stationViewSelect.addEventListener('change', updateStationUsageChart);
+            }
+
+            // Initial visualization updates
             updateMapMarkers();
+            updateStationUsageChart();
+            updateVisualizations();
         }
 
         // Create hourly trips visualization using heatmap data

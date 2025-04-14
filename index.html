@@ -58,6 +58,15 @@
 
         <section class="temporal-patterns">
             <h2>Temporal Usage Patterns</h2>
+            <div class="temporal-controls">
+                <label for="dayType">View: </label>
+                <select id="dayType">
+                    <option value="all">All Days</option>
+                    <option value="weekday">Weekdays</option>
+                    <option value="weekend">Weekends</option>
+                    <option value="compare">Compare Weekday vs Weekend</option>
+                </select>
+            </div>
             <div id="hourlyDistribution"></div>
             <div id="usageHeatmap"></div>
         </section>

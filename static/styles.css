@@ -198,4 +198,23 @@ a:hover {
 .chart-controls select:focus {
     outline: none;
     border-color: #4C78A8;
+}
+
+.temporal-controls {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.temporal-controls label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.temporal-controls select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
 } 

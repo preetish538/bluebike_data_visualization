@@ -61,11 +61,10 @@ jobs:
       - name: Create deployment directory
         run: |
           mkdir -p deploy
-          sed 's|href="static/|href="/bluebike_data_visualization/static/|g' index.html > deploy/index.html
-          sed -i 's|src="static/|src="/bluebike_data_visualization/static/|g' deploy/index.html
           cp -r static deploy/
           cp .nojekyll deploy/
           cp 202501-bluebikes-tripdata.csv deploy/
+          cp index.html deploy/
           echo "Deployment directory structure:"
           ls -la deploy/
           ls -la deploy/static/

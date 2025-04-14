@@ -1118,4 +1118,13 @@ function kernelDensityEstimator(kernel, X) {
 
 function kernelEpanechnikov(k) {
     return v => Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
-} 
+}
+
+// Initialize visualizations when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof visualizationData !== 'undefined') {
+        initializeVisualizations(visualizationData);
+    } else {
+        console.error('visualizationData is not defined');
+    }
+}); 

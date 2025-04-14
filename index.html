@@ -20,17 +20,39 @@
 
     <main>
         <section class="introduction">
-            <h2>Project Introduction</h2>
-            <p>This project analyzes Boston's BlueBikes bike-sharing system data to understand urban mobility patterns and user behavior. By examining trip data from January 2025, we aim to uncover insights about how different types of users (members vs. casual riders) utilize the system, identify popular routes and stations, and understand temporal patterns in bike usage.</p>
-            
-            <h3>About the Data</h3>
-            <p>The dataset comes from BlueBikes' publicly available system data, containing over 10,000 bike trips from January 2025. Each trip record includes information such as start/end times and locations, user type (member/casual), and trip duration. The data features both categorical (station names, user types) and continuous variables (trip duration, coordinates), making it ideal for diverse analytical approaches.</p>
-            
-            <h3>References</h3>
-            <ul>
-                <li><a href="https://www.bluebikes.com/system-data">BlueBikes System Data</a> - Official source of trip data</li>
-                <li><a href="https://www.boston.gov/departments/boston-bikes/bike-data">Boston Bikes Data</a> - City of Boston's bicycle infrastructure data</li>
-            </ul>
+              <h2>Project Introduction</h2>
+              <p>This project analyzes Boston's BlueBikes bike-sharing system data to understand urban mobility patterns and user behavior. By examining trip data from January 2025, we aim to uncover insights about how different types of users (members vs. casual riders) utilize the system, identify popular routes and stations, and understand temporal patterns in bike usage.</p>
+  
+              <h3>About the Data</h3>
+              <p>The dataset originates from BlueBikes' publicly available system data, sourced from the official website: 
+                <a href="https://www.bluebikes.com/system-data" target="_blank">BlueBikes System Data</a>. 
+                The data contains over 10,000 individual bike trip records from January 2025. Each row in the dataset represents a single trip and includes a mix of temporal, spatial, and user-specific attributes. The data is cleaned and prepared in CSV format for this project.
+              </p>
+  
+              <h3>Terminology and Abbreviations</h3>
+              <ul>
+                <li><strong>Start Station / End Station:</strong> Names of the bike docking stations at the beginning and end of each trip</li>
+                <li><strong>Member:</strong> A user with a subscription to BlueBikes</li>
+                <li><strong>Casual:</strong> A user without a subscription (typically a one-time or short-term rider)</li>
+                <li><strong>Trip Duration:</strong> The length of the bike trip, measured in seconds</li>
+                <li><strong>Start Time / End Time:</strong> Timestamps of when the trip began and ended</li>
+              </ul>
+
+              <h3>Key Features and Groupings</h3>
+              <p>To better understand the structure of the dataset and its analytical potential, we’ve organized the key features into the following conceptual groups:</p>
+              <ul>
+                <li><strong>User Information:</strong> user_type (member or casual)</li>
+                <li><strong>Trip Timing:</strong> started_at, ended_at, trip_duration</li>
+                <li><strong>Station Info:</strong> start_station_name, end_station_name</li>
+                <li><strong>Geographic Coordinates:</strong> start_lat, start_lng, end_lat, end_lng</li>
+                <li><strong>Derived Temporal Features:</strong> day_of_week, hour_of_day (extracted from timestamps)</li>
+              </ul>
+  
+              <h3>References</h3>
+              <ul>
+                <li><a href="https://www.bluebikes.com/system-data" target="_blank">BlueBikes System Data</a> – Official source of trip data</li>
+                <li><a href="https://www.boston.gov/departments/boston-bikes/bike-data" target="_blank">Boston Bikes Data</a> – City of Boston's bicycle infrastructure data</li>
+              </ul>
         </section>
 
         <section class="temporal-patterns">

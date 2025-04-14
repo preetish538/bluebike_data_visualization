@@ -152,17 +152,9 @@
     <script src="static/data.js"></script>
     <script src="static/script.js"></script>
     <script>
-        // Notify script.js that we'll handle initialization from here
-        if (typeof window.notifyPageInitialization === 'function') {
-            window.notifyPageInitialization();
-        } else {
-            // Set a flag that script.js will check
-            window.mapInitializedByPage = true;
-        }
-        
         // Wait for DOM to be fully loaded before initializing
         document.addEventListener('DOMContentLoaded', function() {
-            console.log("Starting controlled initialization from index.html");
+            console.log("Starting custom initialization");
             
             // Check if the map element exists with either ID format
             const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
@@ -186,9 +178,6 @@
             // Initialize the visualization
             if (typeof tripData !== 'undefined') {
                 console.log("Initializing with available data");
-                window.visualizationInitialized = true; // Set flag to prevent re-initialization
-                
-                // Use a slightly longer timeout to ensure script.js is fully loaded
                 setTimeout(function() {
                     // Check if the function is defined
                     if (typeof window.initializeVisualizations === 'function') {
@@ -210,7 +199,7 @@
                             console.error("Function initializeVisualizations is not defined. Ensure script.js is loaded correctly.");
                         }
                     }
-                }, 200); // Increased from 100ms to 200ms
+                }, 100);
             } else {
                 console.error('Trip data not found. Make sure data.js is loaded correctly.');
             }

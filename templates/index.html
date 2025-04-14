@@ -155,7 +155,13 @@
     <script src="{{ url_for('static', filename='d3_visualizations.js') }}"></script>
     <script>
         // Initialize visualizations with the data from data.js
-        initializeVisualizations(visualizationData);
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof tripData !== 'undefined') {
+                initializeVisualizations(tripData);
+            } else {
+                console.error('Trip data not found. Make sure data.js is loaded correctly.');
+            }
+        });
     </script>
 </body>
 </html> 

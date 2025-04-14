@@ -38,16 +38,190 @@ function initializeVisualizations(data) {
             paper_bgcolor: 'rgba(248,249,250,1)'
         };
 
+        // Define the updateVisualizations function
+        function updateVisualizations() {
+            // Check if dayTypeSelect and the required data elements exist
+            const dayTypeSelect = document.getElementById('dayType');
+            if (!dayTypeSelect || !data.heatmap || !data.heatmap.data) {
+                console.log("Skipping hourly visualization update - missing elements");
+                return;
+            }
+
+            const dayType = dayTypeSelect.value;
+            const heatmapData = data.heatmap.data[0];
+            const hours = heatmapData.x;
+            const values = heatmapData.z;
+            
+            if (dayType === 'compare') {
+                // Calculate weekday averages
+                const weekdayY = Array(24).fill(0);
+                for (let hour = 0; hour < 24; hour++) {
+                    let sum = 0;
+                    for (let day = 0; day < 5; day++) {
+                        sum += values[day][hour];
+                    }
+                    weekdayY[hour] = sum / 5;
+                }
+
+                // Calculate weekend averages
+                const weekendY = Array(24).fill(0);
+                for (let hour = 0; hour < 24; hour++) {
+                    let sum = 0;
+                    for (let day = 5; day < 7; day++) {
+                        sum += values[day][hour];
+                    }
+                    weekendY[hour] = sum / 2;
+                }
+
+                const newData = [
+                    {
+                        x: hours,
+                        y: weekdayY,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        name: 'Weekdays',
+                        line: { color: '#4C78A8', width: 3 },
+                        marker: { size: 6, color: '#4C78A8' }
+                    },
+                    {
+                        x: hours,
+                        y: weekendY,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        name: 'Weekends',
+                        line: { color: '#E45756', width: 3 },
+                        marker: { size: 6, color: '#E45756' }
+                    }
+                ];
+
+                const newLayout = {
+                    ...defaultLayout,
+                    title: {
+                        text: 'Bike Trips by Hour of Day (Weekday vs Weekend)',
+                        font: { size: 20 }
+                    },
+                    showlegend: true,
+                    legend: {
+                        x: 1,
+                        xanchor: 'right',
+                        y: 1,
+                        bgcolor: 'rgba(255,255,255,0.9)',
+                        bordercolor: 'rgba(0,0,0,0.2)',
+                        borderwidth: 1
+                    }
+                };
+
+                const hourlyTripsElement = document.getElementById('hourly-trips');
+                if (hourlyTripsElement) {
+                    Plotly.newPlot('hourly-trips', newData, newLayout);
+                }
+            } else {
+                // Calculate average trips per hour based on day type
+                const newY = Array(24).fill(0);
+                
+                for (let hour = 0; hour < 24; hour++) {
+                    let sum = 0;
+                    let count = 0;
+                    
+                    // Determine which days to include based on filter
+                    const startDay = dayType === 'weekend' ? 5 : 0;
+                    const endDay = dayType === 'weekday' ? 5 : 7;
+                    
+                    for (let day = startDay; day < endDay; day++) {
+                        sum += values[day][hour];
+                        count++;
+                    }
+                    
+                    newY[hour] = sum / count;
+                }
+
+                const newData = [{
+                    x: hours,
+                    y: newY,
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: 'Total Trips',
+                    line: { color: '#4C78A8', width: 3 },
+                    marker: { size: 6, color: '#4C78A8' }
+                }];
+
+                const newLayout = {
+                    ...defaultLayout,
+                    title: {
+                        text: `Bike Trips by Hour of Day (${dayType === 'all' ? 'All Days' : (dayType === 'weekday' ? 'Weekdays' : 'Weekends')})`,
+                        font: { size: 20 }
+                    },
+                    showlegend: false
+                };
+
+                const hourlyTripsElement = document.getElementById('hourly-trips');
+                if (hourlyTripsElement) {
+                    Plotly.newPlot('hourly-trips', newData, newLayout);
+                }
+            }
+        }
+
         // Initialize the map - centered more on Boston/Cambridge area with appropriate zoom
-        const mapElement = document.getElementById('stationMap');
+        // Support both 'stationMap' and 'station-map' IDs for compatibility
+        const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
         if (!mapElement) {
             console.error('Map container not found');
             return;
         }
-        const map = L.map('stationMap').setView([42.3551, -71.0656], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+        
+        // Get or create map instance
+        let map;
+        
+        // Check if this element already has a Leaflet map initialized
+        if (mapElement._leaflet_id) {
+            console.log("Reusing existing map instance");
+            try {
+                // Get the existing map instance from Leaflet's internal map registry
+                // The maps property of L contains all initialized maps
+                for (const mapId in L.maps) {
+                    if (L.maps[mapId]._container === mapElement) {
+                        map = L.maps[mapId];
+                        console.log("Successfully retrieved existing map");
+                        break;
+                    }
+                }
+                
+                if (!map) {
+                    console.warn("Could not find map in Leaflet registry, but container appears initialized");
+                    // We won't create a new map since the element is already initialized
+                    // Instead, we'll create a placeholder object with necessary methods
+                    map = {
+                        addLayer: function() { console.log("Called addLayer on placeholder map"); return this; },
+                        removeLayer: function() { console.log("Called removeLayer on placeholder map"); return this; },
+                        // Add other necessary methods
+                        _initialized: true
+                    };
+                }
+            } catch (e) {
+                console.error("Error accessing existing map instance:", e);
+                // Do NOT create a new map if the container is already initialized
+                // Instead, return a placeholder object with necessary methods
+                map = {
+                    addLayer: function() { console.log("Called addLayer on placeholder map"); return this; },
+                    removeLayer: function() { console.log("Called removeLayer on placeholder map"); return this; },
+                    // Add other necessary methods
+                    _initialized: true
+                };
+            }
+        } else {
+            // No map has been initialized on this element, safe to create a new one
+            console.log("Initializing new map on element:", mapElement.id);
+            try {
+                map = L.map(mapElement.id).setView([42.3551, -71.0656], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+                console.log("New map created successfully");
+            } catch (e) {
+                console.error("Error creating new map:", e);
+                return; // Exit initialization if map creation fails
+            }
+        }
 
         // Define university areas with expanded boundaries and campus outlines
         const universityAreas = {
@@ -124,20 +298,56 @@ function initializeVisualizations(data) {
 
         // Function to create campus outline polygons
         function addCampusOutlines(map) {
+            if (!map) {
+                console.error("Map not available for adding campus outlines");
+                return {};
+            }
+            
+            // If we're using a placeholder map, just return empty campus layers
+            if (map._initialized) {
+                console.log("Using placeholder map - skipping campus outlines");
+                return {};
+            }
+            
             const campusLayers = {};
-            Object.entries(universityAreas).forEach(([university, area]) => {
-                const polygon = L.polygon(area.campus, {
-                    color: '#1e88e5',
-                    weight: 2,
-                    fillOpacity: 0.1
-                }).addTo(map);
-                campusLayers[university] = polygon;
-            });
+            try {
+                Object.entries(universityAreas).forEach(([university, area]) => {
+                    try {
+                        const polygon = L.polygon(area.campus, {
+                            color: '#1e88e5',
+                            weight: 2,
+                            fillOpacity: 0.1
+                        });
+                        
+                        // Check if map has addLayer method before using it
+                        if (map && typeof map.addLayer === 'function') {
+                            polygon.addTo(map);
+                        } else if (map && typeof map.addTo === 'function') {
+                            // Some Leaflet versions might use different methods
+                            map.addTo(polygon);
+                        } else {
+                            console.warn(`Cannot add ${university} campus outline - map methods not available`);
+                        }
+                        
+                        campusLayers[university] = polygon;
+                    } catch (e) {
+                        console.error(`Error adding ${university} campus outline:`, e);
+                    }
+                });
+            } catch (e) {
+                console.error("Error in addCampusOutlines:", e);
+            }
             return campusLayers;
         }
 
         // Function to create legend
         function createLegend(map) {
+            // Skip if using placeholder map
+            if (!map || map._initialized) {
+                console.log("Skipping legend creation - using placeholder map");
+                return;
+            }
+            
             const legend = L.control({ position: 'bottomright' });
             
             legend.onAdd = function() {
@@ -185,6 +395,12 @@ function initializeVisualizations(data) {
 
         // Function to create university legend
         function createUniversityLegend(map) {
+            // Skip if using placeholder map
+            if (!map || map._initialized) {
+                console.log("Skipping university legend creation - using placeholder map");
+                return;
+            }
+            
             const legend = L.control({ position: 'bottomleft' });
             
             legend.onAdd = function() {
@@ -267,6 +483,12 @@ function initializeVisualizations(data) {
 
             // Function to update map markers based on filters
             function updateMapMarkers() {
+                // Skip if using placeholder map
+                if (!map || map._initialized) {
+                    console.log("Skipping map markers update - using placeholder map");
+                    return;
+                }
+                
                 // Clear existing markers
                 markers.forEach(marker => map.removeLayer(marker));
                 markers = [];
@@ -636,7 +858,10 @@ function initializeVisualizations(data) {
                         }
                     };
 
-                    Plotly.newPlot('hourly-trips', newData, newLayout);
+                    const hourlyTripsElement = document.getElementById('hourly-trips');
+                    if (hourlyTripsElement) {
+                        Plotly.newPlot('hourly-trips', newData, newLayout);
+                    }
                 } else {
                     // Calculate average trips per hour based on day type
                     const newY = Array(24).fill(0);
@@ -676,7 +901,10 @@ function initializeVisualizations(data) {
                         showlegend: false
                     };
 
-                    Plotly.newPlot('hourly-trips', newData, newLayout);
+                    const hourlyTripsElement = document.getElementById('hourly-trips');
+                    if (hourlyTripsElement) {
+                        Plotly.newPlot('hourly-trips', newData, newLayout);
+                    }
                 }
             }
             
@@ -1146,4 +1374,49 @@ function kernelDensityEstimator(kernel, X) {
 function kernelEpanechnikov(k) {
     return v => Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
 }
+
+// Set a flag to track if initialization has been attempted
+window.visualizationInitialized = false;
+
+// Wait for DOM to be fully loaded before initializing
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run initialization once
+    if (window.visualizationInitialized) {
+        console.log("Initialization already attempted, skipping");
+        return;
+    }
+    
+    window.visualizationInitialized = true;
+    console.log("DOM fully loaded");
+    
+    // Look for map container with either ID
+    const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
+    console.log("Map container:", mapElement);
+    console.log("Trip data available:", typeof tripData !== 'undefined');
+    
+    // Check for visualizationData and map it to tripData if needed
+    if (typeof visualizationData !== 'undefined' && typeof tripData === 'undefined') {
+        console.log("Found visualizationData, mapping to tripData");
+        window.tripData = visualizationData;
+    }
+    
+    // Initialize the visualizations with trip data from the data.js file
+    if (typeof tripData !== 'undefined') {
+        // Only use a small timeout for the first initialization
+        // This prevents duplicate initializations due to multiple DOMContentLoaded events
+        if (!window._initializedStarted) {
+            window._initializedStarted = true;
+            console.log("Starting initialization with small delay");
+            
+            setTimeout(() => {
+                console.log("Initializing visualizations after delay");
+                console.log("Map container after delay:", 
+                    document.getElementById('stationMap') || document.getElementById('station-map'));
+                initializeVisualizations(tripData);
+            }, 100); // Shorter delay to ensure DOM is fully rendered
+        }
+    } else {
+        console.error('Trip data not found. Make sure data.js is loaded correctly.');
+    }
+});
 

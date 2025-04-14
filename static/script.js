@@ -27,7 +27,8 @@ function generateDurations(count, period, userType) {
 }
 
 // Initialize visualizations with the provided data
-function initializeVisualizations(data) {
+// Explicitly assign to window to ensure global availability
+window.initializeVisualizations = function(data) {
     try {
         // Configure default layout options for Plotly charts
         const defaultLayout = {
@@ -339,15 +340,6 @@ function initializeVisualizations(data) {
             } catch (e) {
                 console.error("Error in addCampusOutlines:", e);
             }
-            const campusLayers = {};
-            Object.entries(universityAreas).forEach(([university, area]) => {
-                const polygon = L.polygon(area.campus, {
-                    color: '#1e88e5',
-                    weight: 2,
-                    fillOpacity: 0.1
-                }).addTo(map);
-                campusLayers[university] = polygon;
-            });
             return campusLayers;
         }
 
@@ -1209,7 +1201,7 @@ function initializeVisualizations(data) {
         `;
         document.head.appendChild(style);
     } catch (error) {
-        console.error('Error initializing visualizations:', error);
+        console.error("Error initializing visualizations:", error);
     }
 }
 

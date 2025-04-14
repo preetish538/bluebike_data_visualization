@@ -179,7 +179,26 @@
             if (typeof tripData !== 'undefined') {
                 console.log("Initializing with available data");
                 setTimeout(function() {
-                    initializeVisualizations(tripData);
+                    // Check if the function is defined
+                    if (typeof window.initializeVisualizations === 'function') {
+                        try {
+                            window.initializeVisualizations(tripData);
+                        } catch (error) {
+                            console.error("Error during visualization initialization:", error);
+                        }
+                    } else {
+                        // Fallback to window scope if not defined in script
+                        console.warn("initializeVisualizations not defined in expected scope. Looking in window scope.");
+                        if (typeof initializeVisualizations === 'function') {
+                            try {
+                                initializeVisualizations(tripData);
+                            } catch (error) {
+                                console.error("Error during visualization initialization:", error);
+                            }
+                        } else {
+                            console.error("Function initializeVisualizations is not defined. Ensure script.js is loaded correctly.");
+                        }
+                    }
                 }, 100);
             } else {
                 console.error('Trip data not found. Make sure data.js is loaded correctly.');

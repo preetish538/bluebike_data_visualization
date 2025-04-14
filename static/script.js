@@ -211,6 +211,88 @@ window.initializeVisualizations = function(data) {
                     console.error("Error creating new map:", e);
                     return; // Exit initialization if map creation fails
                 }
+
+                // Function to add stations to the map
+                function addStationsToMap() {
+                    if (!map || !data.d3_station_data || data.d3_station_data.length === 0) {
+                        console.error("Cannot add stations: map or station data is missing");
+                        return;
+                    }
+
+                    try {
+                        // Get university area filters
+                        const universityFilters = {};
+                        document.querySelectorAll('input[name="universityArea"]').forEach(checkbox => {
+                            universityFilters[checkbox.value] = checkbox.checked;
+                        });
+
+                        // Get minimum trip volume
+                        const tripVolumeSlider = document.getElementById('tripVolume');
+                        const minTripVolume = tripVolumeSlider ? parseInt(tripVolumeSlider.value) : 0;
+
+                        // Check if any university filters are active
+                        const anyFilterActive = Object.values(universityFilters).some(f => f);
+
+                        // Clear existing markers if any
+                        if (window.stationMarkers) {
+                            window.stationMarkers.forEach(marker => marker.remove());
+                        }
+                        window.stationMarkers = [];
+
+                        // Store map reference globally
+                        window.bikeShareMap = map;
+
+                        // Filter and add stations to map
+                        data.d3_station_data.forEach(station => {
+                            // Skip if station doesn't meet minimum trip volume
+                            const stationVolume = station.total_trips || 0;
+                            if (stationVolume < minTripVolume) return;
+
+                            // Skip if university filter is active and doesn't match
+                            const area = station.university_area || 'none';
+                            if (anyFilterActive && !universityFilters[area]) return;
+
+                            // Add station to map using helper function
+                            addStationToMap(station, area);
+                        });
+
+                        // Add a legend
+                        if (document.querySelector('.legend')) {
+                            document.querySelector('.legend').remove();
+                        }
+
+                        // Define university area colors (same as in addStationToMap)
+                        const areaColors = {
+                            'mit': '#A31F34',        // MIT red
+                            'harvard': '#A51C30',    // Harvard crimson
+                            'bu': '#CC0000',         // BU red
+                            'neu': '#CC0000',        // Northeastern red
+                            'none': '#666666'        // Gray for other stations
+                        };
+
+                        const legend = L.control({position: 'bottomright'});
+                        legend.onAdd = function() {
+                            const div = L.DomUtil.create('div', 'legend');
+                            div.innerHTML = '<h4>University Areas</h4>';
+                            
+                            Object.entries(areaColors).forEach(([area, color]) => {
+                                const displayName = area === 'none' ? 'Other Stations' : 
+                                    area.charAt(0).toUpperCase() + area.slice(1);
+                                div.innerHTML += `
+                                    <div><span style="background-color:${color}; width:15px; height:15px; display:inline-block; border-radius:50%; margin-right:5px;"></span>
+                                    ${displayName}</div>
+                                `;
+                            });
+                            
+                            return div;
+                        };
+                        legend.addTo(map);
+
+                        console.log(`Added ${window.stationMarkers.length} stations to the map`);
+                    } catch (error) {
+                        console.error("Error adding stations to map:", error);
+                    }
+                }
             }
             
             // Create hourly trips visualization
@@ -610,6 +692,95 @@ window.initializeVisualizations = function(data) {
                         }
                     });
                 }
+            }
+            
+            // Function to filter stations on the map based on UI controls
+            function filterStations() {
+                if (!window.bikeShareMap) {
+                    console.error("Cannot filter stations: Map not initialized");
+                    return;
+                }
+                
+                try {
+                    // Get current filter values
+                    const universityFilters = {};
+                    document.querySelectorAll('input[name="universityArea"]').forEach(checkbox => {
+                        universityFilters[checkbox.value] = checkbox.checked;
+                    });
+                    
+                    const tripVolumeSlider = document.getElementById('tripVolume');
+                    const minTripVolume = tripVolumeSlider ? parseInt(tripVolumeSlider.value) : 0;
+                    
+                    // Check if any university filters are active
+                    const anyFilterActive = Object.values(universityFilters).some(f => f);
+                    
+                    // Clear existing markers
+                    if (window.stationMarkers) {
+                        window.stationMarkers.forEach(marker => marker.remove());
+                    }
+                    window.stationMarkers = [];
+                    
+                    // Re-add filtered stations
+                    if (data.d3_station_data) {
+                        data.d3_station_data.forEach(station => {
+                            // Apply trip volume filter
+                            const stationVolume = station.total_trips || 0;
+                            if (stationVolume < minTripVolume) return;
+                            
+                            // Apply university area filter
+                            const area = station.university_area || 'none';
+                            if (anyFilterActive && !universityFilters[area]) return;
+                            
+                            // Re-add the station to the map
+                            addStationToMap(station, area);
+                        });
+                    }
+                    
+                    console.log(`Filtered map to show ${window.stationMarkers.length} stations`);
+                } catch (error) {
+                    console.error("Error filtering stations:", error);
+                }
+            }
+            
+            // Helper function to add a single station to the map
+            function addStationToMap(station, area) {
+                const map = window.bikeShareMap;
+                if (!map) return;
+                
+                // Define university area colors
+                const areaColors = {
+                    'mit': '#A31F34',        // MIT red
+                    'harvard': '#A51C30',    // Harvard crimson
+                    'bu': '#CC0000',         // BU red
+                    'neu': '#CC0000',        // Northeastern red
+                    'none': '#666666'        // Gray for other stations
+                };
+                
+                // Determine circle size based on trip volume (min 8px, max 20px)
+                const stationVolume = station.total_trips || 0;
+                const radius = Math.max(8, Math.min(20, 8 + (stationVolume / 50)));
+                
+                // Create marker
+                const marker = L.circleMarker([station.lat, station.lng], {
+                    radius: radius,
+                    fillColor: areaColors[area] || areaColors.none,
+                    color: '#fff',
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+                
+                // Add popup with station info
+                marker.bindPopup(`
+                    <strong>${station.name}</strong><br>
+                    Total Trips: ${station.total_trips || 0}<br>
+                    Starting Trips: ${station.trips_started || 0}<br>
+                    Ending Trips: ${station.trips_ended || 0}<br>
+                    University Area: ${area === 'none' ? 'Other' : area.toUpperCase()}
+                `);
+                
+                // Add to markers array
+                window.stationMarkers.push(marker);
             }
             
             // Define the updateVisualizations function

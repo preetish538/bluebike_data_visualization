@@ -95,6 +95,7 @@ const tripData = {
         [0.75, "rgb(227,26,28)"],
         [0.875, "rgb(189,0,38)"],
         [1, "rgb(128,0,38)"]
+
       ]
     }],
     layout: {
@@ -110,5 +111,6 @@ const tripData = {
         trips: Math.floor(Math.random() * 800) + 200 // Random data for trips
       }))
     }
+
   }
 };

@@ -164,6 +164,7 @@ function initializeVisualizations(data) {
         // Initialize the map - centered more on Boston/Cambridge area with appropriate zoom
         // Support both 'stationMap' and 'station-map' IDs for compatibility
         const mapElement = document.getElementById('stationMap') || document.getElementById('station-map');
+
         if (!mapElement) {
             console.error('Map container not found');
             return;
@@ -222,6 +223,7 @@ function initializeVisualizations(data) {
                 return; // Exit initialization if map creation fails
             }
         }
+
 
         // Define university areas with expanded boundaries and campus outlines
         const universityAreas = {
@@ -337,6 +339,15 @@ function initializeVisualizations(data) {
             } catch (e) {
                 console.error("Error in addCampusOutlines:", e);
             }
+            const campusLayers = {};
+            Object.entries(universityAreas).forEach(([university, area]) => {
+                const polygon = L.polygon(area.campus, {
+                    color: '#1e88e5',
+                    weight: 2,
+                    fillOpacity: 0.1
+                }).addTo(map);
+                campusLayers[university] = polygon;
+            });
             return campusLayers;
         }
 
@@ -489,6 +500,7 @@ function initializeVisualizations(data) {
                     return;
                 }
                 
+
                 // Clear existing markers
                 markers.forEach(marker => map.removeLayer(marker));
                 markers = [];
@@ -862,6 +874,7 @@ function initializeVisualizations(data) {
                     if (hourlyTripsElement) {
                         Plotly.newPlot('hourly-trips', newData, newLayout);
                     }
+
                 } else {
                     // Calculate average trips per hour based on day type
                     const newY = Array(24).fill(0);
@@ -905,6 +918,7 @@ function initializeVisualizations(data) {
                     if (hourlyTripsElement) {
                         Plotly.newPlot('hourly-trips', newData, newLayout);
                     }
+
                 }
             }
             

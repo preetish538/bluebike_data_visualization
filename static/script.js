@@ -911,49 +911,6 @@ function initializeVisualizations(data) {
         });
     });
 
-    // Update violin plot hover interactions
-    svg.selectAll("path")
-        .on("mouseover", function(event, d) {
-            const userType = d3.select(this).attr("fill") === color("member") ? "Member" : "Casual";
-            const period = d3.select(this).closest("g").datum();
-            
-            const tooltip = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("position", "absolute")
-                .style("background", "white")
-                .style("padding", "10px")
-                .style("border", "1px solid #ddd")
-                .style("border-radius", "5px")
-                .style("pointer-events", "none")
-                .style("opacity", 0);
-            
-            tooltip.html(`
-                <b>${userType} Riders - ${period}</b><br>
-                Average Duration: ${Math.round(d3.mean(data))} minutes<br>
-                <i>${userType === 'Member' ? 
-                    'Members typically take shorter, more consistent trips' : 
-                    'Casual riders often take longer, more variable trips'}</i>
-            `)
-                .style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY - 10) + "px")
-                .style("opacity", 1);
-            
-            d3.select(this)
-                .style("opacity", 1)
-                .style("stroke-width", "2");
-        })
-        .on("mousemove", function(event) {
-            d3.select(".tooltip")
-                .style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY - 10) + "px");
-        })
-        .on("mouseout", function() {
-            d3.select(".tooltip").remove();
-            d3.select(this)
-                .style("opacity", 0.7)
-                .style("stroke-width", "1");
-        });
-
     // Add CSS for tooltips
     const style = document.createElement('style');
     style.textContent = `
@@ -994,13 +951,16 @@ function createDurationViolinPlot(tripData) {
     const height = 500;
     const margin = { top: 40, right: 100, bottom: 60, left: 80 };
 
+    // Define color scale
+    const color = d3.scaleOrdinal()
+        .domain(["member", "casual"])
+        .range(["#1e88e5", "#ff9800"]);
+
     // Create SVG container
     const svg = d3.select("#duration-violin")
         .append("svg")
         .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("height", height);
 
     // Define scales
     const x = d3.scaleBand()
@@ -1011,11 +971,6 @@ function createDurationViolinPlot(tripData) {
     const y = d3.scaleLinear()
         .domain([0, 60])
         .range([height - margin.top - margin.bottom, 0]);
-
-    // Define color scale
-    const color = d3.scaleOrdinal()
-        .domain(["member", "casual"])
-        .range(["#4C78A8", "#E45756"]);
 
     // Create violin plots for each time period
     const timePeriods = ["Morning", "Afternoon", "Evening", "Night"];
@@ -1109,6 +1064,49 @@ function createDurationViolinPlot(tripData) {
             .style("font-size", "14px")
             .text(userType.charAt(0).toUpperCase() + userType.slice(1));
     });
+
+    // Add hover interactions
+    svg.selectAll("path")
+        .on("mouseover", function(event, d) {
+            const userType = d3.select(this).attr("fill") === color("member") ? "Member" : "Casual";
+            const period = d3.select(this).closest("g").datum();
+            
+            const tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("background", "white")
+                .style("padding", "10px")
+                .style("border", "1px solid #ddd")
+                .style("border-radius", "5px")
+                .style("pointer-events", "none")
+                .style("opacity", 0);
+            
+            tooltip.html(`
+                <b>${userType} Riders - ${period}</b><br>
+                Average Duration: ${Math.round(d3.mean(data))} minutes<br>
+                <i>${userType === 'Member' ? 
+                    'Members typically take shorter, more consistent trips' : 
+                    'Casual riders often take longer, more variable trips'}</i>
+            `)
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 10) + "px")
+                .style("opacity", 1);
+            
+            d3.select(this)
+                .style("opacity", 1)
+                .style("stroke-width", "2");
+        })
+        .on("mousemove", function(event) {
+            d3.select(".tooltip")
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 10) + "px");
+        })
+        .on("mouseout", function() {
+            d3.select(".tooltip").remove();
+            d3.select(this)
+                .style("opacity", 0.7)
+                .style("stroke-width", "1");
+        });
 }
 
 // Helper functions for kernel density estimation
